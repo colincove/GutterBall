@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="NewApi">
+        <ignore path="src\droidControllers\SwingActivity.java" />
+        <ignore path="src\droidControllers\HomeActivity.java" />
+        <ignore path="src\gameControllers\GameView.java" />
+    </issue>
+</lint>

@@ -1,0 +1,30 @@
+package gameControllers.Levels;
+
+import android.graphics.drawable.BitmapDrawable;
+
+import com.example.swings.R;
+
+import gameControllers.Game;
+import gameControllers.Levels.Geom.HiddenDragonGeom;
+import Components.BodyComponent;
+
+public class HiddenDragonLevel extends ThrowLevel {
+
+	public HiddenDragonLevel(Game game, BodyComponent geometry) {
+		super(game, geometry,(BitmapDrawable) game.getResources().getDrawable(R.drawable.hiddendragon));
+		// TODO Auto-generated constructor stub
+		createPortal(8, 3);
+		createPortal(16, 3);
+		createPortal(24, 3);
+		createPortal(3, 8);
+		createPortal(16, 18);
+		createPortal(21, 24);
+
+	}
+
+	public HiddenDragonLevel(Game game) {
+		this(game, new HiddenDragonGeom(game));
+		// TODO Auto-generated constructor stub
+	}
+
+}
