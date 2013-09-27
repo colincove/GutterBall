@@ -48,7 +48,7 @@ public class FullscreenActivity extends Activity {
 	        int positionIterations = 2;
 		public ActivityThread(){
 			Vec2 gravity = new Vec2(1f,1f);
-	        world  =new World(gravity, true);
+	        world  =new World(gravity);
 	        BodyDef groundBodyDef=new BodyDef();
 	        groundBodyDef.position.set(0.0f, -10.0f);
 	        
