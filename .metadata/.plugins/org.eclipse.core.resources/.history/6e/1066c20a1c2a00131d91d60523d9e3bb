@@ -1,0 +1,22 @@
+package Components;
+
+import gameControllers.Game;
+import infoHolders.UpdateInfo;
+
+public class Floater extends AbstractGameComponent {
+ 
+	private AbstractGameComponent floater;
+	
+	public Floater(Game game, AbstractGameComponent floater) {
+		super(game);
+		// TODO Auto-generated constructor stub
+		this.floater=floater;
+	}
+
+	@Override
+	public void update(UpdateInfo updateInfo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

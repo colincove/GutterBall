@@ -10,22 +10,27 @@ import android.graphics.drawable.BitmapDrawable;
 import gameControllers.Game;
 import gameControllers.RadialCollider;
 import gameControllers.RadialID;
+import gameControllers.SineWave;
 import infoHolders.DrawInfo;
+import infoHolders.UpdateInfo;
 import droidControllers.SwingActivity;
 import Components.DrawableComponent;
 import Components.DrawableGameComponent;
+import Components.Floater;
 import Components.interfaces.IRadialCollider;
 
 public class Portal extends DrawableGameComponent implements IRadialCollider {
 private Paint paint;
 private BitmapDrawable sphere;
 private RadialCollider collider;
-
+private Floater floater;
 	public Portal(Game activity, float x, float y) {
 		super(activity);
 		setPos(x, y);
+		floater=new Floater(activity, 2, 0.2f);
 		// TODO Auto-generated constructor stub
 		paint = new Paint();
+
 		paint.setARGB(255, 107, 255, 107);
 		collider = new RadialCollider(activity,this, 2, RadialID.PORTAL);
 		sphere=(BitmapDrawable) game.getResources().getDrawable(R.drawable.green_sphere);
@@ -35,7 +40,7 @@ private RadialCollider collider;
 	public void draw(DrawInfo info){
 		super.draw(info);
 		float x=getX();
-		float y=getY();
+		float y=getY()+floater.x/20;
 		float r=1;
 		/*info.getCanvas().drawCircle(gameView.toScreenX(getX()),
 				gameView.toScreenY(getY()),
@@ -63,6 +68,10 @@ private RadialCollider collider;
 	public void destroy(){
 		collider.destroy();
 	super.destroy();
+	}
+	@Override
+	public void update(UpdateInfo updateInfo){
+	super.update(updateInfo);
 	}
 
 

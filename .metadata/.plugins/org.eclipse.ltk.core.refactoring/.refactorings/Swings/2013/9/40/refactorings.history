@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move element &apos;SineWave.java&apos; to &apos;Swings/src/gameControllers&apos;&#x0D;&#x0A;- Original project: &apos;Swings&apos;&#x0D;&#x0A;- Destination element: &apos;Swings/src/gameControllers&apos;&#x0D;&#x0A;- Original element: &apos;SineWave.java&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move compilation unit" destination="/src&lt;gameControllers" element1="/src&lt;{SineWave.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1380577749953" units="1" version="1.0"/>
+</session>

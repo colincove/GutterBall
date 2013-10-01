@@ -1,0 +1,54 @@
+import java.awt.*;
+/* 
+*  Programmer:  Richard Glenn
+*  Modified by: Konstantin Lukin
+*  Modified for Android by: Colin Cove
+*/
+
+
+public class SineWave {
+
+public int wavelength, amplitude, phase;
+
+
+public SineWave(int w, int a, int p) {
+   wavelength = w;
+   amplitude = a;
+   phase = p;
+}
+
+public void advance(int phaseIncrement) {
+    // note: this advances the initial phase, so a positive value
+    // moves the wave form to the left, negative to the right.
+   phase -= phaseIncrement;
+   if(phase >= 360) phase %= 360;
+   if(phase <    0) phase += 360; 
+}
+
+public SineWave copy() {
+   return new SineWave(wavelength, amplitude, phase);
+}
+
+public int getY(int x) {
+   double degreesPerPixel = 360.0 / wavelength;
+   double degrees = (-phase+180) + x*degreesPerPixel;
+   return (int)(amplitude*Math.sin(degrees*Math.PI/180.0));
+}
+
+
+
+// return phase in degrees when x = length.
+public int getPhase(float length) 
+{   return (int)(360*(length/wavelength) + phase);
+}
+  
+
+// returns the number of wavelengths that fits into length=x
+public  float getWaveNum(int x) {
+   return (float)(x/wavelength);
+}
+  
+  
+}
+
+
