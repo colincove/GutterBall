@@ -16,7 +16,6 @@ import infoHolders.UpdateInfo;
 import droidControllers.SwingActivity;
 import Components.DrawableComponent;
 import Components.DrawableGameComponent;
-import Components.Floater;
 import Components.interfaces.IRadialCollider;
 
 public class Portal extends DrawableGameComponent implements IRadialCollider {

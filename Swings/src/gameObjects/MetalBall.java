@@ -15,7 +15,7 @@ import gameControllers.RadialID;
 import Components.BodyComponent;
 
 public class MetalBall extends BodyComponent {
-
+	
 	private Vec2 pos;
 	public MetalBall(Game game, Vec2 pos) {
 		super(game);
@@ -24,6 +24,7 @@ public class MetalBall extends BodyComponent {
 	        bodyDef.position.set(pos);
 		// TODO Auto-generated constructor stub
 	        addCollisionGroup(CollisionGroups.METAL_BALL);
+	       
 	}
 	@Override
 	public void createBody(){

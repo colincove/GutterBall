@@ -1,0 +1,103 @@
+package gameObjects;
+
+import org.jbox2d.collision.Manifold;
+import org.jbox2d.collision.ManifoldPoint;
+import org.jbox2d.common.Vec2;
+import org.jbox2d.dynamics.Body;
+import org.jbox2d.dynamics.contacts.Contact;
+import org.jbox2d.dynamics.contacts.ContactEdge;
+
+import android.graphics.Color;
+import android.graphics.Paint;
+
+import infoHolders.DrawInfo;
+import infoHolders.UpdateInfo;
+import gameControllers.Game;
+import Components.BodyComponent;
+import Components.DrawableGameComponent;
+
+public class HitSparks extends DrawableGameComponent {
+	private Spark[] sparks;
+	private float fric;
+	private BodyComponent bComp;
+	private Body body;
+	private ContactEdge edge;
+	private Contact contact;
+	private Manifold manifold;
+	private Manifold worldManifold;
+	private Paint paint;
+	public HitSparks(Game game, BodyComponent bComp) {
+		super(game);
+		sparks=new Spark[25];
+		for(int i=0;i<10;i++){
+			sparks[i] = new Spark();
+		}
+		fric=0.7f;
+		this.bComp=bComp;
+		paint=new Paint();
+		paint.setARGB(255, 253, 252, 241);
+		// TODO Auto-generated constructor stub
+	}
+	@Override
+	public void update(UpdateInfo updateInfo){
+		super.update(updateInfo);
+		for(Spark spark : sparks){
+			if(spark.active){
+				spark.x+=spark.vx;
+				spark.y+=spark.vy;
+				spark.vx=spark.vx*fric;
+				spark.vy=spark.vy*fric;
+				if(spark.vy<0.005&&spark.vx<0.005){
+					spark.active=false;
+				}
+			}
+		}
+		body=bComp.getBody();
+
+		if(body!=null){
+			edge=body.getContactList();
+			while(edge!=null){
+				contact=edge.contact;
+				while(contact!=null){
+					if(contact.isTouching()){
+					manifold=contact.m_manifold;
+					worldManifold=contact.getWorldManifold(manifold)
+					for(ManifoldPoint pt : manifold.points){
+						//pt.localPoint.
+						for(Spark spark : sparks){
+							if(!spark.active){
+								spark.active=true;
+								//spark.x=pt.localPoint.x;
+								//spark.y=pt.localPoint.y;
+								spark.x=bComp.getX();
+								spark.y=bComp.getY();
+								spark.vx=2;
+								spark.vy=2;
+								
+								break;
+							}
+						}
+					}
+					}
+					contact=contact.m_next;
+				}
+				edge=edge.next;
+			}
+		}
+	}
+	@Override
+	public void draw(DrawInfo drawInfo){
+		super.draw(drawInfo);
+		for(Spark spark : sparks){
+			if(spark.active){
+				drawInfo.getCanvas().drawLine(
+						gameView.toScreenX(spark.x-spark.vx),
+						gameView.toScreenY(spark.y-spark.vy), 
+						gameView.toScreenX(spark.x), 
+						gameView.toScreenY(spark.y), 
+						paint);
+			}
+		}
+		
+	}
+}

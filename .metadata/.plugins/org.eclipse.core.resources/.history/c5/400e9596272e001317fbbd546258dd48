@@ -1,0 +1,22 @@
+package gameObjects;
+
+import infoHolders.DrawInfo;
+import infoHolders.UpdateInfo;
+import gameControllers.Game;
+import Components.DrawableGameComponent;
+
+public class HitSparks extends DrawableGameComponent {
+
+	public HitSparks(Game game) {
+		super(game);
+		// TODO Auto-generated constructor stub
+	}
+	@Override
+	public void update(UpdateInfo updateInfo){
+		super.update(updateInfo);
+	}
+	@Override
+	public void draw(DrawInfo drawInfo){
+		super.draw(drawInfo);
+	}
+}

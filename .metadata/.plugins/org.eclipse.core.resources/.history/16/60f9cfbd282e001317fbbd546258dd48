@@ -1,0 +1,54 @@
+package gameObjects;
+
+import org.jbox2d.common.Vec2;
+import org.jbox2d.dynamics.Body;
+import org.jbox2d.dynamics.contacts.ContactEdge;
+
+import infoHolders.DrawInfo;
+import infoHolders.UpdateInfo;
+import gameControllers.Game;
+import Components.BodyComponent;
+import Components.DrawableGameComponent;
+
+public class HitSparks extends DrawableGameComponent {
+	private Spark[] sparks;
+	private float fric;
+	private BodyComponent bComp;
+	private Body body;
+	private ContactEdge edge;
+	public HitSparks(Game game, BodyComponent bComp) {
+		super(game);
+		sparks=new Spark[10];
+		for(int i=0;i<10;i++){
+			sparks[0] = new Spark();
+		}
+		fric=0.9f;
+		this.bComp=bComp;
+		// TODO Auto-generated constructor stub
+	}
+	@Override
+	public void update(UpdateInfo updateInfo){
+		super.update(updateInfo);
+		for(Spark spark : sparks){
+			if(spark.active){
+				spark.vx=spark.vx*fric;
+				spark.vy=spark.vy*fric;
+				if(spark.vy<0.05&&spark.vx<0.05){
+					spark.active=false;
+				}
+			}
+		}
+		body=bComp.getBody();
+		if(body!=null){
+			edge=body.getContactList();
+			while(edge!=null){
+				
+				edge=edge.next;
+			}
+		}
+	}
+	@Override
+	public void draw(DrawInfo drawInfo){
+		super.draw(drawInfo);
+	}
+}

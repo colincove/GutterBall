@@ -1,0 +1,7 @@
+package gameObjects;
+
+import Components.DrawableGameComponent;
+
+public class HitSparks extends DrawableGameComponent {
+
+}

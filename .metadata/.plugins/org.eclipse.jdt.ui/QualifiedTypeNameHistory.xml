@@ -1,2 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="infoHolders.UpdateInfo"/>
+<fullyQualifiedTypeName name="infoHolders.DrawInfo"/>
+<fullyQualifiedTypeName name="Components.BodyComponent"/>
+<fullyQualifiedTypeName name="org.jbox2d.dynamics.Body"/>
+<fullyQualifiedTypeName name="org.jbox2d.dynamics.contacts.ContactEdge"/>
+<fullyQualifiedTypeName name="org.jbox2d.dynamics.contacts.Contact"/>
+<fullyQualifiedTypeName name="org.jbox2d.collision.Manifold"/>
+<fullyQualifiedTypeName name="org.jbox2d.collision.ManifoldPoint"/>
+<fullyQualifiedTypeName name="android.graphics.Paint"/>
+<fullyQualifiedTypeName name="android.graphics.Color"/>
+<fullyQualifiedTypeName name="gameObjects.HitSparks"/>
+<fullyQualifiedTypeName name="org.jbox2d.collision.WorldManifold"/>
+<fullyQualifiedTypeName name="org.jbox2d.common.Vec2"/>
+</qualifiedTypeNameHistroy>

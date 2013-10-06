@@ -24,6 +24,7 @@ import Components.interfaces.IRadialCollider;
 public class Actor extends BodyComponent implements IRadialCollider{
 	private RadialCollider radialCollider;
 	private Vec2 pos;
+	private HitSparks sparks;
 	private BitmapDrawable sphere;
 	private float r;
 	public Actor(Game game, Vec2 pos) {
@@ -37,6 +38,7 @@ public class Actor extends BodyComponent implements IRadialCollider{
 	        sphere=(BitmapDrawable) game.getResources().getDrawable(R.drawable.sphere);
 	        r=0.5f;
 	        drawBody=false;
+	        sparks = new HitSparks(game, this);
 	}
 	@Override
 	public void createBody(){
@@ -84,6 +86,8 @@ public class Actor extends BodyComponent implements IRadialCollider{
 	@Override
 	public void destroy(){
 		radialCollider.destroy();
+		
+		sparks.destroy();
 		radialCollider=null;
 		pos=null;
 		super.destroy();
