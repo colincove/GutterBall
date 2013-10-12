@@ -1,5 +1,6 @@
 package gameObjects;
 
+import org.jbox2d.callbacks.ContactImpulse;
 import org.jbox2d.collision.Manifold;
 import org.jbox2d.collision.ManifoldPoint;
 import org.jbox2d.collision.WorldManifold;
@@ -16,32 +17,36 @@ import infoHolders.UpdateInfo;
 import gameControllers.Game;
 import Components.BodyComponent;
 import Components.DrawableGameComponent;
+import Components.interfaces.IContactCallback;
 
-public class HitSparks extends DrawableGameComponent {
+public class HitSparks extends DrawableGameComponent implements IContactCallback {
 	private Spark[] sparks;
 	private float fric;
-	private BodyComponent bComp;
 	private Body body;
 	private ContactEdge edge;
 	private Contact contact;
 	private Manifold manifold;
 	private WorldManifold worldManifold;
 	private Paint paint;
-	private int sparkLimit=25;
+	private int sparkLimit=100;
 	private Vec2 vel1;
 	private Vec2 vel2;
-	public HitSparks(Game game, BodyComponent bComp) {
+	public HitSparks(Game game) {
 		super(game);
 		sparks=new Spark[sparkLimit];
 		for(int i=0;i<sparkLimit;i++){
 			sparks[i] = new Spark();
 		}
-		fric=0.7f;
-		this.bComp=bComp;
+		game.getSimulation().addPostSolveListener(this);
+		fric=0.5f;
 		paint=new Paint();
 		worldManifold=new WorldManifold();
 		paint.setARGB(255, 253, 252, 241);
 		// TODO Auto-generated constructor stub
+	}
+	@Override
+	public int drawOrder(){
+		return 1;
 	}
 	@Override
 	public void update(UpdateInfo updateInfo){
@@ -50,56 +55,15 @@ public class HitSparks extends DrawableGameComponent {
 			if(spark.active){
 				spark.x+=spark.vx;
 				spark.y+=spark.vy;
+				float totalVel = (float)Math.abs(spark.vx)+(float)Math.abs(spark.vy);
 				spark.vx=spark.vx*fric;
-				spark.vy=spark.vy*fric;
+				spark.vy=spark.vy*fric+0.08f*totalVel;
 				if(spark.vy<0.005&&spark.vx<0.005){
 					spark.active=false;
 				}
 			}
 		}
-		body=bComp.getBody();
-
-		if(body!=null){
-			edge=body.getContactList();
-			if(edge!=null){
-			//while(edge!=null){
-				contact=edge.contact;
-				//while(contact!=null){
-				
-					if(contact.isTouching()){
-					manifold=contact.getManifold();
-					contact.getWorldManifold(worldManifold);
-						int count=0;
-						//pt.localPoint.
-						for(Spark spark : sparks){
-							if(!spark.active){
-								spark.active=true;
-								//spark.x=pt.localPoint.x;
-								//spark.y=pt.localPoint.y;
-								spark.x=worldManifold.points[0].x;
-								spark.y=worldManifold.points[0].y;
-								//spark.vx=2*worldManifold.normal.x;
-								//spark.vy=2*worldManifold.normal.y;
-								
-								vel1 = body.getLinearVelocityFromWorldPoint(worldManifold.points[0]);
-								vel2 = edge.other.getLinearVelocityFromWorldPoint(worldManifold.points[0]);
-								
-								
-								
-								spark.vx=vel1.x/(10+(float)Math.random());
-								spark.vy=vel1.y/(10+(float)Math.random());
-								if(++count>3){
-								break;
-								}
-							}
-						}
-					//}
-					
-					//contact=contact.m_next;
-				}
-				//edge=edge.next;
-			}
-		}
+		
 	}
 	@Override
 	public void draw(DrawInfo drawInfo){
@@ -115,5 +79,53 @@ public class HitSparks extends DrawableGameComponent {
 			}
 		}
 		
+	}
+	@Override
+	public void onBeginContact(Contact c) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void onEndContact(Contact c) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void onPreSolve(Contact c, Manifold manifold) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void onPostSolve(Contact c, ContactImpulse cImpulse) {
+		// TODO Auto-generated method stub
+		//cImpulse.
+		if(c.isTouching()){
+			manifold=c.getManifold();
+			c.getWorldManifold(worldManifold);
+				int count=0;
+				//pt.localPoint.
+				for(Spark spark : sparks){
+					if(!spark.active){
+						spark.active=true;
+						//spark.x=pt.localPoint.x;
+						//spark.y=pt.localPoint.y;
+						spark.x=worldManifold.points[0].x;
+						spark.y=worldManifold.points[0].y;
+						//spark.vx=2*worldManifold.normal.x;
+						//spark.vy=2*worldManifold.normal.y;
+						
+						vel1 = c.getFixtureA().getBody().getLinearVelocityFromWorldPoint(worldManifold.points[0]);
+						vel2 = c.getFixtureB().getBody().getLinearVelocityFromWorldPoint(worldManifold.points[0]);
+						
+						
+						
+						spark.vx=vel2.x/(15+(float)Math.random()*5f);
+						spark.vy=vel2.y/(15+(float)Math.random()*5f);
+						if(++count>5){
+						break;
+						}
+					}
+				}
+		}
 	}
 }

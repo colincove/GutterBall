@@ -1,0 +1,10 @@
+package Components.interfaces;
+
+import org.jbox2d.dynamics.contacts.Contact;
+
+public interface IContactCallback {
+	public void onBeginContact(Contact c);
+	public void onEndContact(Contact c);
+	public void onPreSolve(Contact c);
+	public void onPostSolve(Contact c);
+}

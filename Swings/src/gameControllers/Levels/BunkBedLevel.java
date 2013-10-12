@@ -17,5 +17,4 @@ public class BunkBedLevel extends ThrowLevel {
 		this(game, new BunkBedGeom(game));
 		// TODO Auto-generated constructor stub
 	}
-
 }

@@ -5,12 +5,16 @@
 <fullyQualifiedTypeName name="Components.BodyComponent"/>
 <fullyQualifiedTypeName name="org.jbox2d.dynamics.Body"/>
 <fullyQualifiedTypeName name="org.jbox2d.dynamics.contacts.ContactEdge"/>
-<fullyQualifiedTypeName name="org.jbox2d.dynamics.contacts.Contact"/>
 <fullyQualifiedTypeName name="org.jbox2d.collision.Manifold"/>
 <fullyQualifiedTypeName name="org.jbox2d.collision.ManifoldPoint"/>
 <fullyQualifiedTypeName name="android.graphics.Paint"/>
 <fullyQualifiedTypeName name="android.graphics.Color"/>
-<fullyQualifiedTypeName name="gameObjects.HitSparks"/>
 <fullyQualifiedTypeName name="org.jbox2d.collision.WorldManifold"/>
 <fullyQualifiedTypeName name="org.jbox2d.common.Vec2"/>
+<fullyQualifiedTypeName name="org.jbox2d.callbacks.ContactListener"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="org.jbox2d.dynamics.contacts.Contact"/>
+<fullyQualifiedTypeName name="Components.interfaces.IContactCallback"/>
+<fullyQualifiedTypeName name="gameObjects.HitSparks"/>
 </qualifiedTypeNameHistroy>

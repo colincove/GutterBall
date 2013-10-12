@@ -10,7 +10,6 @@ import android.graphics.drawable.BitmapDrawable;
 import gameControllers.Game;
 import gameControllers.RadialCollider;
 import gameControllers.RadialID;
-import gameControllers.SineWave;
 import infoHolders.DrawInfo;
 import infoHolders.UpdateInfo;
 import droidControllers.SwingActivity;

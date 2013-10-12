@@ -7,12 +7,14 @@ import android.graphics.drawable.BitmapDrawable;
 
 import Components.BodyComponent;
 import gameControllers.Game;
+import gameObjects.HitSparks;
 import gameObjects.Launcher;
 import gameObjects.Portal;
 
 public abstract class ThrowLevel extends Level {
 private Launcher launcher;
 private List<Portal> portalList;
+private HitSparks sparks;
 	public ThrowLevel(Game game, BodyComponent geometry) {
 		super(game, geometry);
 		// TODO Auto-generated constructor stub
@@ -26,7 +28,7 @@ private List<Portal> portalList;
 		// TODO Auto-generated constructor stub
 		launcher = new Launcher(game, 15, 46);
 		portalList =new ArrayList<Portal>();
-		
+		sparks = new HitSparks(game);
 	
 	}
 	@Override

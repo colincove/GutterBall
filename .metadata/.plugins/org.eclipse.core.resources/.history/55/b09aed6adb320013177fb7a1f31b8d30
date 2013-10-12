@@ -1,0 +1,49 @@
+package gameControllers.Levels;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import android.graphics.drawable.BitmapDrawable;
+
+import Components.BodyComponent;
+import gameControllers.Game;
+import gameObjects.HitSparks;
+import gameObjects.Launcher;
+import gameObjects.Portal;
+
+public abstract class ThrowLevel extends Level {
+private Launcher launcher;
+private List<Portal> portalList;
+private HitSparks sparks;
+	public ThrowLevel(Game game, BodyComponent geometry) {
+		super(game, geometry);
+		// TODO Auto-generated constructor stub
+		launcher = new Launcher(game, 15, 46);
+		portalList =new ArrayList<Portal>();
+		
+	
+	}
+	public ThrowLevel(Game game, BodyComponent geometry, BitmapDrawable bgBitmap) {
+		super(game, geometry, bgBitmap);
+		// TODO Auto-generated constructor stub
+		launcher = new Launcher(game, 15, 46);
+		portalList =new ArrayList<Portal>();
+		
+	
+	}
+	@Override
+	public void destroy(){
+		for(Portal p : portalList)
+		{
+			if(!p.destroyed())p.destroy();
+		}
+		launcher.destroy();
+		launcher=null;
+		super.destroy();
+	}
+	protected void createPortal(float x, float y)
+	{
+		portalList.add(new Portal(game, x, y));
+	}
+
+}

@@ -1,0 +1,9 @@
+package Components.interfaces;
+
+public interface IContactCallback {
+	public void onBeginContact();
+	public void onEndContact();
+	public void onPreSolve();
+	public void onPostSolve();
+	
+}
