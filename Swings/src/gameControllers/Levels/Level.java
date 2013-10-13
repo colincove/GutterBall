@@ -20,6 +20,7 @@ public class Level extends AbstractGameComponent{
 	private Background bg;
 	private Portal portal;
 	private BottomCuller culler;
+	private CullShaftRenderer cullRenderer;
 public Level(Game game, BodyComponent geometry){
 	super(game);
 	this.geometry=geometry;
@@ -46,13 +47,16 @@ public Level(Game game, BodyComponent geometry){
 	//SpawnActors spawn=new SpawnActors(game);
 	bg  = new Background(game);
 
-	culler = new BottomCuller(game);
+
 }
 public Level(Game game, BodyComponent geometry, BitmapDrawable bgBitmap){
 	super(game);
 	this.geometry=geometry;
 	bg  = new Background(game, bgBitmap);
 	culler = new BottomCuller(game);
+	culler = new BottomCuller(game);
+	cullRenderer = new CullShaftRenderer(game);
+	culler.addBottomCullListener(cullRenderer);
 }
 public Level(Game game){
 	this(game, new LevelWalls(game));

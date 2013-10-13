@@ -33,12 +33,10 @@ public class Actor extends BodyComponent implements IRadialCollider{
 		 bodyDef.type=BodyType.DYNAMIC;
 	        bodyDef.position.set(pos);
 	        radialCollider = new RadialCollider(game, this, 0.5f, RadialID.ACTOR);
-		// TODO Auto-generated constructor stub
 	        addCollisionGroup(CollisionGroups.ACTOR);
 	        sphere=(BitmapDrawable) game.getResources().getDrawable(R.drawable.sphere);
 	        r=0.5f;
 	        drawBody=false;
-	      //  sparks = new HitSparks(game, this);
 	}
 	@Override
 	public void createBody(){

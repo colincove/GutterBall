@@ -1,5 +1,10 @@
 package gameControllers.Levels;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import infoHolders.DrawInfo;
 import infoHolders.UpdateInfo;
 
 import org.jbox2d.collision.shapes.PolygonShape;
@@ -7,15 +12,23 @@ import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.contacts.ContactEdge;
 
+import com.example.swings.R;
+
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
+
 import gameControllers.Game;
+import gameObjects.Actor;
 import gameObjects.CollisionGroups;
 import Components.BodyComponent;
 
 public class BottomCuller extends BodyComponent {
-
+	private List<IBottomCullListener> bottomCullListeners;
 	public BottomCuller(Game game) {
 		super(game);
-		// TODO Auto-generated constructor stub
+		bottomCullListeners = new  ArrayList<IBottomCullListener>();
+
 	}
 	@Override
 public void createBody(){
@@ -36,6 +49,7 @@ public void createBody(){
 		while(contact!=null)
 		{
 			if(((BodyComponent)contact.other.getUserData()).containsCollisionGroup(CollisionGroups.ACTOR)){
+				destroyActor((Actor)contact.other.getUserData());
 				((BodyComponent)contact.other.getUserData()).markDestroy();
 				break;
 			}
@@ -43,5 +57,19 @@ public void createBody(){
 		
 			
 		}
+
+	}
+	private void destroyActor(Actor actor){
+		for(IBottomCullListener listener : bottomCullListeners){
+			listener.onBottomCull(actor);
+		}
+
+	}
+	public void addBottomCullListener(IBottomCullListener listener){
+		bottomCullListeners.add(listener);
+	}
+	public void removeBottomCullListener(IBottomCullListener listener){
+		bottomCullListeners.remove(listener);
 	}
 }
+

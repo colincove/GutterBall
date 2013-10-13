@@ -1,0 +1,17 @@
+package gameControllers.Levels;
+
+import gameObjects.Actor;
+
+public class CullShaftRenderer implements IBottomCullListener {
+
+	public CullShaftRenderer() {
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void onBottomCull(Actor actor) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

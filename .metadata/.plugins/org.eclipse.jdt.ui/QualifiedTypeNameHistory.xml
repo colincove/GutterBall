@@ -1,20 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="infoHolders.UpdateInfo"/>
-<fullyQualifiedTypeName name="infoHolders.DrawInfo"/>
 <fullyQualifiedTypeName name="Components.BodyComponent"/>
 <fullyQualifiedTypeName name="org.jbox2d.dynamics.Body"/>
 <fullyQualifiedTypeName name="org.jbox2d.dynamics.contacts.ContactEdge"/>
 <fullyQualifiedTypeName name="org.jbox2d.collision.Manifold"/>
 <fullyQualifiedTypeName name="org.jbox2d.collision.ManifoldPoint"/>
-<fullyQualifiedTypeName name="android.graphics.Paint"/>
 <fullyQualifiedTypeName name="android.graphics.Color"/>
 <fullyQualifiedTypeName name="org.jbox2d.collision.WorldManifold"/>
-<fullyQualifiedTypeName name="org.jbox2d.common.Vec2"/>
 <fullyQualifiedTypeName name="org.jbox2d.callbacks.ContactListener"/>
-<fullyQualifiedTypeName name="java.util.List"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="org.jbox2d.dynamics.contacts.Contact"/>
 <fullyQualifiedTypeName name="Components.interfaces.IContactCallback"/>
 <fullyQualifiedTypeName name="gameObjects.HitSparks"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="com.example.swings.R.drawable"/>
+<fullyQualifiedTypeName name="android.graphics.Rect"/>
+<fullyQualifiedTypeName name="org.jbox2d.common.Vec2"/>
+<fullyQualifiedTypeName name="java.util.Iterator"/>
+<fullyQualifiedTypeName name="android.graphics.Paint"/>
+<fullyQualifiedTypeName name="gameObjects.Actor"/>
+<fullyQualifiedTypeName name="gameControllers.Levels.BottomCuller"/>
+<fullyQualifiedTypeName name="Components.DrawableComponent"/>
+<fullyQualifiedTypeName name="gameControllers.Game"/>
+<fullyQualifiedTypeName name="infoHolders.DrawInfo"/>
+<fullyQualifiedTypeName name="gameControllers.GameView"/>
+<fullyQualifiedTypeName name="Components.DrawableGameComponent"/>
+<fullyQualifiedTypeName name="infoHolders.UpdateInfo"/>
+<fullyQualifiedTypeName name="gameControllers.Levels.CullShaftRenderer"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
 </qualifiedTypeNameHistroy>

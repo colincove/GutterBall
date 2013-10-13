@@ -1,0 +1,5 @@
+package gameControllers.Levels;
+
+public interface IBottomCullListener {
+public void onBottomCull(Actor actor);
+}

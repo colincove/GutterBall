@@ -1,0 +1,18 @@
+package gameControllers.Levels;
+
+import Components.DrawableComponent;
+import gameControllers.Game;
+import gameObjects.Actor;
+
+public class CullShaftRenderer extends DrawableComponent implements IBottomCullListener {
+
+	public CullShaftRenderer(Game game) {
+		super(game);
+	}
+
+	@Override
+	public void onBottomCull(Actor actor) {
+
+	}
+
+}

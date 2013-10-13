@@ -1,0 +1,58 @@
+package gameControllers.Levels;
+
+import java.util.List;
+
+import org.jbox2d.common.Vec2;
+
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
+import infoHolders.DrawInfo;
+import Components.DrawableComponent;
+import gameControllers.Game;
+import gameControllers.GameView;
+import gameObjects.Actor;
+
+public class CullShaftRenderer extends DrawableComponent implements IBottomCullListener {
+	private List<Culling> cullList;
+	private BitmapDrawable lightShaft;
+	private Paint textPaint;
+	private GameView gameView;
+	public CullShaftRenderer(Game game) {
+		super(game);
+		gameView = (GameView)(game.getView());
+	}
+
+	@Override
+	public void onBottomCull(Actor actor) {
+
+	}
+	@Override
+	public void draw(DrawInfo drawInfo){
+		super.draw(drawInfo);
+		for(Culling culling : cullList){
+			float ratio = 60f/425f;
+			Rect des = new Rect();
+			Vec2 cent = body.getWorldCenter();
+			des.set((int)gameView.toScreenX(culling.x-1*culling.scale), 
+					(int)gameView.toScreenY(simulation.getWorldSize().y-2/ratio*culling.scale),
+					(int)gameView.toScreenX(culling.x+1*culling.scale),
+					(int)gameView.toScreenY(simulation.getWorldSize().y));
+			lightShaft.setBounds(des);
+			lightShaft.setAlpha((int)(255*culling.alpha));
+			lightShaft.draw(drawInfo.getCanvas());
+			
+			//Draw Text
+			if(culling.main){
+				drawInfo.getCanvas().drawText("-1", des.left, des.top+(int)gameView.toScreenY(5)-gameView.toScreenY(4)*(1-culling.alpha), textPaint);
+			}
+		}
+	}
+	private class Culling {
+		public boolean main = false;//number will render over main shaft
+		public float scale=1.0f;
+		public float alpha=1.0f;
+		public float x=0.0f;
+	}
+
+}
