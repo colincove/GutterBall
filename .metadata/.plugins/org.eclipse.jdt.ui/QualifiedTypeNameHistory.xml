@@ -12,7 +12,6 @@
 <fullyQualifiedTypeName name="Components.interfaces.IContactCallback"/>
 <fullyQualifiedTypeName name="gameObjects.HitSparks"/>
 <fullyQualifiedTypeName name="java.util.List"/>
-<fullyQualifiedTypeName name="com.example.swings.R.drawable"/>
 <fullyQualifiedTypeName name="android.graphics.Rect"/>
 <fullyQualifiedTypeName name="org.jbox2d.common.Vec2"/>
 <fullyQualifiedTypeName name="java.util.Iterator"/>
@@ -27,4 +26,13 @@
 <fullyQualifiedTypeName name="infoHolders.UpdateInfo"/>
 <fullyQualifiedTypeName name="gameControllers.Levels.CullShaftRenderer"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="android.graphics.Canvas"/>
+<fullyQualifiedTypeName name="android.graphics.drawable.BitmapDrawable"/>
+<fullyQualifiedTypeName name="android.content.res.Resources"/>
+<fullyQualifiedTypeName name="android.graphics.drawable.Drawable"/>
+<fullyQualifiedTypeName name="com.example.swings.R.id"/>
+<fullyQualifiedTypeName name="Drawing.PhotoButton"/>
+<fullyQualifiedTypeName name="android.content.res.TypedArray"/>
+<fullyQualifiedTypeName name="com.example.swings.R.styleable"/>
+<fullyQualifiedTypeName name="com.example.swings.R.drawable"/>
 </qualifiedTypeNameHistroy>

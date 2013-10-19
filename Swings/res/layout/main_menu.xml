@@ -3,25 +3,25 @@
     android:layout_width="wrap_content"
     android:layout_height="fill_parent"
     android:layout_gravity="center_horizontal"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+    android:background="@color/base">
 
-<Button
+<Drawing.PhotoButton
    android:layout_marginTop="400dp"
     android:id="@+id/levels"
     android:layout_width="200dp"
     android:layout_height="50dp"
     android:text="@string/levelsBtn"
     android:onClick="onLevelsClick"
-    
-    ></Button>
+    android:background="@drawable/shadow_btn_style"
+    ></Drawing.PhotoButton>
  <Button
-    
     android:id="@+id/about"
     android:layout_width="200dp"
     android:layout_height="50dp"
     android:text="@string/aboutBtn"
     android:onClick="onAboutClick"
-    
+    android:background="@drawable/shadow_btn_style"
     ></Button> 
  
 </LinearLayout>
