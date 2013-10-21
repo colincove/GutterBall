@@ -12,14 +12,18 @@ import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 
 public class PhotoButton extends Button {
 	private BitmapDrawable photo;
+	private BitmapDrawable disabledIcon;
 	private int paddingBottom;
 	private int paddingTop;
 	private int paddingRight;
 	private int paddingLeft;
+	private float heightRatio;
+	private boolean photoOnDisabled=true;
 	public PhotoButton(Context context) {
 		super(context);
 		// TODO Auto-generated constructor stub
@@ -35,26 +39,62 @@ public class PhotoButton extends Button {
 		handleAttrs(context,attrs);
 	}
 	private void handleAttrs(Context context,AttributeSet attrs){
-		//TypedArray a =  context.obtainStyledAttributes(attrs, R.styleable.PhotoButton, 0,0);
 		TypedArray a =  context.obtainStyledAttributes(attrs, R.styleable.PhotoButton);
 		try{
 			int photoRes=a.getResourceId(R.styleable.PhotoButton_photo, -1);
+			int disabledIconRes=a.getResourceId(R.styleable.PhotoButton_disabledIcon, -1);
+			photoOnDisabled=a.getBoolean(R.styleable.PhotoButton_photoOnDisabled, true);
+			heightRatio = a.getFloat(R.styleable.PhotoButton_heightRatio, 1.0f);
+			setEnabled(!a.getBoolean(R.styleable.PhotoButton_disabled, false));
 			setPhotoRes(photoRes);
+			setDisabledIcon(disabledIconRes);
 		} finally{
 			a.recycle();
+		}
+		if(heightRatio!=1.0f){
+			this.setLayoutParams(new LayoutParams(this.getWidth(), (int)(this.getWidth()*heightRatio)));
+			//this.setLayoutParams(getLayoutParams().)
+			//this.setHeight((int)(this.getWidth()*heightRatio));
 		}
 	}
 	public void draw(Canvas c){
 		super.draw(c);
+		Rect des = new Rect();
 		paddingBottom=getCompoundPaddingBottom();
 		paddingTop=getCompoundPaddingTop();
 		paddingRight=getCompoundPaddingRight();
 		paddingLeft=getCompoundPaddingLeft();
 		if(photo!=null){
-			Rect des = new Rect();
-			des.set(paddingLeft,paddingTop,getWidth()-paddingRight,getHeight()-paddingBottom);
-			photo.setBounds(des);
-			photo.draw(c);
+			if(!this.isEnabled() && !photoOnDisabled){
+				
+			}else{
+				des.set(paddingLeft,paddingTop,getWidth()-paddingRight,getHeight()-paddingBottom);
+				photo.setBounds(des);
+				photo.draw(c);	
+			}
+			
+		}
+		if(!this.isEnabled()){
+			if(this.disabledIcon!=null){
+				float scale=1f;
+				int left, right, top, bottom;
+				
+				if(getWidth()<disabledIcon.getIntrinsicWidth()){
+					scale=(float)getWidth()/(float)disabledIcon.getIntrinsicWidth();
+				}
+				if(getHeight()<disabledIcon.getIntrinsicHeight()){
+					if(scale>(float)getHeight()/(float)disabledIcon.getIntrinsicHeight()){
+						scale=(float)getHeight()/(float)disabledIcon.getIntrinsicHeight();
+					}
+				}
+				left=(int)(getWidth()/2-(disabledIcon.getIntrinsicWidth()*scale)/2);
+				right=(int)(getWidth()/2+(disabledIcon.getIntrinsicWidth()*scale)/2);
+				top=(int)(getHeight()/2-(disabledIcon.getIntrinsicHeight()*scale)/2);
+				bottom=(int)(getHeight()/2+(disabledIcon.getIntrinsicHeight()*scale)/2);
+				des.set(left,top,right,bottom);
+				disabledIcon.setBounds(des);
+				disabledIcon.draw(c);
+			}
 		}
 	}
 	public void setPhotoRes(int res){
@@ -68,6 +108,19 @@ public class PhotoButton extends Button {
 	public void setPhotoRes(BitmapDrawable bitmap){
 		if(bitmap==null)return;
 		photo=bitmap;
+		this.invalidate();
+	}
+	public void setDisabledIcon(int res){
+		if(res==-1)return;
+		setDisabledIcon(this.getContext().getResources().getDrawable(res));
+	}
+	public void setDisabledIcon(Drawable drawable){
+		if(drawable==null)return;
+		setDisabledIcon((BitmapDrawable) drawable);
+	}
+	public void setDisabledIcon(BitmapDrawable bitmap){
+		if(bitmap==null)return;
+		disabledIcon=bitmap;
 		this.invalidate();
 	}
 }

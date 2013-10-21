@@ -12,5 +12,9 @@
     </declare-styleable>
   <declare-styleable name="PhotoButton">
        <attr name="photo" format="integer" />
+       <attr name="photoOnDisabled" format="boolean" />
+       <attr name="disabledIcon" format="integer" />
+       <attr name="disabled" format="boolean" />
+       <attr name="heightRatio" format="float" />
    </declare-styleable>
 </resources>

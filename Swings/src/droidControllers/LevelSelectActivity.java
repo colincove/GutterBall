@@ -25,7 +25,7 @@ private int selectedLevel=0;
 		case R.id.level1:
 			selectedLevel=1;
 			break;
-		/*case R.id.level2:
+		case R.id.level2:
 			selectedLevel=2;
 			break;
 		case R.id.level3:
@@ -48,7 +48,7 @@ private int selectedLevel=0;
 			break;
 		case R.id.level9:
 			selectedLevel=9;
-			break;*/
+			break;
 		}		
 		playLevel();
 	}

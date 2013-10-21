@@ -71,5 +71,11 @@ public void createBody(){
 	public void removeBottomCullListener(IBottomCullListener listener){
 		bottomCullListeners.remove(listener);
 	}
+	@Override 
+	public void destroy(){
+		super.destroy();
+		bottomCullListeners.clear();
+		bottomCullListeners=null;
+	}
 }
 

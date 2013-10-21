@@ -33,6 +33,8 @@
 <fullyQualifiedTypeName name="com.example.swings.R.id"/>
 <fullyQualifiedTypeName name="Drawing.PhotoButton"/>
 <fullyQualifiedTypeName name="android.content.res.TypedArray"/>
-<fullyQualifiedTypeName name="com.example.swings.R.styleable"/>
 <fullyQualifiedTypeName name="com.example.swings.R.drawable"/>
+<fullyQualifiedTypeName name="android.widget.ImageButton"/>
+<fullyQualifiedTypeName name="com.example.swings.R.styleable"/>
+<fullyQualifiedTypeName name="android.view.ViewGroup.LayoutParams"/>
 </qualifiedTypeNameHistroy>

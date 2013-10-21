@@ -46,14 +46,16 @@ public Level(Game game, BodyComponent geometry){
 	//DragController controller = new DragController(actor, game);*/
 	//SpawnActors spawn=new SpawnActors(game);
 	bg  = new Background(game);
-
+generateCuller(game);
 
 }
 public Level(Game game, BodyComponent geometry, BitmapDrawable bgBitmap){
 	super(game);
 	this.geometry=geometry;
 	bg  = new Background(game, bgBitmap);
-	culler = new BottomCuller(game);
+	generateCuller(game);
+}
+private void generateCuller(Game game){
 	culler = new BottomCuller(game);
 	cullRenderer = new CullShaftRenderer(game);
 	culler.addBottomCullListener(cullRenderer);

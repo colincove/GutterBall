@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Swings</string>
+    <string name="app_name">GutterBall</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="options">App Options</string>
 <string name="levelsBtn">Select Level</string>
 <string name="aboutBtn">About</string>
 <string name="level1Btn">Level 1</string>
@@ -15,4 +16,5 @@
 <string name="level7Btn">Level 7</string>
 <string name="level8Btn">Level 8</string>
 <string name="level9Btn">Level 9</string>
+
 </resources>

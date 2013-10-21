@@ -159,6 +159,7 @@ protected void onRestart(){
 		level.destroy();
 		simulation.destroy();
 		radialCollision.destroy();
+		
 		radialCollision=null;
 		gameThread = null;
 		level = null;

@@ -17,6 +17,30 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
         public static final int buttonBarStyle=0x7f010000;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int disabled=0x7f010005;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int disabledIcon=0x7f010004;
+        /** <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int heightRatio=0x7f010006;
         /** <p>Must be an integer value, such as "<code>100</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -25,10 +49,19 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static final int photo=0x7f010002;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int photoOnDisabled=0x7f010003;
     }
     public static final class color {
         public static final int base=0x7f040001;
         public static final int black_overlay=0x7f040000;
+        public static final int low_contrast=0x7f040002;
     }
     public static final class drawable {
         public static final int background=0x7f020000;
@@ -37,16 +70,25 @@ containing a value of this type.
         public static final int hiddendragon=0x7f020003;
         public static final int ic_launcher=0x7f020004;
         public static final int light_pillar=0x7f020005;
-        public static final int shadow_btn_style=0x7f020006;
-        public static final int shadow_theme=0x7f020007;
-        public static final int shadow_theme_focused=0x7f020008;
-        public static final int shadow_theme_pressed=0x7f020009;
-        public static final int sphere=0x7f02000a;
+        public static final int lock=0x7f020006;
+        public static final int shadow_btn_style=0x7f020007;
+        public static final int shadow_theme=0x7f020008;
+        public static final int shadow_theme_focused=0x7f020009;
+        public static final int shadow_theme_pressed=0x7f02000a;
+        public static final int sphere=0x7f02000b;
     }
     public static final class id {
-        public static final int about=0x7f070002;
+        public static final int about=0x7f07000a;
         public static final int level1=0x7f070000;
-        public static final int levels=0x7f070001;
+        public static final int level2=0x7f070001;
+        public static final int level3=0x7f070002;
+        public static final int level4=0x7f070003;
+        public static final int level5=0x7f070004;
+        public static final int level6=0x7f070005;
+        public static final int level7=0x7f070006;
+        public static final int level8=0x7f070007;
+        public static final int level9=0x7f070008;
+        public static final int levels=0x7f070009;
     }
     public static final class layout {
         public static final int activity_fullscreen=0x7f030000;
@@ -54,20 +96,21 @@ containing a value of this type.
         public static final int main_menu=0x7f030002;
     }
     public static final class string {
-        public static final int aboutBtn=0x7f050004;
+        public static final int aboutBtn=0x7f050005;
         public static final int app_name=0x7f050000;
         public static final int dummy_button=0x7f050001;
         public static final int dummy_content=0x7f050002;
-        public static final int level1Btn=0x7f050005;
-        public static final int level2Btn=0x7f050006;
-        public static final int level3Btn=0x7f050007;
-        public static final int level4Btn=0x7f050008;
-        public static final int level5Btn=0x7f050009;
-        public static final int level6Btn=0x7f05000a;
-        public static final int level7Btn=0x7f05000b;
-        public static final int level8Btn=0x7f05000c;
-        public static final int level9Btn=0x7f05000d;
-        public static final int levelsBtn=0x7f050003;
+        public static final int level1Btn=0x7f050006;
+        public static final int level2Btn=0x7f050007;
+        public static final int level3Btn=0x7f050008;
+        public static final int level4Btn=0x7f050009;
+        public static final int level5Btn=0x7f05000a;
+        public static final int level6Btn=0x7f05000b;
+        public static final int level7Btn=0x7f05000c;
+        public static final int level8Btn=0x7f05000d;
+        public static final int level9Btn=0x7f05000e;
+        public static final int levelsBtn=0x7f050004;
+        public static final int options=0x7f050003;
     }
     public static final class style {
         /** 
@@ -151,13 +194,64 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #PhotoButton_disabled com.example.swings:disabled}</code></td><td></td></tr>
+           <tr><td><code>{@link #PhotoButton_disabledIcon com.example.swings:disabledIcon}</code></td><td></td></tr>
+           <tr><td><code>{@link #PhotoButton_heightRatio com.example.swings:heightRatio}</code></td><td></td></tr>
            <tr><td><code>{@link #PhotoButton_photo com.example.swings:photo}</code></td><td></td></tr>
+           <tr><td><code>{@link #PhotoButton_photoOnDisabled com.example.swings:photoOnDisabled}</code></td><td></td></tr>
            </table>
+           @see #PhotoButton_disabled
+           @see #PhotoButton_disabledIcon
+           @see #PhotoButton_heightRatio
            @see #PhotoButton_photo
+           @see #PhotoButton_photoOnDisabled
          */
         public static final int[] PhotoButton = {
-            0x7f010002
+            0x7f010002, 0x7f010003, 0x7f010004, 0x7f010005,
+            0x7f010006
         };
+        /**
+          <p>This symbol is the offset where the {@link com.example.swings.R.attr#disabled}
+          attribute's value can be found in the {@link #PhotoButton} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.example.swings:disabled
+        */
+        public static final int PhotoButton_disabled = 3;
+        /**
+          <p>This symbol is the offset where the {@link com.example.swings.R.attr#disabledIcon}
+          attribute's value can be found in the {@link #PhotoButton} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.example.swings:disabledIcon
+        */
+        public static final int PhotoButton_disabledIcon = 2;
+        /**
+          <p>This symbol is the offset where the {@link com.example.swings.R.attr#heightRatio}
+          attribute's value can be found in the {@link #PhotoButton} array.
+
+
+          <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.example.swings:heightRatio
+        */
+        public static final int PhotoButton_heightRatio = 4;
         /**
           <p>This symbol is the offset where the {@link com.example.swings.R.attr#photo}
           attribute's value can be found in the {@link #PhotoButton} array.
@@ -172,5 +266,19 @@ containing a value of this type.
           @attr name com.example.swings:photo
         */
         public static final int PhotoButton_photo = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.example.swings.R.attr#photoOnDisabled}
+          attribute's value can be found in the {@link #PhotoButton} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.example.swings:photoOnDisabled
+        */
+        public static final int PhotoButton_photoOnDisabled = 1;
     };
 }
