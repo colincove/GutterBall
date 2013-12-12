@@ -26,6 +26,13 @@ public class Launcher extends DrawableGameComponent implements IUserInputCompone
 	private Point fingerPt;
 	private float fingX;
 	private float fingY;
+	private int line_offset=0;
+	private int lineSize=20;
+	private int lineDist=10;
+	
+	//finger velocity
+	private float vx=0f;
+	private float vy=0f;
 	public Launcher(Game activity, float x, float y) {
 		super(activity);
 		// TODO Auto-generated constructor stub
@@ -35,6 +42,7 @@ public class Launcher extends DrawableGameComponent implements IUserInputCompone
 	paint  = new Paint();
 	paint.setARGB(255,255, 248, 206);
 	pullPaint.setARGB(255, 253, 252, 241);
+	pullPaint.setStrokeWidth(3);
 	activity.addInputComponent(this);
 	}
 	@Override
@@ -47,12 +55,41 @@ public class Launcher extends DrawableGameComponent implements IUserInputCompone
 				gameView.toScreen(r), paint);
 		//Pull Line
 		if(isPulling){
-			info.getCanvas().drawLine(
+			float dx = gameView.toScreenX(getX())-fingerPt.x;
+			float dy = gameView.toScreenY(getY())-fingerPt.y;
+			int d = (int)Math.sqrt(dx*dx+dy*dy);
+			line_offset+=d/80;
+			//double a= Math.atan2(dy,  dx)/(Math.PI/180);
+			double a= Math.atan2(dy,  dx);
+			
+			double cos = Math.cos(a);
+			double sin = Math.sin(a);
+			
+			
+			
+			if(line_offset>lineSize+lineDist){
+				int r = (int)(line_offset%(lineSize+lineDist));
+				line_offset=r;
+			}
+			
+			for(int i=(int)line_offset;i<d;i+=lineSize+lineDist){
+				float x = (float)(cos*(i+lineSize));
+				float y= (float)(sin*(i+lineSize));
+				info.getCanvas().drawLine(
+						(int)(gameView.toScreenX(getX())-x),
+						(int)(gameView.toScreenY(getY())-y),
+						(int)(gameView.toScreenX(getX())-cos*(i)),
+						(int)(gameView.toScreenY(getY())-sin*(i)),
+						pullPaint);
+				
+			}
+			
+			/*info.getCanvas().drawLine(
 					fingerPt.x,
 					fingerPt.y,
 					gameView.toScreenX(getX()),
 					gameView.toScreenY(getY()),
-					pullPaint);
+					pullPaint);*/
 		}
 		
 	}
@@ -94,7 +131,8 @@ public class Launcher extends DrawableGameComponent implements IUserInputCompone
 		double cos = Math.cos(a);
 		double sin = Math.sin(a);
 		
-		Vec2 force = new Vec2((float)(cos*(d*10)), (float)(sin*(d*10)));
+		//Vec2 force = new Vec2((float)(cos*(d*10)), (float)(sin*(d*10)));
+		Vec2 force = new Vec2((float)(cos*(d/20+Math.abs(vx)*4)), (float)(sin*(d/20+Math.abs(vy)*4)));
 		
 		BodyLauncher launcher = new BodyLauncher(force, force);
 		
@@ -105,9 +143,29 @@ public class Launcher extends DrawableGameComponent implements IUserInputCompone
 	private void doPull(MotionEvent event)
 	{
 		isPulling=true;
+	
 		fingX=event.getRawX();
 		fingY=event.getRawY();
 		fingerPt.set((int)event.getRawX(), (int)event.getRawY());
+		
+		if(event.getHistorySize()>0){
+			vx=0;
+			vy=0;
+			
+			int limit = 5;
+			if(event.getHistorySize()+1<limit){
+				limit=event.getHistorySize();
+			}
+			
+			for(int i=1;i<limit;i++){
+				vx+=fingX-event.getHistoricalX(event.getHistorySize()-i);
+				vy+=fingY-event.getHistoricalY(event.getHistorySize()-i);
+			}
+			if(vx!=0)vx=vx/(limit-1);
+			if(vy!=0)vy=vy/(limit-1);
+			
+		}
+		
 	}
 
 	@Override

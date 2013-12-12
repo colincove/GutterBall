@@ -12,8 +12,11 @@ public class DrawableGameComponent extends AbstractGameComponent implements
 	protected int drawOrder = 0;
 
 	public DrawableGameComponent(Game game) {
+		this(game, 0);
+	}
+	public DrawableGameComponent(Game game, int drawOrder) {
 		super(game);
-		// TODO Auto-generated constructor stub
+		this.drawOrder=drawOrder;
 		activity.addDrawableComponent(this);
 		resources = activity.getResources();
 	}
@@ -32,7 +35,6 @@ public class DrawableGameComponent extends AbstractGameComponent implements
 
 	@Override
 	public int drawOrder() {
-
 		// TODO Auto-generated method stub
 		return drawOrder;
 	}

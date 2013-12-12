@@ -49,7 +49,7 @@ public class Game extends SwingActivity {
 
 	public Game() {
 		super();
-
+		
 	}
 
 	public Level getLevel() {

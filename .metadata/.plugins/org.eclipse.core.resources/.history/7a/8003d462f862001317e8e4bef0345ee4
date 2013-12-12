@@ -1,0 +1,39 @@
+package Drawing;
+
+import android.content.Context;
+import android.util.AttributeSet;
+import android.view.View;
+import android.widget.GridLayout;
+
+public class LinearStretchGridLayout extends GridLayout {
+
+	public LinearStretchGridLayout(Context context) {
+		super(context);
+		// TODO Auto-generated constructor stub
+	}
+
+	public LinearStretchGridLayout(Context context, AttributeSet attrs) {
+		super(context, attrs);
+		// TODO Auto-generated constructor stub
+	}
+
+	public LinearStretchGridLayout(Context context, AttributeSet attrs,
+			int defStyle) {
+		super(context, attrs, defStyle);
+		// TODO Auto-generated constructor stub
+	}
+	@Override
+	protected void onLayout(boolean changed, int l, int t, int r, int b) {
+	     int itemWidth = (r-l)/getRowCount();
+	     for(int i=0; i< this.getChildCount(); i++){
+	         View v = getChildAt(i);
+	         int remainder= i%getRowCount();
+	         int left=remainder*itemWidth;
+	         int right = remainder*itemWidth+itemWidth;
+		//v.layout(itemWidth, t, (i+1)*itemWidth, b);
+	         //v.layout(i%getRowCount()*itemWidth, itemWidth, r, b)
+	     }
+	     //super.onLayout(changed, l, t, r, b);
+	}
+
+}

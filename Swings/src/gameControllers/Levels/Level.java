@@ -21,6 +21,8 @@ public class Level extends AbstractGameComponent{
 	private Portal portal;
 	private BottomCuller culler;
 	private CullShaftRenderer cullRenderer;
+	private GravityShift gShift;
+	
 public Level(Game game, BodyComponent geometry){
 	super(game);
 	this.geometry=geometry;
@@ -48,12 +50,15 @@ public Level(Game game, BodyComponent geometry){
 	bg  = new Background(game);
 generateCuller(game);
 
+gShift = new GravityShift(game);
+
 }
 public Level(Game game, BodyComponent geometry, BitmapDrawable bgBitmap){
 	super(game);
 	this.geometry=geometry;
 	bg  = new Background(game, bgBitmap);
 	generateCuller(game);
+	gShift = new GravityShift(game);
 }
 private void generateCuller(Game game){
 	culler = new BottomCuller(game);

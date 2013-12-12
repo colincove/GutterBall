@@ -1,0 +1,23 @@
+package gameControllers.Levels;
+
+import org.jbox2d.dynamics.World;
+
+import gameControllers.Game;
+import infoHolders.UpdateInfo;
+import Components.AbstractGameComponent;
+
+public class GravityShift extends AbstractGameComponent {
+	private World world;
+	public GravityShift(Game game) {
+		super(game);
+		// TODO Auto-generated constructor stub
+		world=game.getSimulation().getWorld();
+	}
+
+	@Override
+	public void update(UpdateInfo updateInfo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

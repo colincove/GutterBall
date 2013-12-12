@@ -52,7 +52,7 @@ public class PhotoButton extends Button {
 			a.recycle();
 		}
 		if(heightRatio!=1.0f){
-			this.setLayoutParams(new LayoutParams(this.getWidth(), (int)(this.getWidth()*heightRatio)));
+			//this.setLayoutParams(new LayoutParams(this.getWidth(), (int)(this.getWidth()*heightRatio)));
 			//this.setLayoutParams(getLayoutParams().)
 			//this.setHeight((int)(this.getWidth()*heightRatio));
 		}
@@ -97,6 +97,25 @@ public class PhotoButton extends Button {
 			}
 		}
 	}
+
+	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec){
+		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+		 int width = getMeasuredWidth();
+		    int height = getMeasuredHeight();
+		    int widthWithoutPadding = width - getPaddingLeft() - getPaddingRight();
+		    int heigthWithoutPadding = height - getPaddingTop() - getPaddingBottom();
+		 
+		    int maxWidth = (int) (heigthWithoutPadding * heightRatio);
+		    int maxHeight = (int) (widthWithoutPadding * heightRatio);
+		    if (widthWithoutPadding  < maxWidth) {
+		        width = maxWidth + getPaddingLeft() + getPaddingRight();
+		    } else {
+		        height = maxHeight + getPaddingTop() + getPaddingBottom();
+		    }
+		 
+		    setMeasuredDimension(width, height);
+	}
+	
 	public void setPhotoRes(int res){
 		if(res==-1)return;
 		setPhotoRes(this.getContext().getResources().getDrawable(res));

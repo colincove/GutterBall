@@ -1,0 +1,21 @@
+package gameControllers.Levels;
+
+import gameControllers.Game;
+import infoHolders.UpdateInfo;
+import Components.AbstractGameComponent;
+
+public class GravityShift extends AbstractGameComponent {
+	
+	public GravityShift(Game game) {
+		super(game);
+		// TODO Auto-generated constructor stub
+		//game.get
+	}
+
+	@Override
+	public void update(UpdateInfo updateInfo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
