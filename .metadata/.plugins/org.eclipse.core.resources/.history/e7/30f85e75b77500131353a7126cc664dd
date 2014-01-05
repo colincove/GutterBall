@@ -1,0 +1,33 @@
+package gameObjects;
+
+public class JointNode {
+	private JointNode attached;
+	public float x;
+	public float y;
+	public float r;
+	private float dx;
+	private float dy;
+	private float d;
+	private float a;
+	public JointNode(float r) {
+		// TODO Auto-generated constructor stub
+		this.r=r;
+	}
+	public JointNode(JointNode attached, float r) {
+		// TODO Auto-generated constructor stub
+		this(r);
+		this.attached=attached;
+	}
+	public void update(){
+		if(attached!=null){
+			dx = attached.x-x;
+			dy = attached.y-y;
+			d  = (float)Math.sqrt(dx*dx + dy*dy);
+			if(d>r){
+				a=(float)Math.atan2(dy, dx);
+				x+=Math.cos(a)*d-r;
+			}
+		}
+	}
+
+}

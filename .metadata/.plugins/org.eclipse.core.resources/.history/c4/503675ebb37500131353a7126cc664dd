@@ -1,0 +1,10 @@
+package gameObjects;
+
+public class Spark {
+	public float vx;
+	public float vy;
+	public float x;
+	public float y;
+	public boolean active;
+	public int rotation;
+}

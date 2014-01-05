@@ -1,0 +1,25 @@
+package gameObjects;
+
+public class JointNode {
+	private JointNode attached;
+	public float x;
+	public float y;
+	public float r;
+	private float xDist;
+	private float yDist;
+	public JointNode(float r) {
+		// TODO Auto-generated constructor stub
+		this.r=r;
+	}
+	public JointNode(JointNode attached, float r) {
+		// TODO Auto-generated constructor stub
+		this(r);
+		this.attached=attached;
+	}
+	public void update(){
+		if(attached!=null){
+			float xDist = 
+		}
+	}
+
+}

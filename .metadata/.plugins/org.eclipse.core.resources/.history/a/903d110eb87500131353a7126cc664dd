@@ -1,0 +1,36 @@
+package gameObjects;
+
+import infoHolders.DrawInfo;
+import infoHolders.UpdateInfo;
+import gameControllers.Game;
+import Components.AbstractGameComponent;
+import Components.DrawableGameComponent;
+
+public class Tail extends DrawableGameComponent {
+	private AbstractGameComponent comp;
+	private JointNode[] nodes;
+	private int jointNum=3;
+	public Tail(Game game, AbstractGameComponent comp) {
+		super(game);
+		this.comp=comp;
+		nodes=new JointNode[jointNum];
+		nodes[0] = new JointNode(1f);
+		nodes[1] = new JointNode(nodes[0], 1f);
+		nodes[2] = new JointNode(nodes[1], 1f);
+	}
+
+	public Tail(Game game, int drawOrder) {
+		super(game, drawOrder);
+		// TODO Auto-generated constructor stub
+	}
+	public void draw(DrawInfo drawInfo){
+		super.draw(drawInfo);
+	}
+	public void update(UpdateInfo updateInfo){
+		super.update(updateInfo);
+		for(int i=1;i<jointNum;i++){
+			nodes[i].update();
+		}
+	}
+
+}

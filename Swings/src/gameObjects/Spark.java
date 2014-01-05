@@ -6,4 +6,7 @@ public class Spark {
 	public float x;
 	public float y;
 	public boolean active;
+	public int rotation;
+	public int dir;
+	
 }

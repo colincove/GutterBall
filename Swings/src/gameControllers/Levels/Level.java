@@ -58,7 +58,7 @@ public Level(Game game, BodyComponent geometry, BitmapDrawable bgBitmap){
 	this.geometry=geometry;
 	bg  = new Background(game, bgBitmap);
 	generateCuller(game);
-	gShift = new GravityShift(game);
+	//gShift = new GravityShift(game);
 }
 private void generateCuller(Game game){
 	culler = new BottomCuller(game);

@@ -48,6 +48,13 @@ public class GameView extends SurfaceView {
 	public float toScreenY(float value) {
 		return value * ratio;
 	}
+	public float toScreenX(double value) {
+		return toScreenX((float)value);
+	}
+
+	public float toScreenY(double value) {
+		return toScreenY((float)value);
+	}
 
 	public float toWorld(float value) {
 		return value * ratio;

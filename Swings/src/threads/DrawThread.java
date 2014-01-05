@@ -23,7 +23,7 @@ import Components.interfaces.IDrawableComponent;
 
 public class DrawThread extends SwingsThread  {
 	public static final String threadName="DrawThread";
-	private BufferedList<IDrawableComponent> drawList;
+	protected BufferedList<IDrawableComponent> drawList;
 private SurfaceView view;
 	private boolean running;
 	private SurfaceHolder holder;

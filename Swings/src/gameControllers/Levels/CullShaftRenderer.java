@@ -50,14 +50,14 @@ public class CullShaftRenderer extends DrawableGameComponent implements IBottomC
 		culling.x=actor.getX();
 		cullList.add(culling);
 		culling.main=true;
-		for(int i =0;i<4; i++){
+		/*for(int i =0;i<4; i++){
 			culling  = new Culling();
 			float ran=(float)(Math.random()-Math.random())*jitterFactor;
 			culling.x=actor.getX()+(ran)*jitterFactor;
 			culling.scale=(jitterFactor-Math.abs(ran))/jitterFactor/2+0.5f;
 			culling.alpha=culling.scale;
 			cullList.add(culling);
-		}
+		}*/
 	}
 	@Override
 	public void draw(DrawInfo drawInfo){

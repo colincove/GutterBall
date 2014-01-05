@@ -1,0 +1,9 @@
+package gameObjects;
+
+public class JointNode {
+
+	public JointNode() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

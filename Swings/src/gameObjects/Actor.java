@@ -27,6 +27,7 @@ public class Actor extends BodyComponent implements IRadialCollider{
 	private HitSparks sparks;
 	private BitmapDrawable sphere;
 	private float r;
+	private Tail tail;
 	public Actor(Game game, Vec2 pos) {
 		super(game);
 		this.pos=pos;
@@ -37,6 +38,7 @@ public class Actor extends BodyComponent implements IRadialCollider{
 	        sphere=(BitmapDrawable) game.getResources().getDrawable(R.drawable.sphere);
 	        r=0.5f;
 	        drawBody=false;
+	        tail = new Tail(game, this);
 	}
 	@Override
 	public void createBody(){
@@ -60,6 +62,9 @@ public class Actor extends BodyComponent implements IRadialCollider{
 	public void draw(DrawInfo info)
 	{
 		super.draw(info);
+		if(body!=null){
+			
+		
 		Rect des = new Rect();
 		Vec2 cent = body.getWorldCenter();
 		des.set((int)gameView.toScreenX(cent.x-r), 
@@ -71,6 +76,7 @@ public class Actor extends BodyComponent implements IRadialCollider{
 		
 		sphere.setBounds(des);
 		sphere.draw(info.getCanvas());
+		}
 		
 	}
 	@Override
@@ -84,9 +90,10 @@ public class Actor extends BodyComponent implements IRadialCollider{
 	@Override
 	public void destroy(){
 		radialCollider.destroy();
-		
+		tail.destroy();
 		///sparks.destroy();
 		radialCollider=null;
+		tail=null;
 		pos=null;
 		super.destroy();
 	}

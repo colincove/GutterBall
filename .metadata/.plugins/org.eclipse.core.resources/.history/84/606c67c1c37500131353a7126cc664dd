@@ -1,0 +1,95 @@
+package gameObjects;
+
+import com.example.swings.R;
+
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
+import infoHolders.DrawInfo;
+import infoHolders.UpdateInfo;
+import gameControllers.Game;
+import Components.AbstractGameComponent;
+import Components.DrawableGameComponent;
+
+public class Tail extends DrawableGameComponent {
+	private AbstractGameComponent comp;
+	private JointNode[] nodes;
+	private int jointNum=3;
+	private Paint paint;
+	private BitmapDrawable tail_end;
+	private BitmapDrawable tail_start;
+	private  Rect des;
+	public Tail(Game game, AbstractGameComponent comp) {
+		super(game);
+		this.comp=comp;
+		nodes=new JointNode[jointNum];
+		nodes[0] = new JointNode(comp.getX(),comp.getY(),1f);
+		nodes[1] = new JointNode(nodes[0],comp.getX(),comp.getY(), 1f);
+		nodes[2] = new JointNode(nodes[1], comp.getX(),comp.getY(),1f);
+		paint = new Paint();
+		paint.setARGB(255, 255, 0, 0);
+		tail_end=(BitmapDrawable) game.getResources().getDrawable(R.drawable.tail_end);
+		tail_start=(BitmapDrawable) game.getResources().getDrawable(R.drawable.tail_start);
+		des = new Rect();
+	}
+
+	public Tail(Game game, int drawOrder) {
+		super(game, drawOrder);
+		// TODO Auto-generated constructor stub
+	}
+	public void draw(DrawInfo drawInfo){
+		super.draw(drawInfo);
+		boolean amDestroyed=destroyed();
+		for(int i=0;i<jointNum;i++){
+			drawInfo.getCanvas().drawCircle(
+					gameView.toScreenX(nodes[i].x), 
+					gameView.toScreenY(nodes[i].y), 
+					gameView.toScreen(0.1f), 
+					paint);
+		}
+		drawComplexTail(drawInfo);
+	}
+	public void update(UpdateInfo updateInfo){
+		super.update(updateInfo);
+		nodes[0].x=comp.getX();
+		nodes[0].y=comp.getY();
+		for(int i=0;i<jointNum;i++){
+			nodes[i].y+=0.1;
+			nodes[i].update();
+		}
+	}
+	@Override
+	public void destroy(){
+		
+		paint=null;
+		comp=null;
+		for(int i=0;i<jointNum;i++){
+			nodes[i]=null;
+		}
+		nodes=null;
+		super.destroy();
+		
+	}
+	private void drawComplexTail(DrawInfo drawInfo){
+		
+		des.set(
+				(int)gameView.toScreenX(comp.getX()-0.5),
+				(int)gameView.toScreenY(comp.getY()-0.5),
+				(int)gameView.toScreenX(comp.getX()+0.5),
+				(int)gameView.toScreenY(comp.getY()+1.5)
+				);
+		drawInfo.getCanvas().save();
+		tail_start.setBounds(des);
+		tail_start.draw(drawInfo.getCanvas());
+		
+		des.set(
+				(int)gameView.toScreenX(nodes[1].x-0.5),
+				(int)gameView.toScreenY(nodes[1].y-0.5),
+				(int)gameView.toScreenX(nodes[1].x+0.5),
+				(int)gameView.toScreenY(nodes[1].y+1.5)
+				);
+		tail_end.setBounds(des);
+		tail_end.draw(drawInfo.getCanvas());
+	}
+
+}

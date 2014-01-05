@@ -1,0 +1,15 @@
+package gameObjects;
+
+public class JointNode {
+
+	public JointNode() {
+		// TODO Auto-generated constructor stub
+	}
+	public JointNode(JointNode attached) {
+		// TODO Auto-generated constructor stub
+	}
+	public void update(){
+		
+	}
+
+}

@@ -1,0 +1,25 @@
+package gameObjects;
+
+import infoHolders.DrawInfo;
+import gameControllers.Game;
+import Components.DrawableGameComponent;
+
+public class Tail extends DrawableGameComponent {
+
+	public Tail(Game game) {
+		super(game);
+		// TODO Auto-generated constructor stub
+	}
+
+	public Tail(Game game, int drawOrder) {
+		super(game, drawOrder);
+		// TODO Auto-generated constructor stub
+	}
+	public void draw(DrawInfo drawInfo){
+		super.draw(drawInfo);
+	}
+	public void update(UpdateInfo info){
+		
+	}
+
+}

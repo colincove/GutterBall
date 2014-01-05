@@ -17,6 +17,7 @@ import android.widget.Button;
 
 public class PhotoButton extends Button {
 	private BitmapDrawable photo;
+	private BitmapDrawable disabledPhoto;
 	private BitmapDrawable disabledIcon;
 	private int paddingBottom;
 	private int paddingTop;
@@ -42,11 +43,13 @@ public class PhotoButton extends Button {
 		TypedArray a =  context.obtainStyledAttributes(attrs, R.styleable.PhotoButton);
 		try{
 			int photoRes=a.getResourceId(R.styleable.PhotoButton_photo, -1);
+			int disabledPhotoRes=a.getResourceId(R.styleable.PhotoButton_disabledPhoto, -1);
 			int disabledIconRes=a.getResourceId(R.styleable.PhotoButton_disabledIcon, -1);
 			photoOnDisabled=a.getBoolean(R.styleable.PhotoButton_photoOnDisabled, true);
 			heightRatio = a.getFloat(R.styleable.PhotoButton_heightRatio, 1.0f);
 			setEnabled(!a.getBoolean(R.styleable.PhotoButton_disabled, false));
 			setPhotoRes(photoRes);
+			setDisabledPhotoRes(disabledPhotoRes);
 			setDisabledIcon(disabledIconRes);
 		} finally{
 			a.recycle();
@@ -75,6 +78,11 @@ public class PhotoButton extends Button {
 			
 		}
 		if(!this.isEnabled()){
+			if(disabledPhoto!=null){
+				des.set(paddingLeft,paddingTop,getWidth()-paddingRight,getHeight()-paddingBottom);
+				disabledPhoto.setBounds(des);
+				disabledPhoto.draw(c);	
+			}
 			if(this.disabledIcon!=null){
 				float scale=1f;
 				int left, right, top, bottom;
@@ -115,7 +123,19 @@ public class PhotoButton extends Button {
 		 
 		    setMeasuredDimension(width, height);
 	}
-	
+	public void setDisabledPhotoRes(int res){
+		if(res==-1)return;
+		setDisabledPhotoRes(this.getContext().getResources().getDrawable(res));
+	}
+	public void setDisabledPhotoRes(Drawable drawable){
+		if(drawable==null)return;
+		setDisabledPhotoRes((BitmapDrawable) drawable);
+	}
+	public void setDisabledPhotoRes(BitmapDrawable bitmap){
+		if(bitmap==null)return;
+		disabledPhoto=bitmap;
+		this.invalidate();
+	}
 	public void setPhotoRes(int res){
 		if(res==-1)return;
 		setPhotoRes(this.getContext().getResources().getDrawable(res));

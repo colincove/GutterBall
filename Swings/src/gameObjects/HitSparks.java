@@ -9,8 +9,12 @@ import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.contacts.Contact;
 import org.jbox2d.dynamics.contacts.ContactEdge;
 
+import com.example.swings.R;
+
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
 
 import infoHolders.DrawInfo;
 import infoHolders.UpdateInfo;
@@ -31,6 +35,8 @@ public class HitSparks extends DrawableGameComponent implements IContactCallback
 	private int sparkLimit=100;
 	private Vec2 vel1;
 	private Vec2 vel2;
+	private BitmapDrawable grass;
+	private  Rect des;
 	public HitSparks(Game game) {
 		super(game);
 		sparks=new Spark[sparkLimit];
@@ -42,6 +48,8 @@ public class HitSparks extends DrawableGameComponent implements IContactCallback
 		paint=new Paint();
 		worldManifold=new WorldManifold();
 		paint.setARGB(255, 253, 252, 241);
+		 grass=(BitmapDrawable) game.getResources().getDrawable(R.drawable.grass);
+		 
 		// TODO Auto-generated constructor stub
 	}
 	@Override
@@ -56,6 +64,7 @@ public class HitSparks extends DrawableGameComponent implements IContactCallback
 				spark.x+=spark.vx;
 				spark.y+=spark.vy;
 				float totalVel = (float)Math.abs(spark.vx)+(float)Math.abs(spark.vy);
+				spark.rotation+=spark.vy*10*spark.dir;
 				spark.vx=spark.vx*fric;
 				spark.vy=spark.vy*fric+0.08f*totalVel;
 				if(spark.vy<0.005&&spark.vx<0.005){
@@ -70,12 +79,33 @@ public class HitSparks extends DrawableGameComponent implements IContactCallback
 		super.draw(drawInfo);
 		for(Spark spark : sparks){
 			if(spark.active){
-				drawInfo.getCanvas().drawLine(
+			
+				/*drawInfo.getCanvas().drawLine(
 						gameView.toScreenX(spark.x-spark.vx),
 						gameView.toScreenY(spark.y-spark.vy), 
 						gameView.toScreenX(spark.x), 
 						gameView.toScreenY(spark.y), 
-						paint);
+						paint);*/
+				//drawInfo.getCanvas().draw
+				drawInfo.getCanvas().save();
+				des = new Rect();
+				des.set(
+						(int)gameView.toScreenX(spark.x-0.05), 
+						(int)gameView.toScreenY(spark.y-0.5), 
+						(int)gameView.toScreenX(spark.x+0.15), 
+						(int)gameView.toScreenY(spark.y+0.5));
+				grass.setBounds(des);
+				drawInfo.getCanvas().rotate(spark.rotation,des.exactCenterX(), des.exactCenterY());
+				float totalVel = (float)Math.abs(spark.vx)+(float)Math.abs(spark.vy);
+				if(totalVel<0.5){
+					grass.setAlpha((int)(255*(totalVel/0.5)));
+				}else{
+					grass.setAlpha(255);
+				}
+				
+				grass.draw(drawInfo.getCanvas());
+				drawInfo.getCanvas().restore();
+				
 			}
 		}
 		
@@ -118,9 +148,10 @@ public class HitSparks extends DrawableGameComponent implements IContactCallback
 						vel2 = c.getFixtureB().getBody().getLinearVelocityFromWorldPoint(worldManifold.points[0]);
 						
 						
-						
-						spark.vx=vel2.x/(15+(float)Math.random()*5f);
-						spark.vy=vel2.y/(15+(float)Math.random()*5f);
+						spark.rotation=(int)(Math.random()*180);
+						spark.dir=(int)(1-(Math.random()*2)*2);
+						spark.vx=vel2.x/(5+(float)Math.random()*20);
+						spark.vy=vel2.y/(5+(float)Math.random()*20);
 						if(++count>5){
 						break;
 						}
