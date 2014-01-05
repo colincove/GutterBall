@@ -89,13 +89,10 @@ public class Game extends SwingActivity {
 	}
 	protected void onResume(){
 		super.onRestart();
-		gameThread = new GameThread(drawList, gameComponentList, this);
-		gameThread.setRunning(true);
 		gameThread.start();
 	}
 	protected void onPause(){
 		super.onPause();
-		gameThread.setRunning(false);
 	}
 protected void onRestart(){
 	super.onRestart();
@@ -103,9 +100,6 @@ protected void onRestart(){
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState, new GameView(this));
-		if(level==null){
-			
-		
 		Bundle bundle = getIntent().getExtras();
 		levelIndex=bundle.getInt("level");
 		gameComponentList = new BufferedList<AbstractGameComponent>();
@@ -145,18 +139,20 @@ protected void onRestart(){
 		}
 		scaler = new Point(simulation.getWorldSize().x,
 				simulation.getWorldSize().y);
-		}
-		
+		gameThread = new GameThread(drawList, gameComponentList, this);
 	}
 
 	@Override
 	public void surfaceCreated(SurfaceHolder holder) {
 		super.surfaceCreated(holder);
 		gameThread.setView(view);
+		gameThread.setRunning(true);
+		gameThread.start();
 	}
 
 	protected void onStop() {
 		super.onStop();
+		gameThread.setRunning(false);
 	}
 
 	protected void onDestroy() {

@@ -23,7 +23,6 @@ protected ThreadTicker ticker;
 public void run(){
 	super.run();
 	ticker.start();
-	ticker.getClass();
 }
 	public void setRunning(boolean value){
 		ticker.setRunning(value);

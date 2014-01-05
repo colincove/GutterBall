@@ -57,11 +57,11 @@ public void setHolder(SurfaceHolder holder){
 	@Override
 	public void tick(TickInfo tickInfo) {
 		// TODO Auto-generated method stub
-		if(view!=null){
+		
 	holder= view.getHolder();
 	if(holder!=null){
 		
-
+if(view!=null){
 	Canvas c = view.getHolder().lockCanvas();
 
 	if(c!=null){
