@@ -102,8 +102,7 @@ private LevelLayoutController levelLayoutController;
 			levelManager.reset();
 			levelLayoutController.initialize();
 		}else if(unlockLevelsButton==view){
-			levelManager.unlockAll();
-			levelLayoutController.initialize();
+			
 		}
 	}
 

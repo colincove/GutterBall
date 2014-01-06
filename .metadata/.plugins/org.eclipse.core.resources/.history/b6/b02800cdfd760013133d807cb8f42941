@@ -41,8 +41,6 @@ private LevelLayoutController levelLayoutController;
 		}
 		resetLevelsButton = (Button)findViewById(R.id.appOptions);
 		resetLevelsButton.setOnClickListener(this);
-		unlockLevelsButton = (Button)findViewById(R.id.unlockAllLevels);
-		unlockLevelsButton.setOnClickListener(this);
 	}
 	protected void onStart(){
 		super.onStart();
@@ -100,9 +98,6 @@ private LevelLayoutController levelLayoutController;
 		// TODO Auto-generated method stub
 		if(resetLevelsButton==view){
 			levelManager.reset();
-			levelLayoutController.initialize();
-		}else if(unlockLevelsButton==view){
-			levelManager.unlockAll();
 			levelLayoutController.initialize();
 		}
 	}

@@ -26,13 +26,6 @@
         android:background="@drawable/shadow_btn_style"
         android:text="@string/options" >
     </Button>
-       <Button
-        android:id="@+id/unlockAllLevels"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:background="@drawable/shadow_btn_style"
-        android:text="@string/unlock_all" >
-    </Button>
 
     <ScrollView
         android:layout_width="fill_parent"

@@ -110,9 +110,4 @@ public class LevelManager {
 			lockLevel(i);
 		}
 	}
-	public void unlockAll(){
-		for (int i = 0; i < numLevels; i++) {
-			unlockLevel(i);
-		}
-	}
 }

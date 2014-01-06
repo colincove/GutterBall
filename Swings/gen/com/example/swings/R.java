@@ -105,26 +105,27 @@ containing a value of this type.
         public static final int unlocked_level=0x7f020013;
     }
     public static final class id {
-        public static final int about=0x7f080013;
+        public static final int about=0x7f080014;
         public static final int appOptions=0x7f080000;
-        public static final int level1=0x7f080001;
-        public static final int level10=0x7f08000a;
-        public static final int level11=0x7f08000b;
-        public static final int level12=0x7f08000c;
-        public static final int level13=0x7f08000d;
-        public static final int level14=0x7f08000e;
-        public static final int level15=0x7f08000f;
-        public static final int level16=0x7f080010;
-        public static final int level17=0x7f080011;
-        public static final int level2=0x7f080002;
-        public static final int level3=0x7f080003;
-        public static final int level4=0x7f080004;
-        public static final int level5=0x7f080005;
-        public static final int level6=0x7f080006;
-        public static final int level7=0x7f080007;
-        public static final int level8=0x7f080008;
-        public static final int level9=0x7f080009;
-        public static final int levels=0x7f080012;
+        public static final int level1=0x7f080002;
+        public static final int level10=0x7f08000b;
+        public static final int level11=0x7f08000c;
+        public static final int level12=0x7f08000d;
+        public static final int level13=0x7f08000e;
+        public static final int level14=0x7f08000f;
+        public static final int level15=0x7f080010;
+        public static final int level16=0x7f080011;
+        public static final int level17=0x7f080012;
+        public static final int level2=0x7f080003;
+        public static final int level3=0x7f080004;
+        public static final int level4=0x7f080005;
+        public static final int level5=0x7f080006;
+        public static final int level6=0x7f080007;
+        public static final int level7=0x7f080008;
+        public static final int level8=0x7f080009;
+        public static final int level9=0x7f08000a;
+        public static final int levels=0x7f080013;
+        public static final int unlockAllLevels=0x7f080001;
     }
     public static final class layout {
         public static final int activity_fullscreen=0x7f030000;
@@ -132,21 +133,22 @@ containing a value of this type.
         public static final int main_menu=0x7f030002;
     }
     public static final class string {
-        public static final int aboutBtn=0x7f060005;
+        public static final int aboutBtn=0x7f060006;
         public static final int app_name=0x7f060000;
         public static final int dummy_button=0x7f060001;
         public static final int dummy_content=0x7f060002;
-        public static final int level1Btn=0x7f060006;
-        public static final int level2Btn=0x7f060007;
-        public static final int level3Btn=0x7f060008;
-        public static final int level4Btn=0x7f060009;
-        public static final int level5Btn=0x7f06000a;
-        public static final int level6Btn=0x7f06000b;
-        public static final int level7Btn=0x7f06000c;
-        public static final int level8Btn=0x7f06000d;
-        public static final int level9Btn=0x7f06000e;
-        public static final int levelsBtn=0x7f060004;
+        public static final int level1Btn=0x7f060007;
+        public static final int level2Btn=0x7f060008;
+        public static final int level3Btn=0x7f060009;
+        public static final int level4Btn=0x7f06000a;
+        public static final int level5Btn=0x7f06000b;
+        public static final int level6Btn=0x7f06000c;
+        public static final int level7Btn=0x7f06000d;
+        public static final int level8Btn=0x7f06000e;
+        public static final int level9Btn=0x7f06000f;
+        public static final int levelsBtn=0x7f060005;
         public static final int options=0x7f060003;
+        public static final int unlock_all=0x7f060004;
     }
     public static final class style {
         /** 
