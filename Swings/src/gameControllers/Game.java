@@ -41,7 +41,7 @@ public class Game extends SwingActivity {
 	private GameThread gameThread;
 	private BufferedList<AbstractGameComponent> gameComponentList;
 	private BufferedList<BodyComponent> bodyList;
-
+	
 	private RadialCollisionController radialCollision;
 	private int levelIndex;
 	
@@ -55,7 +55,9 @@ public class Game extends SwingActivity {
 	public Level getLevel() {
 		return level;
 	}
-
+	public int getLevelIndex() {
+		return levelIndex;
+	}
 	public Simulation getSimulation() {
 		return simulation;
 	}
@@ -105,7 +107,7 @@ protected void onRestart(){
 		super.onCreate(savedInstanceState, new GameView(this));
 		if(level==null){
 			
-		
+			
 		Bundle bundle = getIntent().getExtras();
 		levelIndex=bundle.getInt("level");
 		gameComponentList = new BufferedList<AbstractGameComponent>();
@@ -147,6 +149,7 @@ protected void onRestart(){
 				simulation.getWorldSize().y);
 		}
 		
+		
 	}
 
 	@Override
@@ -169,11 +172,6 @@ protected void onRestart(){
 		gameThread = null;
 		level = null;
 		simulation = null;
-	}
-	private class GameFragment extends FragmentActivity{
-		public GameFragment(){
-			
-		}
 	}
 
 }

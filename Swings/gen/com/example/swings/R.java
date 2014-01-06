@@ -24,7 +24,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int disabled=0x7f010006;
+        public static final int disabled=0x7f010007;
         /** <p>Must be an integer value, such as "<code>100</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -32,7 +32,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int disabledIcon=0x7f010005;
+        public static final int disabledIcon=0x7f010006;
         /** <p>Must be an integer value, such as "<code>100</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -40,7 +40,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int disabledPhoto=0x7f010003;
+        public static final int disabledPhoto=0x7f010004;
         /** <p>Must be a floating point value, such as "<code>1.2</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -48,7 +48,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int heightRatio=0x7f010007;
+        public static final int heightRatio=0x7f010008;
         /** <p>Must be an integer value, such as "<code>100</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -64,7 +64,15 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int photoOnDisabled=0x7f010004;
+        public static final int photoOnDisabled=0x7f010005;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int unlockedPhoto=0x7f010003;
     }
     public static final class color {
         public static final int base=0x7f040001;
@@ -94,19 +102,29 @@ containing a value of this type.
         public static final int sphere=0x7f020010;
         public static final int tail_end=0x7f020011;
         public static final int tail_start=0x7f020012;
+        public static final int unlocked_level=0x7f020013;
     }
     public static final class id {
-        public static final int about=0x7f08000a;
-        public static final int level1=0x7f080000;
-        public static final int level2=0x7f080001;
-        public static final int level3=0x7f080002;
-        public static final int level4=0x7f080003;
-        public static final int level5=0x7f080004;
-        public static final int level6=0x7f080005;
-        public static final int level7=0x7f080006;
-        public static final int level8=0x7f080007;
-        public static final int level9=0x7f080008;
-        public static final int levels=0x7f080009;
+        public static final int about=0x7f080013;
+        public static final int appOptions=0x7f080000;
+        public static final int level1=0x7f080001;
+        public static final int level10=0x7f08000a;
+        public static final int level11=0x7f08000b;
+        public static final int level12=0x7f08000c;
+        public static final int level13=0x7f08000d;
+        public static final int level14=0x7f08000e;
+        public static final int level15=0x7f08000f;
+        public static final int level16=0x7f080010;
+        public static final int level17=0x7f080011;
+        public static final int level2=0x7f080002;
+        public static final int level3=0x7f080003;
+        public static final int level4=0x7f080004;
+        public static final int level5=0x7f080005;
+        public static final int level6=0x7f080006;
+        public static final int level7=0x7f080007;
+        public static final int level8=0x7f080008;
+        public static final int level9=0x7f080009;
+        public static final int levels=0x7f080012;
     }
     public static final class layout {
         public static final int activity_fullscreen=0x7f030000;
@@ -218,6 +236,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <tr><td><code>{@link #PhotoButton_heightRatio com.example.swings:heightRatio}</code></td><td></td></tr>
            <tr><td><code>{@link #PhotoButton_photo com.example.swings:photo}</code></td><td></td></tr>
            <tr><td><code>{@link #PhotoButton_photoOnDisabled com.example.swings:photoOnDisabled}</code></td><td></td></tr>
+           <tr><td><code>{@link #PhotoButton_unlockedPhoto com.example.swings:unlockedPhoto}</code></td><td></td></tr>
            </table>
            @see #PhotoButton_disabled
            @see #PhotoButton_disabledIcon
@@ -225,10 +244,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            @see #PhotoButton_heightRatio
            @see #PhotoButton_photo
            @see #PhotoButton_photoOnDisabled
+           @see #PhotoButton_unlockedPhoto
          */
         public static final int[] PhotoButton = {
             0x7f010002, 0x7f010003, 0x7f010004, 0x7f010005,
-            0x7f010006, 0x7f010007
+            0x7f010006, 0x7f010007, 0x7f010008
         };
         /**
           <p>This symbol is the offset where the {@link com.example.swings.R.attr#disabled}
@@ -243,7 +263,7 @@ theme attribute (in the form
 containing a value of this type.
           @attr name com.example.swings:disabled
         */
-        public static final int PhotoButton_disabled = 4;
+        public static final int PhotoButton_disabled = 5;
         /**
           <p>This symbol is the offset where the {@link com.example.swings.R.attr#disabledIcon}
           attribute's value can be found in the {@link #PhotoButton} array.
@@ -257,7 +277,7 @@ theme attribute (in the form
 containing a value of this type.
           @attr name com.example.swings:disabledIcon
         */
-        public static final int PhotoButton_disabledIcon = 3;
+        public static final int PhotoButton_disabledIcon = 4;
         /**
           <p>This symbol is the offset where the {@link com.example.swings.R.attr#disabledPhoto}
           attribute's value can be found in the {@link #PhotoButton} array.
@@ -271,7 +291,7 @@ theme attribute (in the form
 containing a value of this type.
           @attr name com.example.swings:disabledPhoto
         */
-        public static final int PhotoButton_disabledPhoto = 1;
+        public static final int PhotoButton_disabledPhoto = 2;
         /**
           <p>This symbol is the offset where the {@link com.example.swings.R.attr#heightRatio}
           attribute's value can be found in the {@link #PhotoButton} array.
@@ -285,7 +305,7 @@ theme attribute (in the form
 containing a value of this type.
           @attr name com.example.swings:heightRatio
         */
-        public static final int PhotoButton_heightRatio = 5;
+        public static final int PhotoButton_heightRatio = 6;
         /**
           <p>This symbol is the offset where the {@link com.example.swings.R.attr#photo}
           attribute's value can be found in the {@link #PhotoButton} array.
@@ -313,6 +333,20 @@ theme attribute (in the form
 containing a value of this type.
           @attr name com.example.swings:photoOnDisabled
         */
-        public static final int PhotoButton_photoOnDisabled = 2;
+        public static final int PhotoButton_photoOnDisabled = 3;
+        /**
+          <p>This symbol is the offset where the {@link com.example.swings.R.attr#unlockedPhoto}
+          attribute's value can be found in the {@link #PhotoButton} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.example.swings:unlockedPhoto
+        */
+        public static final int PhotoButton_unlockedPhoto = 1;
     };
 }

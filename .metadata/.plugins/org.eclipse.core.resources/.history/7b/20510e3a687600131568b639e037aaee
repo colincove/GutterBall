@@ -1,0 +1,37 @@
+package gameControllers;
+
+import android.content.SharedPreferences;
+import droidControllers.SwingActivity;
+import Components.AbstractComponent;
+
+public class LevelManager extends AbstractComponent {
+	public static final String PREFS_NAME = "MyPrefsFile";
+	private int numLevels;
+	private SharedPreferences levelPreferences;
+	private boolean levelStatus[];
+	public LevelManager(SwingActivity activity,  int numLevels) {
+		super(activity);
+		this.numLevels=numLevels;
+		levelStatus = new boolean[numLevels];
+		levelPreferences=activity.getSharedPreferences(PREFS_NAME, 0);
+		for(int i=0;i<numLevels; i++){
+			levelStatus[i] = levelPreferences.getBoolean(Integer.toString(i), false);
+		}
+	}
+	public boolean isUnlocked(int levelIndex){
+		if(levelIndex<numLevels){
+			return levelStatus[levelIndex];
+		}
+		return false;
+	}
+	public void unlockLevel(int levelIndex){
+		if(levelIndex<numLevels){
+			
+		}
+		SharedPreferences.Editor editor = levelPreferences.edit();
+		editor.putBoolean(Integer.toString(levelIndex),true);
+		editor.commit();
+		levelStatus[levelIndex]=true;
+	}
+	
+}

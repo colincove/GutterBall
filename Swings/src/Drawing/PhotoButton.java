@@ -19,6 +19,7 @@ public class PhotoButton extends Button {
 	private BitmapDrawable photo;
 	private BitmapDrawable disabledPhoto;
 	private BitmapDrawable disabledIcon;
+	private BitmapDrawable unlockedPhoto;
 	private int paddingBottom;
 	private int paddingTop;
 	private int paddingRight;
@@ -45,10 +46,12 @@ public class PhotoButton extends Button {
 			int photoRes=a.getResourceId(R.styleable.PhotoButton_photo, -1);
 			int disabledPhotoRes=a.getResourceId(R.styleable.PhotoButton_disabledPhoto, -1);
 			int disabledIconRes=a.getResourceId(R.styleable.PhotoButton_disabledIcon, -1);
+			int unlockedIconRes=a.getResourceId(R.styleable.PhotoButton_unlockedPhoto, -1);
 			photoOnDisabled=a.getBoolean(R.styleable.PhotoButton_photoOnDisabled, true);
 			heightRatio = a.getFloat(R.styleable.PhotoButton_heightRatio, 1.0f);
 			setEnabled(!a.getBoolean(R.styleable.PhotoButton_disabled, false));
 			setPhotoRes(photoRes);
+			setUnlockedRes(unlockedIconRes);
 			setDisabledPhotoRes(disabledPhotoRes);
 			setDisabledIcon(disabledIconRes);
 		} finally{
@@ -136,6 +139,9 @@ public class PhotoButton extends Button {
 		disabledPhoto=bitmap;
 		this.invalidate();
 	}
+	public BitmapDrawable getDisabledPhoto(){
+		return disabledPhoto;
+	}
 	public void setPhotoRes(int res){
 		if(res==-1)return;
 		setPhotoRes(this.getContext().getResources().getDrawable(res));
@@ -148,6 +154,25 @@ public class PhotoButton extends Button {
 		if(bitmap==null)return;
 		photo=bitmap;
 		this.invalidate();
+	}
+	public BitmapDrawable getPhoto(){
+		return photo;
+	}
+	public void setUnlockedRes(int res){
+		if(res==-1)return;
+		setUnlockedRes(this.getContext().getResources().getDrawable(res));
+	}
+	public void setUnlockedRes(Drawable drawable){
+		if(drawable==null)return;
+		setUnlockedRes((BitmapDrawable) drawable);
+	}
+	public void setUnlockedRes(BitmapDrawable bitmap){
+		if(bitmap==null)return;
+		unlockedPhoto=bitmap;
+		this.invalidate();
+	}
+	public BitmapDrawable getUnlockedPhoto(){
+		return unlockedPhoto;
 	}
 	public void setDisabledIcon(int res){
 		if(res==-1)return;
@@ -162,4 +187,5 @@ public class PhotoButton extends Button {
 		disabledIcon=bitmap;
 		this.invalidate();
 	}
+	
 }

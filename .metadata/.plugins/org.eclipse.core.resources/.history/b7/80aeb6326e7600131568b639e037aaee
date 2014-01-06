@@ -1,0 +1,13 @@
+package gameControllers;
+
+import droidControllers.SwingActivity;
+import Components.AbstractComponent;
+
+public class LevelLayoutController extends AbstractComponent {
+
+	public LevelLayoutController(SwingActivity activity) {
+		super(activity);
+		// TODO Auto-generated constructor stub
+	}
+
+}

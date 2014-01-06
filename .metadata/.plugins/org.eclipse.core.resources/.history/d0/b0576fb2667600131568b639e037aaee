@@ -1,0 +1,12 @@
+package gameControllers;
+
+import droidControllers.SwingActivity;
+import Components.AbstractComponent;
+
+public class LevelManager extends AbstractComponent {
+	private int numLevels=0;
+	public LevelManager(SwingActivity activity) {
+		super(activity);
+	}
+	
+}

@@ -13,15 +13,16 @@
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="BodyLauncher" key="selection"/>
+		<item value="levelIndex" key="selection"/>
 		<list key="findhistory">
+			<item value="levelIndex"/>
+			<item value="activity"/>
+			<item value="run"/>
 			<item value="BodyLauncher"/>
 			<item value="scaler"/>
 			<item value="gameThread"/>
 			<item value="Drawable.PhotoButton"/>
 			<item value="cent"/>
-			<item value="sparks"/>
-			<item value="bodyList"/>
 		</list>
 		<list key="replacehistory">
 			<item value="Drawing.PhotoButton"/>

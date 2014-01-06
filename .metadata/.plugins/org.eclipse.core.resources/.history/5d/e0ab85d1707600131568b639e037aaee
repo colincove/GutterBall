@@ -1,0 +1,32 @@
+package gameControllers;
+
+import com.example.swings.R;
+
+import gameControllers.LevelManager.IStatusListener;
+import droidControllers.SwingActivity;
+import Components.AbstractComponent;
+import Drawing.PhotoButton;
+
+public class LevelLayoutController extends AbstractComponent implements IStatusListener {
+	private LevelManager levelManager;
+	private PhotoButton[] levelBtns;
+	public LevelLayoutController(SwingActivity activity, LevelManager levelManager) {
+		super(activity);
+		this.levelManager=levelManager;
+		levelBtns=new PhotoButton[levelManager.getNumLevels()];
+	}
+	@Override
+	public void levelStatusUpdate(int levelIndex, int status) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void initialize(){
+		activity.findViewById(R.id.)
+	}
+	public int getResByLevelIndex(int index){
+		switch(index){
+			
+		}
+		return 0;
+	}
+}

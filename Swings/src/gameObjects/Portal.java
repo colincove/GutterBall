@@ -22,6 +22,7 @@ private Paint paint;
 private BitmapDrawable sphere;
 private RadialCollider collider;
 private Floater floater;
+private IObtainedCallback obtainedCallback;
 	public Portal(Game activity, float x, float y) {
 		super(activity);
 		setPos(x, y);
@@ -59,7 +60,7 @@ private Floater floater;
 		// TODO Auto-generated method stub
 		if(other.getId()==RadialID.ACTOR)
 		{
-			destroy();
+			obtained();
 		}
 	}
 	@Override
@@ -67,10 +68,21 @@ private Floater floater;
 		collider.destroy();
 	super.destroy();
 	}
+	public void obtained(){
+		if(obtainedCallback!=null){
+			obtainedCallback.portalObtained(this);
+		}
+		destroy();
+	}
 	@Override
 	public void update(UpdateInfo updateInfo){
 	super.update(updateInfo);
 	}
+	public void setCallback(IObtainedCallback callback){
+		this.obtainedCallback=callback;
+	}
 
-
+	public interface IObtainedCallback{
+		public void portalObtained(Portal portal);
+	}
 }

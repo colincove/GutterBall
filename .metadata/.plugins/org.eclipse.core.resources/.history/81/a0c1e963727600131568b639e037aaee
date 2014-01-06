@@ -1,0 +1,23 @@
+package gameControllers;
+
+import droidControllers.SwingActivity;
+
+public class LazyLevelManager extends LevelManager {
+
+	public LazyLevelManager(SwingActivity activity, int numLevels) {
+		super(activity, numLevels);
+		// TODO Auto-generated constructor stub
+	}
+	public void completeLevel(int levelIndex){
+		super.completeLevel(levelIndex);
+		if(getLevelsUnlocked()-getLevelsCompleted()==getLevelsUnlocked()/3){
+			if(getLevelsUnlocked()<getNumLevels()){
+				for(int i=getLevelsUnlocked();i<getLevelsUnlocked()+3;i++){
+					if(i<getNumLevels()){
+						unlockLevel(i);
+					}
+				}
+			}
+		}
+	}
+}

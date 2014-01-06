@@ -20,6 +20,7 @@
         android:textSize="50sp" />
 
     <Button
+        android:id="@+id/appOptions"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:background="@drawable/shadow_btn_style"
@@ -51,6 +52,7 @@
                 custom:disabledIcon="@drawable/lock"
                 custom:photo="@drawable/enabled_level"
                 custom:disabledPhoto="@drawable/disabled_level"
+                custom:unlockedPhoto="@drawable/unlocked_level"
                 custom:photoOnDisabled="false" 
                 custom:heightRatio="@dimen/photo_button_ratio">
             </Drawing.PhotoButton>
@@ -64,6 +66,7 @@
                 custom:photo="@drawable/enabled_level"
                 custom:disabledPhoto="@drawable/disabled_level"
                 custom:photoOnDisabled="false"
+                custom:unlockedPhoto="@drawable/unlocked_level"
                 custom:heightRatio="@dimen/photo_button_ratio" >
             </Drawing.PhotoButton>
 
@@ -76,6 +79,7 @@
                 custom:disabledIcon="@drawable/lock"
                 custom:photo="@drawable/enabled_level"
                 custom:disabledPhoto="@drawable/disabled_level"
+                custom:unlockedPhoto="@drawable/unlocked_level"
                 custom:photoOnDisabled="false"
                 custom:heightRatio="@dimen/photo_button_ratio" >
             </Drawing.PhotoButton>
@@ -93,6 +97,7 @@
                 custom:disabledIcon="@drawable/lock"
                 custom:photo="@drawable/enabled_level"
                 custom:disabledPhoto="@drawable/disabled_level"
+                custom:unlockedPhoto="@drawable/unlocked_level"
                 custom:photoOnDisabled="false"
                  custom:heightRatio="@dimen/photo_button_ratio" >
             </Drawing.PhotoButton>
@@ -106,6 +111,7 @@
                 custom:disabledIcon="@drawable/lock"
                 custom:photo="@drawable/enabled_level"
                 custom:disabledPhoto="@drawable/disabled_level"
+                custom:unlockedPhoto="@drawable/unlocked_level"
                 custom:photoOnDisabled="false" 
                  custom:heightRatio="@dimen/photo_button_ratio">
             </Drawing.PhotoButton>
@@ -119,6 +125,7 @@
                 custom:disabledIcon="@drawable/lock"
                 custom:photo="@drawable/enabled_level"
                 custom:disabledPhoto="@drawable/disabled_level"
+                custom:unlockedPhoto="@drawable/unlocked_level"
                 custom:photoOnDisabled="false"
                  custom:heightRatio="@dimen/photo_button_ratio" >
             </Drawing.PhotoButton>
@@ -136,6 +143,7 @@
                 custom:disabledIcon="@drawable/lock"
                 custom:photo="@drawable/enabled_level"
                 custom:disabledPhoto="@drawable/disabled_level"
+                custom:unlockedPhoto="@drawable/unlocked_level"
                 custom:photoOnDisabled="false"
                  custom:heightRatio="@dimen/photo_button_ratio" >
             </Drawing.PhotoButton>
@@ -149,6 +157,7 @@
                 custom:disabledIcon="@drawable/lock"
                 custom:photo="@drawable/enabled_level"
                 custom:disabledPhoto="@drawable/disabled_level"
+                custom:unlockedPhoto="@drawable/unlocked_level"
                 custom:photoOnDisabled="false" 
                  custom:heightRatio="@dimen/photo_button_ratio">
             </Drawing.PhotoButton>
@@ -162,6 +171,7 @@
                 custom:disabledIcon="@drawable/lock"
                 custom:photo="@drawable/enabled_level"
                 custom:disabledPhoto="@drawable/disabled_level"
+                custom:unlockedPhoto="@drawable/unlocked_level"
                 custom:photoOnDisabled="false" 
                  custom:heightRatio="@dimen/photo_button_ratio">
             </Drawing.PhotoButton>
@@ -171,37 +181,40 @@
         android:layout_height="wrap_content"
          >
             <Drawing.PhotoButton
-
+				android:id="@+id/level10"
                 android:background="@drawable/shadow_btn_style"
                 android:onClick="selectLevel"
                 custom:disabled="true"
                 custom:disabledIcon="@drawable/lock"
                 custom:photo="@drawable/enabled_level"
                 custom:disabledPhoto="@drawable/disabled_level"
+                custom:unlockedPhoto="@drawable/unlocked_level"
                 custom:photoOnDisabled="false"
                  custom:heightRatio="@dimen/photo_button_ratio" >
             </Drawing.PhotoButton>
 
             <Drawing.PhotoButton
-
+				android:id="@+id/level11"
                 android:background="@drawable/shadow_btn_style"
                 android:onClick="selectLevel"
                 custom:disabled="true"
                 custom:disabledIcon="@drawable/lock"
                 custom:photo="@drawable/enabled_level"
                 custom:disabledPhoto="@drawable/disabled_level"
+                custom:unlockedPhoto="@drawable/unlocked_level"
                 custom:photoOnDisabled="false"
                  custom:heightRatio="@dimen/photo_button_ratio" >
             </Drawing.PhotoButton>
 
             <Drawing.PhotoButton
-
+				android:id="@+id/level12"
                 android:background="@drawable/shadow_btn_style"
                 android:onClick="selectLevel"
                 custom:disabled="true"
                 custom:disabledIcon="@drawable/lock"
                 custom:photo="@drawable/enabled_level"
                 custom:disabledPhoto="@drawable/disabled_level"
+                custom:unlockedPhoto="@drawable/unlocked_level"
                 custom:photoOnDisabled="false" 
                  custom:heightRatio="@dimen/photo_button_ratio">
             </Drawing.PhotoButton>
@@ -211,37 +224,40 @@
         android:layout_height="wrap_content"
          >
             <Drawing.PhotoButton
-
+				android:id="@+id/level13"
                 android:background="@drawable/shadow_btn_style"
                 android:onClick="selectLevel"
                 custom:disabled="true"
                 custom:disabledIcon="@drawable/lock"
                 custom:photo="@drawable/enabled_level"
                 custom:disabledPhoto="@drawable/disabled_level"
+                custom:unlockedPhoto="@drawable/unlocked_level"
                 custom:photoOnDisabled="false"
                  custom:heightRatio="@dimen/photo_button_ratio" >
             </Drawing.PhotoButton>
 
             <Drawing.PhotoButton
-
+				android:id="@+id/level14"
                 android:background="@drawable/shadow_btn_style"
                 android:onClick="selectLevel"
                 custom:disabled="true"
                 custom:disabledIcon="@drawable/lock"
                 custom:photo="@drawable/enabled_level"
                 custom:disabledPhoto="@drawable/disabled_level"
+                custom:unlockedPhoto="@drawable/unlocked_level"
                 custom:photoOnDisabled="false"
                  custom:heightRatio="@dimen/photo_button_ratio" >
             </Drawing.PhotoButton>
 
             <Drawing.PhotoButton
-
+				android:id="@+id/level15"
                 android:background="@drawable/shadow_btn_style"
                 android:onClick="selectLevel"
                 custom:disabled="true"
                 custom:disabledIcon="@drawable/lock"
                 custom:photo="@drawable/enabled_level"
                 custom:disabledPhoto="@drawable/disabled_level"
+                custom:unlockedPhoto="@drawable/unlocked_level"
                 custom:photoOnDisabled="false" 
                  custom:heightRatio="@dimen/photo_button_ratio">
             </Drawing.PhotoButton>
@@ -251,25 +267,27 @@
         android:layout_height="wrap_content"
         >
             <Drawing.PhotoButton
-				
+				android:id="@+id/level16"
                 android:background="@drawable/shadow_btn_style"
                 android:onClick="selectLevel"
                 custom:disabled="true"
                 custom:disabledIcon="@drawable/lock"
                custom:photo="@drawable/enabled_level"
                 custom:disabledPhoto="@drawable/disabled_level"
+                custom:unlockedPhoto="@drawable/unlocked_level"
                 custom:photoOnDisabled="false"
                  custom:heightRatio="@dimen/photo_button_ratio" >
             </Drawing.PhotoButton>
 
             <Drawing.PhotoButton
- 
+ 				android:id="@+id/level17"
                 android:background="@drawable/shadow_btn_style"
                 android:onClick="selectLevel"
                 custom:disabled="true"
                 custom:disabledIcon="@drawable/lock"
                custom:photo="@drawable/enabled_level"
                 custom:disabledPhoto="@drawable/disabled_level"
+                custom:unlockedPhoto="@drawable/unlocked_level"
                 custom:photoOnDisabled="false"
                  custom:heightRatio="@dimen/photo_button_ratio" >
             </Drawing.PhotoButton>

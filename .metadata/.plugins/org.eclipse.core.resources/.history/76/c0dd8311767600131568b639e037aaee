@@ -1,0 +1,16 @@
+package droidControllers;
+
+import gameControllers.LevelManager;
+import android.app.Application;
+
+public class GutterBallApp extends Application {
+	private LevelManager levelManager;
+	public GutterBallApp() {
+		// TODO Auto-generated constructor stub
+		levelManager = new LevelManager(this,17);
+	}
+	public LevelManager getLevelManager(){
+		
+	}
+
+}

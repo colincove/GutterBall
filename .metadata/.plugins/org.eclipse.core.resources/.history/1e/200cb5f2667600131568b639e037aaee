@@ -1,0 +1,20 @@
+package gameControllers;
+
+import droidControllers.SwingActivity;
+import Components.AbstractComponent;
+
+public class LevelManager extends AbstractComponent {
+	private int numLevels;
+	private boolean levelStatus[];
+	public LevelManager(SwingActivity activity,  int numLevels) {
+		super(activity);
+		this.numLevels=numLevels;
+	}
+	public boolean isUnlocked(int levelIndex){
+		if(levelIndex<numLevels){
+			return levelStatus[levelIndex];
+		}
+		return false;
+	}
+	
+}

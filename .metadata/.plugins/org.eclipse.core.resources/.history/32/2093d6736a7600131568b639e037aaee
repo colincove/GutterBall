@@ -1,0 +1,59 @@
+package gameControllers;
+
+import android.content.SharedPreferences;
+import droidControllers.SwingActivity;
+import Components.AbstractComponent;
+
+public class LevelManager extends AbstractComponent {
+	public static final String UNLOCK_LVL_PREFS = "MyPrefsFile";
+	public static final int STATUS_LOCKED=0;
+	public static final int STATUS_UNLOCKED=1;
+	public static final int STATUS_COMPLETE=2;
+	private int numLevels;
+	private SharedPreferences levelPreferences;
+	private int levelStatus[];
+	private int levelsUnlocked=0;
+	
+	public LevelManager(SwingActivity activity,  int numLevels) {
+		super(activity);
+		this.numLevels=numLevels;
+		levelStatus = new int[numLevels];
+		levelPreferences=activity.getSharedPreferences(UNLOCK_LVL_PREFS, 0);
+		for(int i=0;i<numLevels; i++){
+			levelStatus[i] = levelPreferences.getInt(Integer.toString(i), STATUS_LOCKED);
+		}
+	}
+	public int isUnlocked(int levelIndex){
+		if(levelIndex<numLevels){
+			return levelStatus[levelIndex];
+		}
+		return STATUS_LOCKED;
+	}
+	public void setStatus(int levelIndex, int status){
+		if(levelIndex<numLevels){	
+			SharedPreferences.Editor editor = levelPreferences.edit();
+			editor.putInt(Integer.toString(levelIndex),status);
+			editor.commit();
+			levelStatus[levelIndex]=STATUS_UNLOCKED;
+			updateLevelsUnlocked();
+		}
+		
+	}
+	public void unlockLevel(int levelIndex){
+		setStatus(levelIndex, STATUS_UNLOCKED);
+	}
+	public void lockLevel(int levelIndex){
+		setStatus(levelIndex, STATUS_LOCKED);
+	}
+	public void completeLevel(int levelIndex){
+		setStatus(levelIndex, STATUS_COMPLETE);
+	}
+	private void updateLevelsUnlocked(){
+		for(int i=0;i<numLevels; i++){
+			if(levelStatus[i]==STATUS_COMPLETE){
+				levelsUnlocked++;
+			}
+		}
+	}
+	
+}

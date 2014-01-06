@@ -1,0 +1,12 @@
+package gameControllers;
+
+import droidControllers.SwingActivity;
+
+public class LazyLevelManager extends LevelManager {
+
+	public LazyLevelManager(SwingActivity activity, int numLevels) {
+		super(activity, numLevels);
+		// TODO Auto-generated constructor stub
+	}
+
+}
