@@ -1,0 +1,94 @@
+package gameObjects;
+
+import org.jbox2d.common.Vec2;
+import org.jbox2d.dynamics.Body;
+
+import infoHolders.DrawInfo;
+import infoHolders.UpdateInfo;
+import android.graphics.Paint;
+import gameControllers.Game;
+import gameObjects.animNodes.ConstrainedDoubleNode;
+import gameObjects.animNodes.JointNode;
+import gameObjects.animNodes.LooseFollowNode;
+import gameObjects.animNodes.StiffAngleNode;
+import Components.AbstractGameComponent;
+import Components.BodyComponent;
+import Components.DrawableGameComponent;
+import Components.interfaces.IBodyCreationListener;
+
+public class AnimalBody extends DrawableGameComponent  {
+	private BodyComponent comp;
+	private Paint nodePaint;
+	private JointNode centerBodyNode;
+	private StiffAngleNode stiffAngle, stiffAngle2;
+	private Tail tail;
+	private LooseFollowNode looseFollow, looseFollow2;
+	private ConstrainedDoubleNode constrainedNode, constrainedNode2;
+	private boolean firstUpdate;
+	public AnimalBody(Game game,Tail tail, BodyComponent comp) {
+		super(game);
+		this.comp=comp;
+		nodePaint = new Paint();
+		nodePaint.setARGB(255, 255, 255, 255);
+		centerBodyNode = new JointNode(comp.getX(), comp.getY());
+		stiffAngle = new StiffAngleNode(centerBodyNode,tail.getMainAngleNode(), comp.getX(), comp.getY(), 0.5f,(float)Math.toRadians(90));
+		looseFollow = new LooseFollowNode(stiffAngle,stiffAngle.x, stiffAngle.y, 3);
+		constrainedNode = new ConstrainedDoubleNode(stiffAngle,looseFollow,comp.getX(), comp.getY(), 0.5f);
+		
+		stiffAngle2 = new StiffAngleNode(centerBodyNode,tail.getMainAngleNode(), comp.getX(), comp.getY(), 0.5f,(float)Math.toRadians(-90));
+		looseFollow2 = new LooseFollowNode(stiffAngle2,stiffAngle2.x, stiffAngle2.y, 3);
+		constrainedNode2 = new ConstrainedDoubleNode(stiffAngle2,looseFollow2,comp.getX(), comp.getY(), 0.5f);
+	}
+
+	public int drawOrder(){
+		return 200;
+	}
+	public AnimalBody(Game game, int drawOrder) {
+		super(game, drawOrder);
+		// TODO Auto-generated constructor stub
+	}
+	public void update(UpdateInfo updateInfo){
+		super.update(updateInfo);
+		if(centerBodyNode!=null){
+			
+		centerBodyNode.x=comp.getX();
+		centerBodyNode.y=comp.getY();
+		
+		
+		
+		centerBodyNode.update();
+		stiffAngle.update();
+		stiffAngle2.update();
+		if(!firstUpdate && comp.getX()!=0.0f){
+			looseFollow.x=stiffAngle.x;
+			looseFollow.y=stiffAngle.y;
+			looseFollow2.x=stiffAngle2.x;
+			looseFollow2.y=stiffAngle2.y;
+			firstUpdate=true;
+			}
+		looseFollow.update();
+		looseFollow2.update();
+		constrainedNode.update();
+		constrainedNode2.update();
+		}
+	}
+	public void draw(DrawInfo drawInfo){
+		super.draw(drawInfo);
+		
+		//drawNode(drawInfo,centerBodyNode);
+		//drawNode(drawInfo, stiffAngle);
+		//drawNode(drawInfo, looseFollow);
+		drawNode(drawInfo, constrainedNode);
+		drawNode(drawInfo, constrainedNode2);
+	}
+	private void drawNode(DrawInfo drawInfo,JointNode node){
+		if(node!=null){
+		drawInfo.getCanvas().drawCircle(
+				gameView.toScreenX(node.x), 
+				gameView.toScreenY(node.y), 
+				gameView.toScreen(0.1f), 
+				nodePaint);
+		}
+	
+	}
+}

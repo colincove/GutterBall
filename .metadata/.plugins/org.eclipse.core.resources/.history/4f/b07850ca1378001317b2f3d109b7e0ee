@@ -1,0 +1,23 @@
+package gameObjects;
+
+import infoHolders.DrawInfo;
+import infoHolders.UpdateInfo;
+import gameControllers.Game;
+import Components.AbstractGameComponent;
+import Components.DrawableGameComponent;
+
+public class Head extends DrawableGameComponent {
+	private AbstractGameComponent comp;
+	public Head(Game game, AbstractGameComponent comp) {
+		super(game);
+		this.comp=comp;
+	}
+	public void update(UpdateInfo updateInfo){
+		super.update(updateInfo);
+	}
+	public void draw(DrawInfo drawInfo){
+		super.draw(drawInfo);
+		
+	}
+
+}

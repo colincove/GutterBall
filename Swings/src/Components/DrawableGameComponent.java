@@ -29,8 +29,7 @@ public class DrawableGameComponent extends AbstractGameComponent implements
 
 	@Override
 	public void update(UpdateInfo updateInfo) {
-		// TODO Auto-generated method stub
-
+		super.update(updateInfo);
 	}
 
 	@Override

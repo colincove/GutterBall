@@ -89,20 +89,21 @@ containing a value of this type.
         public static final int enabled_level=0x7f020003;
         public static final int grass=0x7f020004;
         public static final int green_sphere=0x7f020005;
-        public static final int hiddendragon=0x7f020006;
-        public static final int hiddendragon_forground=0x7f020007;
-        public static final int ic_launcher=0x7f020008;
-        public static final int light_pillar=0x7f020009;
-        public static final int lock=0x7f02000a;
-        public static final int shadow_btn_style=0x7f02000b;
-        public static final int shadow_theme=0x7f02000c;
-        public static final int shadow_theme_disabled=0x7f02000d;
-        public static final int shadow_theme_focused=0x7f02000e;
-        public static final int shadow_theme_pressed=0x7f02000f;
-        public static final int sphere=0x7f020010;
-        public static final int tail_end=0x7f020011;
-        public static final int tail_start=0x7f020012;
-        public static final int unlocked_level=0x7f020013;
+        public static final int head=0x7f020006;
+        public static final int hiddendragon=0x7f020007;
+        public static final int hiddendragon_forground=0x7f020008;
+        public static final int ic_launcher=0x7f020009;
+        public static final int light_pillar=0x7f02000a;
+        public static final int lock=0x7f02000b;
+        public static final int shadow_btn_style=0x7f02000c;
+        public static final int shadow_theme=0x7f02000d;
+        public static final int shadow_theme_disabled=0x7f02000e;
+        public static final int shadow_theme_focused=0x7f02000f;
+        public static final int shadow_theme_pressed=0x7f020010;
+        public static final int sphere=0x7f020011;
+        public static final int tail_end=0x7f020012;
+        public static final int tail_start=0x7f020013;
+        public static final int unlocked_level=0x7f020014;
     }
     public static final class id {
         public static final int about=0x7f080014;

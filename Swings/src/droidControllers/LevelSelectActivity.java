@@ -93,8 +93,17 @@ private LevelLayoutController levelLayoutController;
 	{
 		Intent game = new Intent(this, Game.class);
 		game.putExtra("level", selectedLevel);
-		startActivity(game);
+		startActivityForResult(game,1);
 	}
+	@Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+     super.onActivityResult(requestCode, resultCode, data);
+     if(resultCode==RESULT_OK){
+        Intent refresh = new Intent(this, LevelSelectActivity.class);
+        startActivity(refresh);
+        this.finish();
+     }
+    }
 	@Override
 	public void onClick(View view) {
 		// TODO Auto-generated method stub

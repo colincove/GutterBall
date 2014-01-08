@@ -1,0 +1,69 @@
+package gameObjects;
+
+import org.jbox2d.dynamics.Body;
+
+import infoHolders.DrawInfo;
+import infoHolders.UpdateInfo;
+import android.graphics.Paint;
+import gameControllers.Game;
+import gameObjects.animNodes.JointNode;
+import gameObjects.animNodes.LooseFollowNode;
+import gameObjects.animNodes.StiffAngleNode;
+import Components.AbstractGameComponent;
+import Components.BodyComponent;
+import Components.DrawableGameComponent;
+import Components.interfaces.IBodyCreationListener;
+
+public class AnimalBody extends DrawableGameComponent implements IBodyCreationListener {
+	private BodyComponent comp;
+	private Paint nodePaint;
+	private JointNode centerBodyNode;
+	private StiffAngleNode stiffAngle;
+	private Tail tail;
+	private LooseFollowNode looseFollow;
+	public AnimalBody(Game game,Tail tail, BodyComponent comp) {
+		super(game);
+		this.comp=comp;
+		nodePaint = new Paint();
+		nodePaint.setARGB(255, 255, 255, 255);
+		
+		
+	}
+
+	public int drawOrder(){
+		return 200;
+	}
+	public AnimalBody(Game game, int drawOrder) {
+		super(game, drawOrder);
+		// TODO Auto-generated constructor stub
+	}
+	public void update(UpdateInfo updateInfo){
+		super.update(updateInfo);
+		centerBodyNode.x=comp.getX();
+		centerBodyNode.y=comp.getY();
+		
+		centerBodyNode.update();
+		stiffAngle.update();
+		looseFollow.update();
+	}
+	public void draw(DrawInfo drawInfo){
+		super.draw(drawInfo);
+		
+		drawNode(drawInfo,centerBodyNode);
+		drawNode(drawInfo, stiffAngle);
+		drawNode(drawInfo, looseFollow);
+	}
+	private void drawNode(DrawInfo drawInfo,JointNode node){
+		drawInfo.getCanvas().drawCircle(
+				gameView.toScreenX(node.x), 
+				gameView.toScreenY(node.y), 
+				gameView.toScreen(0.1f), 
+				nodePaint);
+	
+	}
+	@Override
+	public void bodyCreated(Body body) {
+		// TODO Auto-generated method stub
+		
+	}
+}

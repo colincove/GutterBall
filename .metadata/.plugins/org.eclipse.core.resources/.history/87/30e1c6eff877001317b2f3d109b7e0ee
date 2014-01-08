@@ -1,0 +1,24 @@
+package gameObjects;
+
+import android.graphics.Paint;
+import gameControllers.Game;
+import Components.AbstractGameComponent;
+import Components.DrawableGameComponent;
+
+public class AnimalBody extends DrawableGameComponent {
+	private AbstractGameComponent comp;
+	private Paint nodePaint;
+	public AnimalBody(Game game, AbstractGameComponent comp) {
+		super(game);
+		this.comp=comp;
+		nodePaint = new Paint();
+		nodePaint.setARGB(255, 255, 255, 255);
+		
+	}
+
+	public AnimalBody(Game game, int drawOrder) {
+		super(game, drawOrder);
+		// TODO Auto-generated constructor stub
+	}
+
+}

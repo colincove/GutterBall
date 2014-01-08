@@ -8,6 +8,8 @@ import android.graphics.drawable.BitmapDrawable;
 import infoHolders.DrawInfo;
 import infoHolders.UpdateInfo;
 import gameControllers.Game;
+import gameObjects.animNodes.JointNode;
+import gameObjects.animNodes.StiffChainNode;
 import Components.AbstractGameComponent;
 import Components.DrawableGameComponent;
 
@@ -19,20 +21,27 @@ public class Tail extends DrawableGameComponent {
 	private BitmapDrawable tail_end;
 	private BitmapDrawable tail_start;
 	private  Rect des;
+	private int dir=1;
+	private float threshhold=0.5f;//threshhold for vibrating tail
 	public Tail(Game game, AbstractGameComponent comp) {
 		super(game);
 		this.comp=comp;
 		nodes=new JointNode[jointNum];
-		nodes[0] = new JointNode(comp.getX(),comp.getY(),1f);
-		nodes[1] = new JointNode(nodes[0],comp.getX(),comp.getY(), 1f);
-		nodes[2] = new JointNode(nodes[1], comp.getX(),comp.getY(),1f);
+		nodes[0] = new JointNode(comp.getX(),comp.getY());
+		nodes[1] = new StiffChainNode(nodes[0],comp.getX(),comp.getY(), 1f);
+		nodes[2] = new StiffChainNode(nodes[1], comp.getX(),comp.getY(),1f);
 		paint = new Paint();
 		paint.setARGB(255, 255, 0, 0);
 		tail_end=(BitmapDrawable) game.getResources().getDrawable(R.drawable.tail_end);
 		tail_start=(BitmapDrawable) game.getResources().getDrawable(R.drawable.tail_start);
 		des = new Rect();
 	}
-
+	public JointNode getMainAngleNode(){
+		return nodes[1];
+	}
+	public int drawOrder(){
+		return 201;
+	}
 	public Tail(Game game, int drawOrder) {
 		super(game, drawOrder);
 		// TODO Auto-generated constructor stub
@@ -53,10 +62,19 @@ public class Tail extends DrawableGameComponent {
 		super.update(updateInfo);
 		nodes[0].x=comp.getX();
 		nodes[0].y=comp.getY();
+		float absV = comp.getAbsV();
+		if(comp.getAbsV()>threshhold){
+			nodes[2].angleJitter=(comp.getAbsV()-threshhold)*dir/10;
+			nodes[1].angleJitter=(comp.getAbsV()-threshhold)*dir/20;
+			dir*=-1;
+		}else{
+			nodes[1].angleJitter=0f;
+		}
 		for(int i=0;i<jointNum;i++){
 			nodes[i].y+=0.1;
 			nodes[i].update();
 		}
+		
 	}
 	@Override
 	public void destroy(){

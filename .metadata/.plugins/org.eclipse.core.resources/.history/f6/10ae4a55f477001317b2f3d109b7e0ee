@@ -1,0 +1,18 @@
+package gameObjects;
+
+import gameControllers.Game;
+import Components.DrawableGameComponent;
+
+public class Body extends DrawableGameComponent {
+
+	public Body(Game game) {
+		super(game);
+		// TODO Auto-generated constructor stub
+	}
+
+	public Body(Game game, int drawOrder) {
+		super(game, drawOrder);
+		// TODO Auto-generated constructor stub
+	}
+
+}

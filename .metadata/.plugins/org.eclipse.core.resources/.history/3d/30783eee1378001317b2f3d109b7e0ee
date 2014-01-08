@@ -1,0 +1,30 @@
+package gameObjects;
+
+import infoHolders.DrawInfo;
+import infoHolders.UpdateInfo;
+import gameControllers.Game;
+import gameObjects.animNodes.JointNode;
+import gameObjects.animNodes.StiffAngleNode;
+import Components.AbstractGameComponent;
+import Components.DrawableGameComponent;
+
+public class Head extends DrawableGameComponent {
+	private AbstractGameComponent comp;
+	private JointNode centerBodyNode;
+	private StiffAngleNode stiffAngle;
+	public Head(Game game, AbstractGameComponent comp) {
+		super(game);
+		this.comp=comp;
+		centerBodyNode = new JointNode(comp.getX(), comp.getY());
+	}
+	public void update(UpdateInfo updateInfo){
+		super.update(updateInfo);
+		centerBodyNode.x=comp.getX();
+		centerBodyNode.y=comp.getY();
+	}
+	public void draw(DrawInfo drawInfo){
+		super.draw(drawInfo);
+		
+	}
+
+}

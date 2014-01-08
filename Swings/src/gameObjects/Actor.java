@@ -28,6 +28,8 @@ public class Actor extends BodyComponent implements IRadialCollider{
 	private BitmapDrawable sphere;
 	private float r;
 	private Tail tail;
+	private AnimalBody aBody;
+	private Head head;
 	public Actor(Game game, Vec2 pos) {
 		super(game);
 		this.pos=pos;
@@ -39,6 +41,8 @@ public class Actor extends BodyComponent implements IRadialCollider{
 	        r=0.5f;
 	        drawBody=false;
 	        tail = new Tail(game, this);
+	        aBody = new AnimalBody(game,tail, this);
+	        head = new Head(game, this, tail);
 	}
 	@Override
 	public void createBody(){
@@ -63,17 +67,12 @@ public class Actor extends BodyComponent implements IRadialCollider{
 	{
 		super.draw(info);
 		if(body!=null){
-			
-		
 		Rect des = new Rect();
 		Vec2 cent = body.getWorldCenter();
 		des.set((int)gameView.toScreenX(cent.x-r), 
 				(int)gameView.toScreenY(cent.y-r),
 				(int)gameView.toScreenX(cent.x+r),
 				(int)gameView.toScreenY(cent.y+r));
-		
-		
-		
 		sphere.setBounds(des);
 		sphere.draw(info.getCanvas());
 		}
@@ -87,10 +86,15 @@ public class Actor extends BodyComponent implements IRadialCollider{
 			destroy();
 		}
 	}
+	public int drawOrder(){
+		return 201;
+	}
 	@Override
 	public void destroy(){
 		radialCollider.destroy();
 		tail.destroy();
+		aBody.destroy();
+		head.destroy();
 		///sparks.destroy();
 		radialCollider=null;
 		tail=null;

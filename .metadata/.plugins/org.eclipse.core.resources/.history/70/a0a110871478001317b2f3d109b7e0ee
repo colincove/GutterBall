@@ -1,0 +1,51 @@
+package gameObjects;
+
+import android.graphics.Paint;
+import infoHolders.DrawInfo;
+import infoHolders.UpdateInfo;
+import gameControllers.Game;
+import gameObjects.animNodes.JointNode;
+import gameObjects.animNodes.StiffAngleNode;
+import Components.AbstractGameComponent;
+import Components.DrawableGameComponent;
+
+public class Head extends DrawableGameComponent {
+	private AbstractGameComponent comp;
+	private JointNode centerBodyNode;
+	private StiffAngleNode stiffAngle;
+	private Paint nodePaint;
+	private Tail tail;
+	public Head(Game game, AbstractGameComponent comp, Tail tail) {
+		super(game);
+		this.comp=comp;
+		this.tail=tail;
+		nodePaint = new Paint();
+		nodePaint.setARGB(255, 255, 255, 255);
+		centerBodyNode = new JointNode(comp.getX(), comp.getY());
+		stiffAngle = new StiffAngleNode(centerBodyNode,tail.getMainAngleNode(), comp.getX(), comp.getY(), 0.3f,0);
+	}
+	public void update(UpdateInfo updateInfo){
+		super.update(updateInfo);
+		centerBodyNode.x=comp.getX();
+		centerBodyNode.y=comp.getY();
+		
+		centerBodyNode.update();
+		
+		stiffAngle.update();
+	}
+	public void draw(DrawInfo drawInfo){
+		super.draw(drawInfo);
+		drawNode(drawInfo,stiffAngle);
+	}
+	private void drawNode(DrawInfo drawInfo,JointNode node){
+		if(node!=null){
+		drawInfo.getCanvas().drawCircle(
+				gameView.toScreenX(node.x), 
+				gameView.toScreenY(node.y), 
+				gameView.toScreen(0.1f), 
+				nodePaint);
+		}
+	
+	}
+
+}

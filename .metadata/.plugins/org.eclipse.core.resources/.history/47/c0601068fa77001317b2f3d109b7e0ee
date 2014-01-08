@@ -1,0 +1,29 @@
+package gameObjects.animNodes;
+
+public class StiffAngleNode extends DoubleJointNode {
+
+	public StiffAngleNode(float x, float y, float r) {
+		super(x, y, r);
+		// TODO Auto-generated constructor stub
+	}
+
+	public StiffAngleNode(JointNode attached,JointNode attached2, float x, float y, float r) {
+		super(attached,attached2, x, y, r);
+		
+	}
+	public void update()
+	{
+		super.update();
+		if(attached!=null){
+			JointNode attachedTo = attached;
+			JointNode angleFrom = attached2;
+			if(attached2==null){
+				angleFrom = attached;
+			}
+			x=attachedTo.x+(float)Math.cos(angleFrom.a)*r;
+			y=attachedTo.y+(float)Math.sin(angleFrom.a)*r;
+			a=angleFrom.a;
+		}
+		
+	}
+}

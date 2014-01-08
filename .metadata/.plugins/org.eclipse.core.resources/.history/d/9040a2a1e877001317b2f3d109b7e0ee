@@ -1,0 +1,25 @@
+package gameObjects;
+
+import gameControllers.Game;
+import Components.DrawableGameComponent;
+
+public class AppleExplosion extends DrawableGameComponent {
+	private float g;
+	public AppleExplosion(Game game) {
+		super(game);
+		// TODO Auto-generated constructor stub
+	}
+
+	public AppleExplosion(Game game, int drawOrder) {
+		super(game, drawOrder);
+		// TODO Auto-generated constructor stub
+	}
+	private class juice{
+		public float x;
+		public float y;
+		public float vx;
+		public float vy;
+		public float r;
+	}
+
+}

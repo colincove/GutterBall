@@ -1,0 +1,19 @@
+package gameObjects;
+
+import gameControllers.Game;
+import Components.AbstractGameComponent;
+import Components.DrawableGameComponent;
+
+public class AnimalBody extends DrawableGameComponent {
+	
+	public AnimalBody(Game game, AbstractGameComponent comp) {
+		super(game);
+		// TODO Auto-generated constructor stub
+	}
+
+	public AnimalBody(Game game, int drawOrder) {
+		super(game, drawOrder);
+		// TODO Auto-generated constructor stub
+	}
+
+}

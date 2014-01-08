@@ -69,9 +69,12 @@ private IObtainedCallback obtainedCallback;
 	super.destroy();
 	}
 	public void obtained(){
-		if(obtainedCallback!=null){
+		if(obtainedCallback!=null)
+		{
 			obtainedCallback.portalObtained(this);
 		}
+		AppleExplosion e = new AppleExplosion(game, this);
+		e=null;
 		destroy();
 	}
 	@Override

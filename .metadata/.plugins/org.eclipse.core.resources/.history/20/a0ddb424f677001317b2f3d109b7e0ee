@@ -1,0 +1,20 @@
+import gameObjects.animNodes.JointNode;
+
+
+public class LooseFollowNode extends JointNode {
+
+	public LooseFollowNode(float x, float y, float r) {
+		super(x, y, r);
+		// TODO Auto-generated constructor stub
+	}
+
+	public LooseFollowNode(JointNode attached, float x, float y, float r) {
+		super(attached, x, y, r);
+		// TODO Auto-generated constructor stub
+	}
+	public void update(){
+		super.update();
+		x+=dx/damp;
+	}
+
+}

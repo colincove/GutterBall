@@ -1,0 +1,39 @@
+package gameObjects;
+
+import gameControllers.Game;
+import Components.DrawableGameComponent;
+
+public class AppleExplosion extends DrawableGameComponent {
+	private float g;
+	private int juiceNum;
+	private juice[] juiceList;
+	public AppleExplosion(Game game) {
+		this(game, 0);
+		
+	}
+
+	public AppleExplosion(Game game, int drawOrder) {
+		super(game, drawOrder);
+		juiceList=new juice[juiceNum];
+		float strength;
+		for(int i=0;i<juiceNum;i++){
+			strength=(float)Math.random();
+			juiceList[i]=new juice();
+		}
+	}
+	private class juice{
+		public float x;
+		public float y;
+		public float vx;
+		public float vy;
+		public float r;
+		public juice(float x, float y, float vx, float vy, float r){
+			this.x=x;
+			this.y=y;
+			this.vx=vx;
+			this.vy=vy;
+			this.r=r;
+		}
+	}
+
+}

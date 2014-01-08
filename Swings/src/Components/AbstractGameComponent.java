@@ -8,6 +8,7 @@ import android.app.Activity;
 public abstract class AbstractGameComponent extends AbstractComponent {
 	protected Game game;
 	protected GameView gameView;
+	private float vx, vy, prevX=0f, prevY=0f;
 
 	public AbstractGameComponent(Game game) {
 		super(game);
@@ -17,7 +18,21 @@ public abstract class AbstractGameComponent extends AbstractComponent {
 		game.addGameComponent(this);
 	}
 
-	public abstract void update(UpdateInfo updateInfo);
+	public void update(UpdateInfo updateInfo){
+		vx=prevX-getX();
+		vy=prevY-getY();
+		prevX=getX();
+		prevY=getY();
+	}
+	public float getVX(){
+		return vx;
+	}
+	public float getAbsV(){
+		return Math.abs(vx)+Math.abs(vy);
+	}
+	public float getVY(){
+		return vy;
+	}
 
 	@Override
 	public void destroy() {

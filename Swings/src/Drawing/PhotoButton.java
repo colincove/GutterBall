@@ -26,6 +26,7 @@ public class PhotoButton extends Button {
 	private int paddingLeft;
 	private float heightRatio;
 	private boolean photoOnDisabled=true;
+	public boolean levelBeaten=false;
 	public PhotoButton(Context context) {
 		super(context);
 		// TODO Auto-generated constructor stub
@@ -75,8 +76,14 @@ public class PhotoButton extends Button {
 				
 			}else{
 				des.set(paddingLeft,paddingTop,getWidth()-paddingRight,getHeight()-paddingBottom);
-				photo.setBounds(des);
-				photo.draw(c);	
+				if(levelBeaten){
+					photo.setBounds(des);
+					photo.draw(c);	
+				}else{
+					photo.setBounds(des);
+					photo.draw(c);
+				}
+					
 			}
 			
 		}

@@ -32,6 +32,7 @@ private Vector<CollisionGroups> collisionGroups;
 protected boolean drawBody=true;
 protected Vector<IBodyCreationListener> bodyCreationCallbackList;
 protected Vector<IBodyTouchCallback> touchCallbackList;
+
 	public BodyComponent(Game game) {
 		super(game);
 		collisionGroups = new Vector<CollisionGroups>();
@@ -73,6 +74,7 @@ public void createBody(Body body)
 	@ Override
 	public void update(UpdateInfo updateInfo){
 		super.update(updateInfo);
+		
 	}
 	@ Override
 	public void draw(DrawInfo drawInfo){
@@ -128,6 +130,7 @@ public void emitBodyTouch(MotionEvent event){
 			return super.getX();
 		}
 	}
+
 	public boolean getDrawBody(){
 		return drawBody;
 	}

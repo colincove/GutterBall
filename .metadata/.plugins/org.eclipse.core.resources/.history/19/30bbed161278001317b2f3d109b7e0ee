@@ -1,0 +1,13 @@
+package gameObjects;
+
+import gameControllers.Game;
+import Components.AbstractGameComponent;
+
+public class Head extends DrawableGameComponent {
+
+	public Head(Game game) {
+		super(game);
+		// TODO Auto-generated constructor stub
+	}
+
+}

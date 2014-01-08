@@ -1,21 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="org.jbox2d.collision.ManifoldPoint"/>
-<fullyQualifiedTypeName name="android.graphics.Color"/>
-<fullyQualifiedTypeName name="org.jbox2d.collision.WorldManifold"/>
-<fullyQualifiedTypeName name="org.jbox2d.callbacks.ContactListener"/>
-<fullyQualifiedTypeName name="org.jbox2d.dynamics.contacts.Contact"/>
-<fullyQualifiedTypeName name="Components.interfaces.IContactCallback"/>
-<fullyQualifiedTypeName name="gameObjects.HitSparks"/>
-<fullyQualifiedTypeName name="java.util.Iterator"/>
-<fullyQualifiedTypeName name="gameObjects.Actor"/>
-<fullyQualifiedTypeName name="gameControllers.Levels.BottomCuller"/>
-<fullyQualifiedTypeName name="Components.DrawableComponent"/>
 <fullyQualifiedTypeName name="gameControllers.Game"/>
 <fullyQualifiedTypeName name="gameControllers.GameView"/>
-<fullyQualifiedTypeName name="Components.DrawableGameComponent"/>
 <fullyQualifiedTypeName name="gameControllers.Levels.CullShaftRenderer"/>
-<fullyQualifiedTypeName name="android.graphics.Canvas"/>
 <fullyQualifiedTypeName name="android.graphics.drawable.BitmapDrawable"/>
 <fullyQualifiedTypeName name="android.content.res.Resources"/>
 <fullyQualifiedTypeName name="android.graphics.drawable.Drawable"/>
@@ -32,14 +19,9 @@
 <fullyQualifiedTypeName name="android.hardware.Sensor"/>
 <fullyQualifiedTypeName name="android.hardware.SensorManager"/>
 <fullyQualifiedTypeName name="android.hardware.SensorEventListener"/>
-<fullyQualifiedTypeName name="org.jbox2d.common.Vec2"/>
 <fullyQualifiedTypeName name="gameObjects.Background"/>
-<fullyQualifiedTypeName name="infoHolders.DrawInfo"/>
-<fullyQualifiedTypeName name="infoHolders.UpdateInfo"/>
-<fullyQualifiedTypeName name="Components.AbstractGameComponent"/>
 <fullyQualifiedTypeName name="gameObjects.JointNode"/>
 <fullyQualifiedTypeName name="gameObjects.Tail"/>
-<fullyQualifiedTypeName name="android.graphics.Paint"/>
 <fullyQualifiedTypeName name="android.graphics.Rect"/>
 <fullyQualifiedTypeName name="android.support.v4.app.FragmentActivity"/>
 <fullyQualifiedTypeName name="Components.AbstractComponent"/>
@@ -60,4 +42,22 @@
 <fullyQualifiedTypeName name="android.widget.Button"/>
 <fullyQualifiedTypeName name="com.example.swings.R.id"/>
 <fullyQualifiedTypeName name="gameControllers.LazyLevelManager"/>
+<fullyQualifiedTypeName name="java.lang.Math"/>
+<fullyQualifiedTypeName name="gameObjects.AppleExplosion"/>
+<fullyQualifiedTypeName name="gameObjects.animNodes.RadialNode"/>
+<fullyQualifiedTypeName name="android.graphics.Canvas"/>
+<fullyQualifiedTypeName name="gameObjects.animNodes.DoubleJointNode"/>
+<fullyQualifiedTypeName name="Components.AbstractGameComponent"/>
+<fullyQualifiedTypeName name="android.graphics.Paint"/>
+<fullyQualifiedTypeName name="gameObjects.AnimalBody"/>
+<fullyQualifiedTypeName name="gameObjects.animNodes.StiffAngleNode"/>
+<fullyQualifiedTypeName name="gameObjects.animNodes.LooseFollowNode"/>
+<fullyQualifiedTypeName name="Components.BodyComponent"/>
+<fullyQualifiedTypeName name="org.jbox2d.common.Vec2"/>
+<fullyQualifiedTypeName name="gameObjects.animNodes.ConstrainedDoubleNode"/>
+<fullyQualifiedTypeName name="Components.DrawableGameComponent"/>
+<fullyQualifiedTypeName name="infoHolders.UpdateInfo"/>
+<fullyQualifiedTypeName name="infoHolders.DrawInfo"/>
+<fullyQualifiedTypeName name="gameObjects.animNodes.RestrainedStiffAngleNode"/>
+<fullyQualifiedTypeName name="gameObjects.animNodes.JointNode"/>
 </qualifiedTypeNameHistroy>
