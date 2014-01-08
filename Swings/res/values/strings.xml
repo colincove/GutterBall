@@ -18,4 +18,7 @@
 <string name="level8Btn">Level 8</string>
 <string name="level9Btn">Level 9</string>
 
+<!-- TOAST -->
+<string name="main_msg">New Levels have been unlocked!</string>
+
 </resources>

@@ -1,0 +1,135 @@
+package droidControllers;
+
+import gameControllers.Game;
+import gameControllers.LazyLevelManager;
+import gameControllers.LevelLayoutController;
+import gameControllers.LevelManager;
+
+import com.example.swings.R;
+
+import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
+
+public class LevelSelectActivity extends SwingActivity implements android.view.View.OnClickListener {
+	private static final String UNLOCKED_STATE="levelsUnlocked"; 
+private int selectedLevel=0;
+private LevelManager levelManager;
+private Button resetLevelsButton;
+private Button unlockLevelsButton;
+private LevelLayoutController levelLayoutController;
+public static int savedUnlockCount;
+	public LevelSelectActivity() {
+		// TODO Auto-generated constructor stub
+		super();
+	}
+	@Override
+	protected void onCreate(Bundle savedInstanceState){
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.level_select);
+		levelManager = ((GutterBallApp)getApplicationContext()).getLevelManager();
+		if(levelLayoutController==null){
+			levelLayoutController = new LevelLayoutController(this, levelManager);
+		}
+		
+		
+			if(levelManager.getLevelsUnlocked()!=savedUnlockCount && savedUnlockCount!=0){
+				//means that new levels have been unlocked by the level manager
+				Toast toast = Toast.makeText(this, "New Levels unlocked!" , Toast.LENGTH_LONG);
+				toast.show();
+			
+		}
+		resetLevelsButton = (Button)findViewById(R.id.appOptions);
+		resetLevelsButton.setOnClickListener(this);
+		unlockLevelsButton = (Button)findViewById(R.id.unlockAllLevels);
+		unlockLevelsButton.setOnClickListener(this);
+	}
+	protected void onStart(){
+		super.onStart();
+	}
+	protected void onResume(){
+		super.onResume();
+		levelLayoutController.initialize();
+	}
+	public void selectLevel(View view)
+	{
+		switch(view.getId()){
+		case R.id.level1:
+			selectedLevel=1;
+			break;
+		case R.id.level2:
+			selectedLevel=2;
+			break;
+		case R.id.level3:
+			selectedLevel=3;
+			break;
+		case R.id.level4:
+			selectedLevel=4;
+			break;
+		case R.id.level5:
+			selectedLevel=5;
+			break;
+		case R.id.level6:
+			selectedLevel=6;
+			break;
+		case R.id.level7:
+			selectedLevel=7;
+			break;
+		case R.id.level8:
+			selectedLevel=8;
+			break;
+		case R.id.level9:
+			selectedLevel=9;
+			break;
+		}	
+		playLevel();
+	}
+	
+	protected void onSaveInstanceState(Bundle outState){
+		super.onSaveInstanceState(outState);
+		outState.putInt(UNLOCKED_STATE, levelManager.getLevelsUnlocked());
+	}
+	private void playLevel()
+	{
+		Intent game = new Intent(this, Game.class);
+		game.putExtra("level", selectedLevel);
+		startActivityForResult(game,1);
+	}
+	protected void onPause(){
+		super.onPause();
+		savedUnlockCount= levelManager.getLevelsUnlocked();
+	}
+	@Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+     super.onActivityResult(requestCode, resultCode, data);
+     if(resultCode==RESULT_OK){
+        Intent refresh = new Intent(this, LevelSelectActivity.class);
+        startActivity(refresh);
+        this.finish();
+     }
+    }
+	@Override
+	public void onClick(View view) {
+		// TODO Auto-generated method stub
+		if(resetLevelsButton==view){
+			levelManager.reset();
+			levelLayoutController.initialize();
+		}else if(unlockLevelsButton==view){
+			//levelManager.unlockAll();
+			//levelLayoutController.initialize();
+			LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+			View layout = inflater.inflate(R.layout.new_levels_toast, (ViewGroup)activity.findViewById(R.id.like_popup_layout)); 
+			Toast toast = Toast.makeText(this, "New Levels unlocked!" , Toast.LENGTH_LONG);
+			toast.setGravity(Gravity.CENTER, 0, 200);
+			toast.setView();
+			toast.show();
+		}
+	}
+
+}

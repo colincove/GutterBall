@@ -108,6 +108,7 @@ containing a value of this type.
     public static final class id {
         public static final int about=0x7f080014;
         public static final int appOptions=0x7f080000;
+        public static final int custom_toast_layout=0x7f080015;
         public static final int level1=0x7f080002;
         public static final int level10=0x7f08000b;
         public static final int level11=0x7f08000c;
@@ -132,6 +133,7 @@ containing a value of this type.
         public static final int activity_fullscreen=0x7f030000;
         public static final int level_select=0x7f030001;
         public static final int main_menu=0x7f030002;
+        public static final int new_levels_toast=0x7f030003;
     }
     public static final class string {
         public static final int aboutBtn=0x7f060006;
@@ -148,6 +150,9 @@ containing a value of this type.
         public static final int level8Btn=0x7f06000e;
         public static final int level9Btn=0x7f06000f;
         public static final int levelsBtn=0x7f060005;
+        /**  TOAST 
+         */
+        public static final int main_msg=0x7f060010;
         public static final int options=0x7f060003;
         public static final int unlock_all=0x7f060004;
     }

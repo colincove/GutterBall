@@ -47,7 +47,7 @@ public class LevelManager {
 			SharedPreferences.Editor editor = levelPreferences.edit();
 			editor.putInt(Integer.toString(levelIndex), status);
 			editor.commit();
-			levelStatus[levelIndex] = STATUS_UNLOCKED;
+			levelStatus[levelIndex] = status;
 			updateCounts();
 		}
 	}

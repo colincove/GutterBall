@@ -17,7 +17,8 @@ public class LazyLevelManager extends LevelManager {
 		super.completeLevel(levelIndex);
 		if(getLevelsUnlocked()-getLevelsCompleted()==getLevelsUnlocked()/3){
 			if(getLevelsUnlocked()<getNumLevels()){
-				for(int i=getLevelsUnlocked();i<getLevelsUnlocked()+3;i++){
+				int levelsUnlocked=getLevelsUnlocked();
+				for(int i=levelsUnlocked;i<levelsUnlocked+3;i++){
 					if(i<getNumLevels()){
 						unlockLevel(i);
 					}

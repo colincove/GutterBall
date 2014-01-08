@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="gameControllers.Game"/>
-<fullyQualifiedTypeName name="gameControllers.GameView"/>
-<fullyQualifiedTypeName name="gameControllers.Levels.CullShaftRenderer"/>
-<fullyQualifiedTypeName name="android.graphics.drawable.BitmapDrawable"/>
-<fullyQualifiedTypeName name="android.content.res.Resources"/>
-<fullyQualifiedTypeName name="android.graphics.drawable.Drawable"/>
-<fullyQualifiedTypeName name="android.content.res.TypedArray"/>
-<fullyQualifiedTypeName name="com.example.swings.R.drawable"/>
-<fullyQualifiedTypeName name="android.widget.ImageButton"/>
 <fullyQualifiedTypeName name="com.example.swings.R.styleable"/>
 <fullyQualifiedTypeName name="android.view.ViewGroup.LayoutParams"/>
 <fullyQualifiedTypeName name="android.view.View"/>
@@ -35,7 +26,6 @@
 <fullyQualifiedTypeName name="com.example.swings.R"/>
 <fullyQualifiedTypeName name="droidControllers.LevelSelectActivity"/>
 <fullyQualifiedTypeName name="gameControllers.LevelManager"/>
-<fullyQualifiedTypeName name="android.content.Context"/>
 <fullyQualifiedTypeName name="gameObjects.Portal.IObtainedCallback"/>
 <fullyQualifiedTypeName name="droidControllers.GutterBallApp"/>
 <fullyQualifiedTypeName name="android.content.DialogInterface.OnClickListener"/>
@@ -60,4 +50,14 @@
 <fullyQualifiedTypeName name="infoHolders.DrawInfo"/>
 <fullyQualifiedTypeName name="gameObjects.animNodes.RestrainedStiffAngleNode"/>
 <fullyQualifiedTypeName name="gameObjects.animNodes.JointNode"/>
+<fullyQualifiedTypeName name="android.widget.Toast"/>
+<fullyQualifiedTypeName name="android.app.Dialog"/>
+<fullyQualifiedTypeName name="android.os.Bundle"/>
+<fullyQualifiedTypeName name="android.app.AlertDialog"/>
+<fullyQualifiedTypeName name="android.content.DialogInterface"/>
+<fullyQualifiedTypeName name="com.example.swings.R.layout"/>
+<fullyQualifiedTypeName name="android.view.ViewGroup"/>
+<fullyQualifiedTypeName name="android.view.Gravity"/>
+<fullyQualifiedTypeName name="android.content.Context"/>
+<fullyQualifiedTypeName name="android.view.LayoutInflater"/>
 </qualifiedTypeNameHistroy>

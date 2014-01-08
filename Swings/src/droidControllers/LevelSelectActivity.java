@@ -7,11 +7,16 @@ import gameControllers.LevelManager;
 
 import com.example.swings.R;
 
+import android.content.Context;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class LevelSelectActivity extends SwingActivity implements android.view.View.OnClickListener {
 	private static final String UNLOCKED_STATE="levelsUnlocked"; 
@@ -20,6 +25,7 @@ private LevelManager levelManager;
 private Button resetLevelsButton;
 private Button unlockLevelsButton;
 private LevelLayoutController levelLayoutController;
+public static int savedUnlockCount;
 	public LevelSelectActivity() {
 		// TODO Auto-generated constructor stub
 		super();
@@ -33,11 +39,17 @@ private LevelLayoutController levelLayoutController;
 			levelLayoutController = new LevelLayoutController(this, levelManager);
 		}
 		
-		if(savedInstanceState!=null){
-			if(levelManager.getLevelsUnlocked()!=savedInstanceState.getInt(UNLOCKED_STATE)){
+		
+			if(levelManager.getLevelsUnlocked()!=savedUnlockCount && savedUnlockCount!=0){
 				//means that new levels have been unlocked by the level manager
-				
-			}
+				LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+				View layout = inflater.inflate(R.layout.new_levels_toast, (ViewGroup)findViewById(R.id.custom_toast_layout)); 
+				Toast toast = Toast.makeText(this, "New Levels unlocked!" , Toast.LENGTH_LONG);
+				toast.setGravity(Gravity.BOTTOM, 0, 0);
+				toast.setView(layout);
+				toast.show();
+			
 		}
 		resetLevelsButton = (Button)findViewById(R.id.appOptions);
 		resetLevelsButton.setOnClickListener(this);
@@ -95,6 +107,10 @@ private LevelLayoutController levelLayoutController;
 		game.putExtra("level", selectedLevel);
 		startActivityForResult(game,1);
 	}
+	protected void onPause(){
+		super.onPause();
+		savedUnlockCount= levelManager.getLevelsUnlocked();
+	}
 	@Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
      super.onActivityResult(requestCode, resultCode, data);
@@ -113,6 +129,7 @@ private LevelLayoutController levelLayoutController;
 		}else if(unlockLevelsButton==view){
 			levelManager.unlockAll();
 			levelLayoutController.initialize();
+			
 		}
 	}
 
