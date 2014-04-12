@@ -1,0 +1,230 @@
+package gameObjects.launcher;
+
+import android.animation.Animator;
+import android.animation.Animator.AnimatorListener;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
+import android.animation.AnimatorSet;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Paint;
+import android.util.AttributeSet;
+import android.view.animation.Animation;
+
+import gameControllers.Game;
+import infoHolders.DrawInfo;
+import droidControllers.SwingActivity;
+import Components.DrawableComponent;
+import Components.DrawableGameComponent;
+
+public class LauncherTouchCircle extends DrawableGameComponent implements ILauncherListener, AnimatorListener {
+	private Launcher launcher;
+	private AnimatorWrapper idle;
+	private AnimatorWrapper appearAnim;
+	private AnimatorWrapper touchAnim;
+	private float radius;
+	private int alpha=50;
+	
+	//Drawing
+	private Paint paint;
+	public LauncherTouchCircle(Game game, Launcher launcher) {
+		super(game);
+		this.launcher=launcher;
+		launcher.addLauncherListener(this);
+		
+		idle = new IdleAnim(this);
+		appearAnim = new AppearAnim(this);
+		touchAnim = new TouchAnim(this);
+		
+		appearAnim.getAnimatorSet().addListener(this);
+		
+		idle.getAnimatorSet().start();
+		
+		paint=new Paint();
+		paint.setARGB(100, 100, 100, 100);
+		
+	}
+	@Override
+	public int drawOrder(){
+		return 100;
+	}
+	@Override
+	public void draw(DrawInfo drawInfo){	
+		super.draw(drawInfo);
+		paint.setAlpha(alpha);
+		drawInfo.getCanvas().drawCircle(
+				gameView.toScreenX(launcher.getX()), 
+				gameView.toScreenY(launcher.getY()), 
+				gameView.toScreen(radius),
+				paint);
+	}
+	
+////////////////////////////Animation Values///////////////////////////
+	public void setRadius(float newValue){
+		this.radius=newValue;
+	}
+	public void setAlpha(int newValue){
+		this.alpha=newValue;
+	}
+	
+	@Override
+	public void enableLauncher(Launcher launcher) {
+		// TODO Auto-generated method stub
+		idle.cancel();
+		touchAnim.cancel();
+		appearAnim.start();
+	}
+
+	@Override
+	public void disableLauncher(Launcher launcher) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void launch(Launcher launcher, float x, float y) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void touchLauncher(Launcher launcher, float x, float y) {
+		// TODO Auto-generated method stub
+		idle.cancel();
+		touchAnim.start();
+		appearAnim.cancel();
+	}
+
+	
+	@Override
+	public void onAnimationCancel(Animator arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void onAnimationEnd(Animator arg0) {
+		// TODO Auto-generated method stub
+		idle.start();
+		touchAnim.cancel();
+		appearAnim.cancel();
+	}
+	@Override
+	public void onAnimationRepeat(Animator arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void onAnimationStart(Animator arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void pullingLauncher(Launcher launcher, float x, float y) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}
+class IdleAnim extends AnimatorWrapper{
+	private LauncherTouchCircle launcherTouchCircle;
+	public IdleAnim(LauncherTouchCircle launcherTouchCircle){
+		super();
+		this.launcherTouchCircle=launcherTouchCircle;
+		createAnimation();
+	}
+	private void createAnimation(){
+		ObjectAnimator rAnim = ObjectAnimator.ofFloat(launcherTouchCircle, "radius", 1f, 10f);
+		ObjectAnimator aAnim = ObjectAnimator.ofInt(launcherTouchCircle, "alpha", 50, 255);
+		rAnim.setRepeatMode(ObjectAnimator.INFINITE);
+		aAnim.setRepeatMode(ObjectAnimator.INFINITE);
+		playTogether(rAnim, aAnim);
+		setRepeat(true);
+		setDuration(6000);
+		
+	}
+}
+class AppearAnim extends AnimatorWrapper{
+	private LauncherTouchCircle launcherTouchCircle;
+	public AppearAnim(LauncherTouchCircle launcherTouchCircle){
+		super();
+		this.launcherTouchCircle=launcherTouchCircle;
+		createAnimation();
+	}
+	private void createAnimation(){
+		ObjectAnimator rAnim = ObjectAnimator.ofFloat(launcherTouchCircle, "radius", 0f, 1f);
+		ObjectAnimator aAnim = ObjectAnimator.ofInt(launcherTouchCircle, "alpha", 0, 255);
+		playTogether(rAnim, aAnim);
+		setDuration(500);
+	}
+}
+class TouchAnim extends AnimatorWrapper{
+	private LauncherTouchCircle launcherTouchCircle;
+	public TouchAnim(LauncherTouchCircle launcherTouchCircle){
+		super();
+		this.launcherTouchCircle=launcherTouchCircle;
+		createAnimation();
+	}
+	private void createAnimation(){
+		ObjectAnimator rAnim = ObjectAnimator.ofFloat(launcherTouchCircle, "radius", 1f, 3f);
+		ObjectAnimator aAnim = ObjectAnimator.ofInt(launcherTouchCircle, "alpha", 255, 0);
+		playTogether(rAnim, aAnim);
+		
+		setDuration(300);
+	}
+}
+class AnimatorWrapper implements AnimatorListener {
+	private boolean repeat;
+	private AnimatorSet animatorSet;
+	public AnimatorWrapper(){
+		this.animatorSet=new AnimatorSet();
+		
+			 
+			
+		animatorSet.addListener(this);
+	}
+	public AnimatorSet getAnimatorSet(){
+		return animatorSet;
+	}
+	public void start(){
+		animatorSet.start();
+	}
+	public void cancel(){
+		
+		animatorSet.cancel();
+	}
+	public void playTogether(Animator... items){
+		animatorSet.playTogether(items);
+	}
+	public void setDuration(long duration){
+		animatorSet.setDuration(duration);
+		
+	}
+	public void setRepeat(boolean value){
+		repeat=value;
+	}
+	@Override
+	public void onAnimationCancel(Animator animation) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void onAnimationEnd(Animator animation) {
+		// TODO Auto-generated method stub
+		if(repeat){
+			//animation.
+			animation.cancel();
+			animation.start();
+		}
+	}
+	@Override
+	public void onAnimationRepeat(Animator animation) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void onAnimationStart(Animator animation) {
+		// TODO Auto-generated method stub
+		
+	}
+}
+

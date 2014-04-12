@@ -1,0 +1,10 @@
+package gameObjects.launcher;
+
+public interface ILauncherListener {
+	public void enableLauncher();
+	public void disableLauncher();
+	public void launch();
+	public void touchLauncher();
+	public void pullingLauncher();
+	
+}

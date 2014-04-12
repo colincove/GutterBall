@@ -10,11 +10,13 @@ import android.graphics.drawable.BitmapDrawable;
 import Components.BodyComponent;
 import gameControllers.Game;
 import gameObjects.HitSparks;
-import gameObjects.Launcher;
 import gameObjects.Portal;
 import gameObjects.Portal.IObtainedCallback;
+import gameObjects.launcher.Launcher;
+import gameObjects.launcher.LauncherTouchCircle;
 
 public abstract class ThrowLevel extends Level implements IObtainedCallback {
+	private LauncherTouchCircle launcherCircle;
 private Launcher launcher;
 private List<Portal> portalList;
 private HitSparks sparks;
@@ -25,6 +27,7 @@ private GutterBallApp app;
 		launcher = new Launcher(game, 15, 46);
 		portalList =new ArrayList<Portal>();
 		app =(GutterBallApp) game.getApplicationContext();
+		launcherCircle = new LauncherTouchCircle(game, launcher);
 	}
 	public ThrowLevel(Game game, BodyComponent geometry, BitmapDrawable bgBitmap) {
 		super(game, geometry, bgBitmap);

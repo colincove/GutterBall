@@ -1,0 +1,77 @@
+package gameObjects.launcher;
+
+import org.pushingpixels.trident.Timeline;
+import org.pushingpixels.trident.Timeline.RepeatBehavior;
+
+import android.graphics.Paint;
+
+import infoHolders.DrawInfo;
+import droidControllers.SwingActivity;
+import Components.DrawableComponent;
+
+public class LauncherTouchCircle extends DrawableComponent implements ILauncherListener {
+	private Launcher launcher;
+	private Timeline idle;
+	private float r;
+	private int a=50;
+	
+	//Drawing
+	private Paint paint;
+	public LauncherTouchCircle(SwingActivity activity, Launcher launcher) {
+		super(activity);
+		this.launcher=launcher;
+		launcher.addLauncherListener(this);
+		////////////////////////////Animation///////////////////////////
+		idle=new Timeline(this);
+		idle.setDuration(500);
+		idle.addPropertyToInterpolate("r",2, 3);
+		idle.playLoop(RepeatBehavior.LOOP);
+		//////////
+		
+		paint=new Paint();
+		paint.setARGB(a, 100, 100, 100);
+	}
+	
+	@Override
+	public void draw(DrawInfo drawInfo){	
+		super.draw(drawInfo);
+		
+		
+		
+	}
+	
+////////////////////////////Animation Values///////////////////////////
+	public void setr(float newValue){
+		this.r=newValue;
+	}
+	
+	@Override
+	public void enableLauncher(Launcher launcher) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void disableLauncher(Launcher launcher) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void launch(Launcher launcher, float x, float y) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void touchLauncher(Launcher launcher, float x, float y) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void pullingLauncher(Launcher launcher, float x, float y) {
+		// TODO Auto-generated method stub
+		
+	}
+}

@@ -1,0 +1,93 @@
+package gameObjects.launcher;
+
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Paint;
+import android.util.AttributeSet;
+import android.view.animation.AnimationSet;
+
+import infoHolders.DrawInfo;
+import droidControllers.SwingActivity;
+import Components.DrawableComponent;
+
+public class LauncherTouchCircle extends DrawableComponent implements ILauncherListener {
+	private Launcher launcher;
+	private AnimationSet idle;
+	private float radius;
+	private int alpha=50;
+	
+	//Drawing
+	private Paint paint;
+	public LauncherTouchCircle(SwingActivity activity, Launcher launcher) {
+		super(activity);
+		this.launcher=launcher;
+		launcher.addLauncherListener(this);
+		
+		idle = new IdleAnim(true);
+		
+		paint=new Paint();
+		paint.setARGB(alpha, 100, 100, 100);
+	}
+	
+	@Override
+	public void draw(DrawInfo drawInfo){	
+		super.draw(drawInfo);
+	}
+	
+////////////////////////////Animation Values///////////////////////////
+	public void setRadius(float newValue){
+		this.radius=newValue;
+	}
+	public void setAlpha(int newValue){
+		this.alpha=newValue;
+	}
+	
+	@Override
+	public void enableLauncher(Launcher launcher) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void disableLauncher(Launcher launcher) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void launch(Launcher launcher, float x, float y) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void touchLauncher(Launcher launcher, float x, float y) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void pullingLauncher(Launcher launcher, float x, float y) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}
+class IdleAnim extends AnimationSet{
+	private LauncherTouchCircle launcherTouchCircle;
+	public IdleAnim(LauncherTouchCircle launcherTouchCircle, Context context, AttributeSet attrs){
+		super(context, attrs);
+		this.launcherTouchCircle=launcherTouchCircle;
+		createAnimation();
+	}
+	public IdleAnim(boolean shareInterpolator){
+		super(shareInterpolator);
+		this.launcherTouchCircle=launcherTouchCircle;
+		createAnimation();
+	}
+	private void createAnimation(){
+		ObjectAnimator rAnim = ObjectAnimator.ofFloat(launcherTouchCircle, "r", 0f, 1f);
+		ObjectAnimator aAnim = ObjectAnimator.ofFloat(launcherTouchCircle, "a", 0f, 1f);
+	}
+}

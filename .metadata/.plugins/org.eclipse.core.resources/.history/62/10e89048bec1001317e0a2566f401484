@@ -1,0 +1,53 @@
+package gameObjects.launcher;
+
+import infoHolders.DrawInfo;
+import droidControllers.SwingActivity;
+import Components.DrawableComponent;
+
+public class LauncherTouchCircle extends DrawableComponent implements ILauncherListener {
+	
+	
+	
+	public LauncherTouchCircle(SwingActivity activity) {
+		super(activity);
+		// TODO Auto-generated constructor stub
+	}
+	
+	@Override
+	public void draw(DrawInfo drawInfo){	
+		super.draw(drawInfo);
+	}
+	
+	@Override
+	public void enableLauncher(Launcher launcher) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void disableLauncher(Launcher launcher) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void launch(Launcher launcher, float x, float y) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void touchLauncher(Launcher launcher, float x, float y) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void pullingLauncher(Launcher launcher, float x, float y) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+	
+}

@@ -1,0 +1,5 @@
+package gameObjects.launcher;
+
+public interface ILauncherListener {
+
+}

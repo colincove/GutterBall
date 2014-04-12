@@ -1,0 +1,13 @@
+package gameObjects.launcher;
+
+import droidControllers.SwingActivity;
+import Components.DrawableComponent;
+
+public class LauncherTouchCircle extends DrawableComponent {
+
+	public LauncherTouchCircle(SwingActivity activity) {
+		super(activity);
+		// TODO Auto-generated constructor stub
+	}
+
+}
