@@ -8,6 +8,7 @@ import org.jbox2d.dynamics.Body;
 import gameControllers.Game;
 import gameObjects.Actor;
 import infoHolders.DrawInfo;
+import infoHolders.UpdateInfo;
 import android.content.DialogInterface;
 import android.graphics.Paint;
 import android.graphics.Point;
@@ -24,7 +25,7 @@ public class Launcher extends DrawableGameComponent implements IUserInputCompone
 
 	private Paint paint;
 	private Paint pullPaint;
-	private int r=1;
+	private int r=12;
 	private boolean isPulling;
 	private Point fingerPt;
 	private float fingX;
@@ -32,7 +33,9 @@ public class Launcher extends DrawableGameComponent implements IUserInputCompone
 	private int line_offset=0;
 	private int lineSize=20;
 	private int lineDist=10;
-	
+	private long delay=0;
+	private long lastLaunchTime=0;
+	private boolean enabled=true;
 	//list of launcher listeners
 	private ArrayList<ILauncherListener> launcherListeners;
 	//finger velocity
@@ -54,12 +57,13 @@ public class Launcher extends DrawableGameComponent implements IUserInputCompone
 	}
 	@Override
 	public void draw(DrawInfo info){
+
 		super.draw(info);
 		
 		//Body
 		info.getCanvas().drawCircle(gameView.toScreenX(getX()),
 				gameView.toScreenY(getY()),
-				gameView.toScreen(r), paint);
+				gameView.toScreen(1), paint);
 		//Pull Line
 		if(isPulling){
 			float dx = gameView.toScreenX(getX())-fingerPt.x;
@@ -73,12 +77,11 @@ public class Launcher extends DrawableGameComponent implements IUserInputCompone
 			double sin = Math.sin(a);
 			
 			
-			
 			if(line_offset>lineSize+lineDist){
 				int r = (int)(line_offset%(lineSize+lineDist));
 				line_offset=r;
 			}
-			
+			line_offset=0;
 			for(int i=(int)line_offset;i<d;i+=lineSize+lineDist){
 				float x = (float)(cos*(i+lineSize));
 				float y= (float)(sin*(i+lineSize));
@@ -100,6 +103,21 @@ public class Launcher extends DrawableGameComponent implements IUserInputCompone
 		}
 		
 	}
+	public void disable(){
+		enabled=false;
+		for(ILauncherListener listener : launcherListeners){
+			listener.disableLauncher(this);
+		}
+	}
+	public void enable(){
+		enabled=true;
+		for(ILauncherListener listener : launcherListeners){
+			listener.enableLauncher(this);
+		}
+	}
+	public void setEnabled(boolean value){
+		enabled=value;
+	}
 	@Override
 	public void onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
 		// TODO Auto-generated method stub
@@ -109,30 +127,42 @@ public class Launcher extends DrawableGameComponent implements IUserInputCompone
 	@Override
 	public void onTouch(View v, MotionEvent event) {
 		// TODO Auto-generated method stub
-		switch(event.getAction()){
-		case MotionEvent.ACTION_UP:
-			if(isPulling)stopPull(event);
-			
-			break;
-			case MotionEvent.ACTION_DOWN:
-				if(getCircleHit(gameView.toWorldX(event.getRawX()),gameView.toWorldY(event.getRawY()), 3, getX(), getY(), r)){
-					for(ILauncherListener listener : launcherListeners){
-						listener.touchLauncher(this, event.getRawX(), event.getRawY());
-					}
-					doPull(event);
-				}
+		if(!enabled){return;}
+			switch(event.getAction()){
+			case MotionEvent.ACTION_UP:
+				if(isPulling)stopPull(event);
+				
 				break;
-			case MotionEvent.ACTION_MOVE:
-				if(isPulling){
-					doPull(event);
-					for(ILauncherListener listener : launcherListeners){
-						listener.pullingLauncher(this, fingX, fingY);
+				case MotionEvent.ACTION_DOWN:
+					if(getCircleHit(gameView.toWorldX(event.getRawX()),gameView.toWorldY(event.getRawY()), 3, getX(), getY(), r)){
+						for(ILauncherListener listener : launcherListeners){
+							listener.touchLauncher(this, event.getRawX(), event.getRawY());
+						}
+						doPull(event);
 					}
-				}
-				break;
+					break;
+				case MotionEvent.ACTION_MOVE:
+					if(isPulling){
+						doPull(event);
+						for(ILauncherListener listener : launcherListeners){
+							listener.pullingLauncher(this, fingX, fingY);
+						}
+					}
+					break;
+			}
+	}
+	public void setDelay(long delay){
+		this.delay=delay;
+	}
+	public void update(UpdateInfo updateInfo)
+	{
+		super.update(updateInfo);
+		if(!enabled && updateInfo.getTime()-lastLaunchTime>delay){
+			enable();
 		}
 	}
 	private void stopPull(MotionEvent event){
+		if(!enabled){return;}
 		//Spawn Actor
 		Actor actor = new Actor(game, new Vec2(getX(), getY()));
 		//Launch Actor
@@ -162,9 +192,16 @@ public class Launcher extends DrawableGameComponent implements IUserInputCompone
 		for(ILauncherListener listener : launcherListeners){
 			listener.launch(this, fingX, fingY);
 		}
+		if(delay!=0){
+			lastLaunchTime=System.currentTimeMillis();
+			disable();
+		}
 	}
 	private void doPull(MotionEvent event)
 	{
+		
+		if(!enabled){return;}
+		
 		isPulling=true;
 	
 		fingX=event.getRawX();

@@ -25,6 +25,7 @@ private GutterBallApp app;
 		super(game, geometry);
 		// TODO Auto-generated constructor stub
 		launcher = new Launcher(game, 15, 46);
+		launcher.setDelay(1000);
 		portalList =new ArrayList<Portal>();
 		app =(GutterBallApp) game.getApplicationContext();
 		launcherCircle = new LauncherTouchCircle(game, launcher);
@@ -33,9 +34,11 @@ private GutterBallApp app;
 		super(game, geometry, bgBitmap);
 		// TODO Auto-generated constructor stub
 		launcher = new Launcher(game, 15, 46);
+		launcher.setDelay(1000);
 		portalList =new ArrayList<Portal>();
 		sparks = new HitSparks(game);
 		app =(GutterBallApp) game.getApplicationContext();
+		launcherCircle = new LauncherTouchCircle(game, launcher);
 	
 	}
 	@Override

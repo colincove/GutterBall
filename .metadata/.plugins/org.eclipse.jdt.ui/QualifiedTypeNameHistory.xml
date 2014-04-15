@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="com.example.swings.R"/>
 <fullyQualifiedTypeName name="droidControllers.LevelSelectActivity"/>
 <fullyQualifiedTypeName name="gameControllers.LevelManager"/>
 <fullyQualifiedTypeName name="gameObjects.Portal.IObtainedCallback"/>
@@ -21,7 +20,6 @@
 <fullyQualifiedTypeName name="Components.BodyComponent"/>
 <fullyQualifiedTypeName name="org.jbox2d.common.Vec2"/>
 <fullyQualifiedTypeName name="gameObjects.animNodes.ConstrainedDoubleNode"/>
-<fullyQualifiedTypeName name="infoHolders.UpdateInfo"/>
 <fullyQualifiedTypeName name="gameObjects.animNodes.RestrainedStiffAngleNode"/>
 <fullyQualifiedTypeName name="gameObjects.animNodes.JointNode"/>
 <fullyQualifiedTypeName name="android.widget.Toast"/>
@@ -58,6 +56,8 @@
 <fullyQualifiedTypeName name="android.animation.AnimatorListenerAdapter"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="gameObjects.launcher.RepeatingList"/>
-<fullyQualifiedTypeName name="gameObjects.launcher.VirtualList"/>
 <fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="gameObjects.launcher.AnimationMaster.LoopListener"/>
+<fullyQualifiedTypeName name="infoHolders.UpdateInfo"/>
+<fullyQualifiedTypeName name="gameObjects.launcher.VirtualList"/>
 </qualifiedTypeNameHistroy>

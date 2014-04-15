@@ -16,40 +16,77 @@ import android.view.animation.Animation;
 
 import gameControllers.Game;
 import infoHolders.DrawInfo;
+import infoHolders.UpdateInfo;
 import droidControllers.SwingActivity;
 import Components.DrawableComponent;
 import Components.DrawableGameComponent;
 
 public class LauncherTouchCircle extends DrawableGameComponent implements ILauncherListener, AnimatorListener {
+	public static final int IDLE=0, PULLING=1, DISABLED=2, APPEARING=3; 
 	private Launcher launcher;
-	private AnimatorWrapper idle;
-	private AnimatorWrapper appearAnim;
-	private AnimatorWrapper touchAnim;
 	private float radius;
-	private int alpha=50;
-	
+	private int alpha=100;
+	private int[] alphaFadeAnim = {0};
+	private int alphaFadeAnimIndex=0;
+	private int STATE=IDLE;
 	//Drawing
 	private Paint paint;
+	
+	private float radiusVel=0f;
+	private float radiusStaticOffset=0.2f;
+	private float radiusOffset=radiusStaticOffset;
 	public LauncherTouchCircle(Game game, Launcher launcher) {
 		super(game);
 		this.launcher=launcher;
 		launcher.addLauncherListener(this);
-		
-		idle = new IdleAnim(this);
-		appearAnim = new AppearAnim(this);
-		touchAnim = new TouchAnim(this);
-		
-		appearAnim.getAnimatorSet().addListener(this);
-		
-		idle.getAnimatorSet().start();
-		
 		paint=new Paint();
-		paint.setARGB(100, 100, 100, 100);
+		paint.setARGB(100, 255, 248, 206);
 		
 	}
 	@Override
 	public int drawOrder(){
-		return 100;
+		return 1;
+	}
+	@Override
+	public void update(UpdateInfo updateInfo){
+		super.update(updateInfo);
+		//State controlled animations
+		if(STATE!=IDLE){
+			
+		}
+		if(STATE==IDLE){
+			alpha=100;
+			
+				if(radiusOffset>0){
+				radiusVel-=0.007f;
+			}else if(radiusOffset<0){
+				radiusVel+=0.007f;
+			}
+			radiusOffset+=radiusVel;
+			alpha=(int)(100+radiusOffset*100);
+		}else if(STATE==PULLING){
+			/*if(alpha>0){		
+				alpha-=50;
+			}
+			if(alpha<0){
+				alpha=0;
+			}*/
+			if(alphaFadeAnimIndex<alphaFadeAnim.length)
+			{
+				alpha=alphaFadeAnim[alphaFadeAnimIndex++];
+			}
+		}else if(STATE==DISABLED){
+					
+		}else if(STATE==APPEARING){
+			if(alpha<100){		
+				alpha+=10;
+			}else{
+				STATE=IDLE;
+				alpha=100;
+			}
+			radiusOffset=radiusStaticOffset;
+			radiusVel=0;
+		}
 	}
 	@Override
 	public void draw(DrawInfo drawInfo){	
@@ -58,8 +95,11 @@ public class LauncherTouchCircle extends DrawableGameComponent implements ILaunc
 		drawInfo.getCanvas().drawCircle(
 				gameView.toScreenX(launcher.getX()), 
 				gameView.toScreenY(launcher.getY()), 
-				gameView.toScreen(radius),
+				gameView.toScreen(launcher.getRadius()+radiusOffset),
 				paint);
+		
+		
+		
 	}
 	
 ////////////////////////////Animation Values///////////////////////////
@@ -73,29 +113,26 @@ public class LauncherTouchCircle extends DrawableGameComponent implements ILaunc
 	@Override
 	public void enableLauncher(Launcher launcher) {
 		// TODO Auto-generated method stub
-		idle.cancel();
-		touchAnim.cancel();
-		appearAnim.start();
+		STATE=APPEARING;
 	}
 
 	@Override
 	public void disableLauncher(Launcher launcher) {
 		// TODO Auto-generated method stub
-		
+		STATE=DISABLED;
 	}
 
 	@Override
 	public void launch(Launcher launcher, float x, float y) {
 		// TODO Auto-generated method stub
-		
+		alpha=0;
 	}
 
 	@Override
 	public void touchLauncher(Launcher launcher, float x, float y) {
 		// TODO Auto-generated method stub
-		idle.cancel();
-		touchAnim.start();
-		appearAnim.cancel();
+		STATE=PULLING;
+		alphaFadeAnimIndex=0;
 	}
 
 	
@@ -107,9 +144,6 @@ public class LauncherTouchCircle extends DrawableGameComponent implements ILaunc
 	@Override
 	public void onAnimationEnd(Animator arg0) {
 		// TODO Auto-generated method stub
-		idle.start();
-		touchAnim.cancel();
-		appearAnim.cancel();
 	}
 	@Override
 	public void onAnimationRepeat(Animator arg0) {
@@ -135,8 +169,7 @@ class IdleAnim extends AnimatorWrapper{
 		this.launcherTouchCircle=launcherTouchCircle;
 		createAnimation();
 	}
-	private void createAnimation(){
-		int test = 2 % 1;
+	public void createAnimation(){
 		ObjectAnimator rAnim = ObjectAnimator.ofFloat(launcherTouchCircle, "radius", 1f, 10f);
 		ObjectAnimator aAnim = ObjectAnimator.ofInt(launcherTouchCircle, "alpha", 50, 255);
 		playTogether(rAnim, aAnim);
@@ -153,7 +186,7 @@ class AppearAnim extends AnimatorWrapper{
 		this.launcherTouchCircle=launcherTouchCircle;
 		createAnimation();
 	}
-	private void createAnimation(){
+	public void createAnimation(){
 		ObjectAnimator rAnim = ObjectAnimator.ofFloat(launcherTouchCircle, "radius", 0f, 1f);
 		ObjectAnimator aAnim = ObjectAnimator.ofInt(launcherTouchCircle, "alpha", 0, 255);
 		playTogether(rAnim, aAnim);
@@ -167,12 +200,25 @@ class TouchAnim extends AnimatorWrapper{
 		this.launcherTouchCircle=launcherTouchCircle;
 		createAnimation();
 	}
-	private void createAnimation(){
-		ObjectAnimator rAnim = ObjectAnimator.ofFloat(launcherTouchCircle, "radius", 1f, 3f);
+	public void createAnimation(){
+		//ObjectAnimator rAnim = ObjectAnimator.ofFloat(launcherTouchCircle, "radius", 1f, 3f);
 		ObjectAnimator aAnim = ObjectAnimator.ofInt(launcherTouchCircle, "alpha", 255, 0);
-		playTogether(rAnim, aAnim);
+		play(aAnim);
 		
 		setDuration(300);
+	}
+}
+class AnimationMaster{
+	public static void doRepeat(AnimatorWrapper anim){
+		anim.cancel();
+		anim.removeAllListeners();
+		anim.end();
+		anim.resetAnimatorSet();
+		anim.createAnimation();
+		anim.start();
+	}
+	public static void startAnimation(AnimatorWrapper anim){
+		anim.createAnimation();
 	}
 }
 class AnimatorWrapper implements AnimatorListener {
@@ -181,20 +227,47 @@ class AnimatorWrapper implements AnimatorListener {
 	private boolean canceling=false;
 	public AnimatorWrapper(){
 		this.animatorSet=new AnimatorSet();
-		
 		animatorSet.addListener(this);
+		//AnimationMaster.startAnimation(this);
+	}
+	public void createAnimation(){
+		
+	}
+	public void resetAnimatorSet()
+	{
+		this.animatorSet=new AnimatorSet();
+		animatorSet.addListener(this);
+	}
+	public void addListener(AnimatorListener listener){
+		animatorSet.addListener(listener);
+	}
+	public void removeListener(AnimatorListener listener){
+		animatorSet.removeListener(listener);
+	}
+	public void removeAllListeners(){
+		animatorSet.removeAllListeners();
 	}
 	public AnimatorSet getAnimatorSet(){
 		return animatorSet;
 	}
 	public void start(){
+		canceling=false;
 		animatorSet.start();
+	}
+	public void end(){
+		animatorSet.end();
+	}
+	public void setTarget(Object target){
+		animatorSet.setTarget(target);
 	}
 	public void playSequentially(List<Animator> items){
 		animatorSet.playSequentially(items);
 	}
+	public void play(Animator anim){
+		animatorSet.play(anim);
+	}
 	public void cancel(){
-		
+		canceling=true;
 		animatorSet.cancel();
 	}
 	public void playTogether(Animator... items){
@@ -207,6 +280,9 @@ class AnimatorWrapper implements AnimatorListener {
 	public void setRepeat(boolean value){
 		repeat=value;
 	}
+	public boolean getRepeat(){
+		return repeat;
+	}
 	@Override
 	public void onAnimationCancel(Animator animation) {
 		// TODO Auto-generated method stub
@@ -215,11 +291,25 @@ class AnimatorWrapper implements AnimatorListener {
 	@Override
 	public void onAnimationEnd(Animator animation) {
 		// TODO Auto-generated method stub
-		if(repeat && !canceling){
+		/*if(repeat && !canceling){
 			//animation.
-			animation.cancel();
-			animation.end();
-			animation.start();
+			
+			animatorSet.removeAllListeners();
+			AnimatorSet tmpAnimatorSet=(AnimatorSet)animation.clone();
+			
+			animatorSet.play(null);
+			animatorSet.cancel();
+			animatorSet.end();
+			
+		
+			
+			animatorSet=tmpAnimatorSet;
+			
+			animatorSet.addListener(this);
+			animatorSet.start();
+		}*/
+		if(repeat && !canceling){
+			AnimationMaster.doRepeat(this);
 		}
 	}
 
