@@ -5,8 +5,8 @@ import android.graphics.Paint;
 
 public class JointNode {
 	protected JointNode attached;
-	public float x;
-	public float y;
+	public float x, vx, y, vy, g;
+	public float fric=1.1f;
 	protected float dx;
 	protected float dy;
 	protected float d;
@@ -24,6 +24,10 @@ public class JointNode {
 	}
 	public void update(){
 		if(attached!=null){
+			x+=vx;
+			y+=vy;
+			vx=vx/fric;
+			vy=vy/fric+g;
 			dx = attached.x-x;
 			dy = attached.y-y;
 			d  = (float)Math.sqrt(dx*dx + dy*dy);

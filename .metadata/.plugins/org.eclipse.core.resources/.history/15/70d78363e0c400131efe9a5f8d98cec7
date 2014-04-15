@@ -1,0 +1,15 @@
+package gameObjects.animNodes;
+
+public class BounceFollowNode extends JointNode {
+
+	public BounceFollowNode(float x, float y) {
+		super(x, y);
+		// TODO Auto-generated constructor stub
+	}
+
+	public BounceFollowNode(JointNode attached, float x, float y) {
+		super(attached, x, y);
+		// TODO Auto-generated constructor stub
+	}
+
+}

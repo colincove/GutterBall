@@ -22,7 +22,8 @@ import Components.interfaces.IBodyCreationListener;
 import Components.interfaces.IUserInputComponent;
 
 public class Launcher extends DrawableGameComponent implements IUserInputComponent{
-
+	public static final int IDLE=0, DISABLED=1, PULLING=2;
+	private int STATE=IDLE;
 	private Paint paint;
 	private Paint pullPaint;
 	private int r=12;
@@ -34,6 +35,7 @@ public class Launcher extends DrawableGameComponent implements IUserInputCompone
 	private int lineSize=20;
 	private int lineDist=10;
 	private long delay=0;
+
 	private long lastLaunchTime=0;
 	private boolean enabled=true;
 	//list of launcher listeners
@@ -41,6 +43,11 @@ public class Launcher extends DrawableGameComponent implements IUserInputCompone
 	//finger velocity
 	private float vx=0f;
 	private float vy=0f;
+	
+	//pulling values;
+	public double a, cos, sin;
+	public int d;
+	public float  dx, dy;
 	public Launcher(Game activity, float x, float y) {
 		super(activity);
 		// TODO Auto-generated constructor stub
@@ -55,6 +62,10 @@ public class Launcher extends DrawableGameComponent implements IUserInputCompone
 		
 		launcherListeners=new ArrayList<ILauncherListener>();
 	}
+	public int getState(){
+		return STATE;
+	}
+	
 	@Override
 	public void draw(DrawInfo info){
 
@@ -66,16 +77,16 @@ public class Launcher extends DrawableGameComponent implements IUserInputCompone
 				gameView.toScreen(1), paint);
 		//Pull Line
 		if(isPulling){
-			float dx = gameView.toScreenX(getX())-fingerPt.x;
-			float dy = gameView.toScreenY(getY())-fingerPt.y;
-			int d = (int)Math.sqrt(dx*dx+dy*dy);
+			dx = gameView.toScreenX(getX())-fingerPt.x;
+			dy = gameView.toScreenY(getY())-fingerPt.y;
+			d = (int)Math.sqrt(dx*dx+dy*dy);
 			line_offset+=d/80;
 			//double a= Math.atan2(dy,  dx)/(Math.PI/180);
-			double a= Math.atan2(dy,  dx);
+			a= Math.atan2(dy,  dx);
 			
-			double cos = Math.cos(a);
-			double sin = Math.sin(a);
-			
+			cos = Math.cos(a);
+			sin = Math.sin(a);
+
 			
 			if(line_offset>lineSize+lineDist){
 				int r = (int)(line_offset%(lineSize+lineDist));
@@ -104,19 +115,24 @@ public class Launcher extends DrawableGameComponent implements IUserInputCompone
 		
 	}
 	public void disable(){
-		enabled=false;
+		setEnabled(false);
 		for(ILauncherListener listener : launcherListeners){
 			listener.disableLauncher(this);
 		}
 	}
 	public void enable(){
-		enabled=true;
+		setEnabled(true);
 		for(ILauncherListener listener : launcherListeners){
 			listener.enableLauncher(this);
 		}
 	}
 	public void setEnabled(boolean value){
 		enabled=value;
+		if(value==false){
+			STATE=DISABLED;
+		}else{
+			STATE=IDLE;
+		}
 	}
 	@Override
 	public void onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
@@ -163,6 +179,7 @@ public class Launcher extends DrawableGameComponent implements IUserInputCompone
 	}
 	private void stopPull(MotionEvent event){
 		if(!enabled){return;}
+		STATE=IDLE;
 		//Spawn Actor
 		Actor actor = new Actor(game, new Vec2(getX(), getY()));
 		//Launch Actor
@@ -199,8 +216,8 @@ public class Launcher extends DrawableGameComponent implements IUserInputCompone
 	}
 	private void doPull(MotionEvent event)
 	{
-		
 		if(!enabled){return;}
+		STATE=PULLING;
 		
 		isPulling=true;
 	

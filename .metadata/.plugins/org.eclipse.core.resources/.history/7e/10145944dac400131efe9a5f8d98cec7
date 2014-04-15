@@ -1,0 +1,62 @@
+package gameObjects.launcher;
+
+import infoHolders.DrawInfo;
+import infoHolders.UpdateInfo;
+import gameControllers.Game;
+import gameObjects.animNodes.JointNode;
+import gameObjects.animNodes.LooseFollowNode;
+import Components.DrawableGameComponent;
+
+public class LauncherAnimation extends DrawableGameComponent implements ILauncherListener {
+	private Launcher launcher;
+	private int jointNum=3;
+	private JointNode[] nodes;
+	public LauncherAnimation(Game game, Launcher launcher) {
+		super(game);
+		this.launcher=launcher;
+		launcher.addLauncherListener(this);
+		nodes= new JointNode[jointNum];
+		nodes[0]=new LooseFollowNode(launcher.getX(), launcher.getY(), 10);
+	}
+	@Override
+	public void draw(DrawInfo info){
+		super.draw(info);
+		for(int i=0;i<jointNum;i++){
+		drawInfo.getCanvas().drawCircle(
+		gameView.toScreenX(nodes[i].x), 
+		gameView.toScreenY(nodes[i].y), 
+		gameView.toScreen(0.1f), 
+		paint);
+}
+	}
+	@Override
+	public void update(UpdateInfo updateInfo){
+		super.update(updateInfo);
+	}
+	@Override
+	public void enableLauncher(Launcher launcher) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void disableLauncher(Launcher launcher) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void launch(Launcher launcher, float x, float y) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void touchLauncher(Launcher launcher, float x, float y) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void pullingLauncher(Launcher launcher, float x, float y) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}

@@ -1,0 +1,19 @@
+package gameObjects.launcher;
+
+import gameControllers.Game;
+import Components.DrawableGameComponent;
+
+public class LauncherAnimation extends DrawableGameComponent {
+	private Launcher launcher;
+	public LauncherAnimation(Game game, Launcher launcher) {
+		super(game);
+		this.launcher=launcher;
+	}
+
+	public LauncherAnimation(Game game, int drawOrder) {
+		super(game, drawOrder);
+		// TODO Auto-generated constructor stub
+		this.launcher=launcher;
+	}
+
+}

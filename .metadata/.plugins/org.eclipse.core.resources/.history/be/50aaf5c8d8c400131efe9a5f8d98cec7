@@ -1,0 +1,40 @@
+package gameObjects.launcher;
+
+import gameControllers.Game;
+import Components.DrawableGameComponent;
+
+public class LauncherAnimation extends DrawableGameComponent implements ILauncherListener {
+	private Launcher launcher;
+	private int STATE;
+	public LauncherAnimation(Game game, Launcher launcher) {
+		super(game);
+		this.launcher=launcher;
+		launcher.addLauncherListener(this);
+	}
+	@Override
+	public void enableLauncher(Launcher launcher) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void disableLauncher(Launcher launcher) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void launch(Launcher launcher, float x, float y) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void touchLauncher(Launcher launcher, float x, float y) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void pullingLauncher(Launcher launcher, float x, float y) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}

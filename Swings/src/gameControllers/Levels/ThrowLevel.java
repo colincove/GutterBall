@@ -13,11 +13,13 @@ import gameObjects.HitSparks;
 import gameObjects.Portal;
 import gameObjects.Portal.IObtainedCallback;
 import gameObjects.launcher.Launcher;
+import gameObjects.launcher.LauncherAnimation;
 import gameObjects.launcher.LauncherTouchCircle;
 
 public abstract class ThrowLevel extends Level implements IObtainedCallback {
 	private LauncherTouchCircle launcherCircle;
 private Launcher launcher;
+private LauncherAnimation launcherAnim;
 private List<Portal> portalList;
 private HitSparks sparks;
 private GutterBallApp app;
@@ -25,20 +27,22 @@ private GutterBallApp app;
 		super(game, geometry);
 		// TODO Auto-generated constructor stub
 		launcher = new Launcher(game, 15, 46);
-		launcher.setDelay(1000);
+		launcher.setDelay(4000);
 		portalList =new ArrayList<Portal>();
 		app =(GutterBallApp) game.getApplicationContext();
 		launcherCircle = new LauncherTouchCircle(game, launcher);
+		launcherAnim = new LauncherAnimation(game, launcher);
 	}
 	public ThrowLevel(Game game, BodyComponent geometry, BitmapDrawable bgBitmap) {
 		super(game, geometry, bgBitmap);
 		// TODO Auto-generated constructor stub
 		launcher = new Launcher(game, 15, 46);
-		launcher.setDelay(1000);
+		launcher.setDelay(4000);
 		portalList =new ArrayList<Portal>();
 		sparks = new HitSparks(game);
 		app =(GutterBallApp) game.getApplicationContext();
 		launcherCircle = new LauncherTouchCircle(game, launcher);
+		launcherAnim = new LauncherAnimation(game, launcher);
 	
 	}
 	@Override

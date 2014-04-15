@@ -1,0 +1,99 @@
+package gameObjects.launcher;
+
+import com.example.swings.R;
+
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
+import infoHolders.DrawInfo;
+import infoHolders.UpdateInfo;
+import gameControllers.Game;
+import gameObjects.animNodes.JointNode;
+import gameObjects.animNodes.LooseFollowNode;
+import gameObjects.animNodes.StiffAngleNode;
+import Components.DrawableGameComponent;
+
+public class LauncherAnimation extends DrawableGameComponent implements ILauncherListener {
+	private Launcher launcher;
+	private int jointNum=3;
+	private JointNode[] nodes;
+	private Paint paint;
+	private Rect des;
+	private BitmapDrawable launcher_tree, basket;
+	public LauncherAnimation(Game game, Launcher launcher) {
+		super(game);
+		
+		paint = new Paint();
+		paint.setARGB(255, 255, 0, 0);
+		
+		launcher_tree=(BitmapDrawable) game.getResources().getDrawable(R.drawable.tree_launcher);
+		basket=(BitmapDrawable) game.getResources().getDrawable(R.drawable.leaf_bag);
+		
+		this.launcher=launcher;
+		launcher.addLauncherListener(this);
+		nodes= new JointNode[jointNum];
+		nodes[0]=new LooseFollowNode(launcher.getX(), launcher.getY(), 10);
+		nodes[1]=new StiffAngleNode(nodes[0],nodes[0],launcher.getX(), launcher.getY(),2f, 90f);
+		nodes[2]=new StiffAngleNode(nodes[0],nodes[0],launcher.getX(), launcher.getY(),2f, -90f);
+		
+		des = new Rect();
+		
+		des.set(
+				(int)gameView.toScreenX(launcher.getX()-0.5),
+				(int)gameView.toScreenY(launcher.getY()-0.5),
+				(int)gameView.toScreenX(launcher.getX()+0.5),
+				(int)gameView.toScreenY(launcher.getY()+1.5)
+				);
+		drawInfo.getCanvas().save();
+		drawInfo.getCanvas().rotate(
+				(float)Math.toDegrees(nodes[1].a)+90, 
+				gameView.toScreenX(comp.getX()), 
+						gameView.toScreenY(comp.getY()));
+		tail_start.setBounds(des);
+		tail_start.draw(drawInfo.getCanvas());
+		drawInfo.getCanvas().restore();
+	}
+	@Override
+	public void draw(DrawInfo info){
+		super.draw(info);
+		for(int i=0;i<jointNum;i++){
+		info.getCanvas().drawCircle(
+		gameView.toScreenX(nodes[i].x), 
+		gameView.toScreenY(nodes[i].y), 
+		gameView.toScreen(0.1f), 
+		paint);
+		
+		
+}
+	}
+	@Override
+	public void update(UpdateInfo updateInfo){
+		super.update(updateInfo);
+	}
+	@Override
+	public void enableLauncher(Launcher launcher) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void disableLauncher(Launcher launcher) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void launch(Launcher launcher, float x, float y) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void touchLauncher(Launcher launcher, float x, float y) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void pullingLauncher(Launcher launcher, float x, float y) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}
