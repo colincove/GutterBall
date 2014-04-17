@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="gameObjects.Portal.IObtainedCallback"/>
-<fullyQualifiedTypeName name="droidControllers.GutterBallApp"/>
-<fullyQualifiedTypeName name="android.content.DialogInterface.OnClickListener"/>
-<fullyQualifiedTypeName name="android.widget.Button"/>
-<fullyQualifiedTypeName name="com.example.swings.R.id"/>
-<fullyQualifiedTypeName name="gameControllers.LazyLevelManager"/>
-<fullyQualifiedTypeName name="java.lang.Math"/>
 <fullyQualifiedTypeName name="gameObjects.AppleExplosion"/>
 <fullyQualifiedTypeName name="gameObjects.animNodes.RadialNode"/>
 <fullyQualifiedTypeName name="android.graphics.Canvas"/>
@@ -45,9 +38,7 @@
 <fullyQualifiedTypeName name="android.animation.Animator"/>
 <fullyQualifiedTypeName name="gameObjects.launcher.LauncherTouchCircle"/>
 <fullyQualifiedTypeName name="android.animation.AnimatorListenerAdapter"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="gameObjects.launcher.RepeatingList"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="gameObjects.launcher.AnimationMaster.LoopListener"/>
 <fullyQualifiedTypeName name="gameObjects.launcher.VirtualList"/>
 <fullyQualifiedTypeName name="gameObjects.launcher.ILauncherListener"/>
@@ -58,6 +49,15 @@
 <fullyQualifiedTypeName name="gameObjects.animNodes.StiffAngleNode"/>
 <fullyQualifiedTypeName name="gameObjects.animNodes.BounceFollowNode"/>
 <fullyQualifiedTypeName name="gameObjects.animNodes.DoubleJointNode"/>
-<fullyQualifiedTypeName name="gameObjects.launcher.LauncherAnimation"/>
 <fullyQualifiedTypeName name="gameObjects.launcher.Launcher"/>
+<fullyQualifiedTypeName name="toxi.physics.VerletPhysics"/>
+<fullyQualifiedTypeName name="toxi.physics.VerletParticle"/>
+<fullyQualifiedTypeName name="toxi.physics2d.VerletParticle2D"/>
+<fullyQualifiedTypeName name="gameObjects.launcher.LauncherAnimation"/>
+<fullyQualifiedTypeName name="toxi.physics2d.VerletSpring2D"/>
+<fullyQualifiedTypeName name="toxi.physics2d.VerletPhysics2D"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.util.Arrays"/>
+<fullyQualifiedTypeName name="toxi.physics2d.ParticleString2D"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
 </qualifiedTypeNameHistroy>

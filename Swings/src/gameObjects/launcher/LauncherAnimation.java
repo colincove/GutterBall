@@ -1,5 +1,16 @@
 package gameObjects.launcher;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import toxi.physics.VerletParticle;
+import toxi.physics.VerletPhysics;
+import toxi.physics2d.ParticleString2D;
+import toxi.physics2d.VerletParticle2D;
+import toxi.physics2d.VerletPhysics2D;
+import toxi.physics2d.VerletSpring2D;
+
 import com.example.swings.R;
 
 import android.graphics.Paint;
@@ -21,9 +32,64 @@ public class LauncherAnimation extends DrawableGameComponent implements ILaunche
 	private JointNode[] nodes;
 	private Paint paint;
 	private Rect des;
+	private VerletPhysics2D physics;
 	private BitmapDrawable launcher_tree, basket, basket_full;
 	public LauncherAnimation(Game game, Launcher launcher) {
 		super(game);
+		
+		physics= new VerletPhysics2D();
+		//physics.setDrag(0.005f);
+		physics.setTimeStep(0.2f);
+	
+		
+		VerletParticle2D p1 = new VerletParticle2D(launcher.getX()-2, launcher.getY()-3);//where the rope is tied
+		VerletParticle2D p2 = new VerletParticle2D(launcher.getX()+2, launcher.getY()-3);//where the rope id tied
+		
+		//p1.lock();//lock the ends of the ropes
+		//p2.lock();//lock the ends of the ropes
+		
+		List<VerletParticle2D> st1List = new ArrayList<VerletParticle2D>();
+		List<VerletParticle2D> st2List = new ArrayList<VerletParticle2D>();
+		st1List.add(p1);
+		st2List.add(p2);
+		int i=0;
+		int stringDensity=5;
+		VerletParticle2D p;
+		//first string
+		for(i=0;i<stringDensity;i++){
+			p=new VerletParticle2D(launcher.getX()-2, launcher.getY()-3+i*0.6f);
+			st1List.add(p);
+		}
+		//second string
+		for(i=0;i<stringDensity;i++){
+			p=new VerletParticle2D(launcher.getX()+2, launcher.getY()-3+i*0.6f);
+			st1List.add(p);
+		}
+		
+		ParticleString2D str1 = new ParticleString2D(physics, st1List, 0.0005f);
+		ParticleString2D str2 = new ParticleString2D(physics, st2List, 0.0005f);
+		
+		VerletSpring2D s1 = new VerletSpring2D(str1.getTail(), str2.getTail(), 1, 1f);
+		physics.addSpring(s1);
+		
+		/*VerletParticle2D p3 = new VerletParticle2D(launcher.getX()-2, launcher.getY()+.5f);//end of rope attached to basket
+		VerletParticle2D p4 = new VerletParticle2D(launcher.getX()+2, launcher.getY()+.5f);//end of rope attached to basket
+		
+		VerletSpring2D s1 = new VerletSpring2D(p1, p3, 1f, 0.005f);//constraint between the two ends of the rope
+		VerletSpring2D s2 = new VerletSpring2D(p2, p4, 1f, 0.005f);//constraint between the two ends of the rope
+		
+		
+		VerletSpring2D s3 = new VerletSpring2D(p3, p4, 2, 0.3f);//connect ends of rope to create stiff basket 
+		
+		physics.addParticle(p1);
+		physics.addParticle(p2);
+		physics.addParticle(p3);
+		physics.addParticle(p4);
+		
+		physics.addSpring(s1);
+		physics.addSpring(s2);
+		physics.addSpring(s3);*/
+		
 		
 		paint = new Paint();
 		paint.setARGB(255, 199, 221, 71);
@@ -56,7 +122,9 @@ public class LauncherAnimation extends DrawableGameComponent implements ILaunche
 	@Override
 	public void draw(DrawInfo info){
 		super.draw(info);
-		des.set(
+		
+	
+		/*des.set(
 				(int)gameView.toScreenX(launcher.getX()-7),
 				(int)gameView.toScreenY(launcher.getY()-7),
 				(int)gameView.toScreenX(launcher.getX()+7),
@@ -106,12 +174,22 @@ public class LauncherAnimation extends DrawableGameComponent implements ILaunche
 		}
 		
 		info.getCanvas().restore();
+		*/
+		for(VerletParticle2D p  : physics.particles ){
+			info.getCanvas().drawCircle(
+					gameView.toScreenX(p.getPreviousPosition().x), 
+					gameView.toScreenY(p.getPreviousPosition().y), 
+					gameView.toScreen(0.1f), 
+					paint);
+		}
 		
-}
+		
+
 	}
 	@Override
 	public void update(UpdateInfo updateInfo){
 		super.update(updateInfo);
+		physics.update();
 		if(launcher.getState()==Launcher.PULLING){
 			nodes[4].g=0;
 			nodes[0].g=0f;
