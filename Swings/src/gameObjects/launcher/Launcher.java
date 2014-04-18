@@ -65,6 +65,12 @@ public class Launcher extends DrawableGameComponent implements IUserInputCompone
 	public int getState(){
 		return STATE;
 	}
+	public float getFingX(){
+		return fingX;
+	}
+	public float getFingY(){
+		return fingY;
+	}
 	
 	@Override
 	public void draw(DrawInfo info){
