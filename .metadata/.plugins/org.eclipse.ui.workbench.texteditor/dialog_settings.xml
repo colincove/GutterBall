@@ -13,18 +13,19 @@
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="255" key="selection"/>
+		<item value="Pool" key="selection"/>
 		<list key="findhistory">
-			<item value="255"/>
-			<item value="idle.st"/>
-			<item value="onPause"/>
-			<item value="savedInstanceState"/>
-			<item value="update"/>
-			<item value="levelIndex"/>
-			<item value="activity"/>
-			<item value="run"/>
+			<item value="pool"/>
+			<item value="levelLayoutController"/>
+			<item value="custom:disabledIcon=&quot;@drawable/lock&quot;"/>
+			<item value="e"/>
+			<item value="text"/>
+			<item value="app"/>
+			<item value="statusListeners"/>
+			<item value="levelPreferences"/>
 		</list>
 		<list key="replacehistory">
+			<item value="custom:disabledIcon=&quot;@drawable/green_sphere&quot;"/>
 			<item value="Drawing.PhotoButton"/>
 		</list>
 	</section>

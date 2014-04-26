@@ -1,0 +1,12 @@
+package gameControllers;
+
+import android.content.Context;
+
+public class AppleLevelManager extends LevelManager {
+
+	public AppleLevelManager(Context context, int numLevels) {
+		super(context, numLevels);
+		// TODO Auto-generated constructor stub
+	}
+
+}

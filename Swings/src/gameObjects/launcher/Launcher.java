@@ -156,6 +156,8 @@ public class Launcher extends DrawableGameComponent implements IUserInputCompone
 				
 				break;
 				case MotionEvent.ACTION_DOWN:
+					game.getSoundPool().playRandom(game.getSoundPool().getPool().rope1,
+							game.getSoundPool().getPool().rope1);
 					if(getCircleHit(gameView.toWorldX(event.getRawX()),gameView.toWorldY(event.getRawY()), 3, getX(), getY(), r)){
 						for(ILauncherListener listener : launcherListeners){
 							listener.touchLauncher(this, event.getRawX(), event.getRawY());
@@ -219,6 +221,8 @@ public class Launcher extends DrawableGameComponent implements IUserInputCompone
 			lastLaunchTime=System.currentTimeMillis();
 			disable();
 		}
+		game.getSoundPool().playRandom(game.getSoundPool().getPool().swing1,
+				game.getSoundPool().getPool().swing2);
 	}
 	private void doPull(MotionEvent event)
 	{

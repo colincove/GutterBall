@@ -1,0 +1,12 @@
+package gameControllers;
+
+import android.media.SoundPool;
+
+public class SwingsSoundPool extends SoundPool {
+
+	public SwingsSoundPool(int maxStreams, int streamType, int srcQuality) {
+		super(maxStreams, streamType, srcQuality);
+		// TODO Auto-generated constructor stub
+	}
+
+}

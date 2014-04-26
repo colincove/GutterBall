@@ -1,0 +1,14 @@
+package gameControllers;
+
+import android.media.SoundPool;
+
+public class GameSoundPool extends SoundPool {
+	public int launch;
+	public GameSoundPool(int maxStreams, int streamType, int srcQuality) {
+		super(maxStreams, streamType, srcQuality);
+		// TODO Auto-generated constructor stub
+	}
+	private void loadSounds(){
+		
+	}
+}

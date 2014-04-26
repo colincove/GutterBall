@@ -1,0 +1,35 @@
+package gameObjects.launcher;
+
+import com.example.swings.R;
+
+import android.graphics.drawable.BitmapDrawable;
+import gameControllers.Game;
+import Components.DrawableGameComponent;
+
+public class FingerAnimation extends DrawableGameComponent {
+	private Launcher launcher;
+	private BitmapDrawable hand;
+	private int alpha;
+	private int hand_y;
+	public FingerAnimation(Game game, Launcher launcher) {
+		super(game);
+		initialize(launcher);
+	}
+
+	public FingerAnimation(Game game, int drawOrder, Launcher launcher) {
+		super(game, drawOrder);
+		initialize(launcher);
+		
+	}
+	private void initialize(Launcher launcher){
+		this.launcher=launcher;
+		this.setPos(launcher.getX(), launcher.getY());
+		hand  = (BitmapDrawable) game.getResources().getDrawable(R.drawable.icon_hand);
+	}
+	public void update(UpdateInfo updateInfo){
+		
+	}
+	public void draw(DrawInfo info){
+		
+	}
+}

@@ -1,0 +1,18 @@
+package gameObjects.launcher;
+
+import gameControllers.Game;
+import Components.DrawableGameComponent;
+
+public class FingerAnimation extends DrawableGameComponent {
+	private Launcher launcher;
+	public FingerAnimation(Game game, Launcher launcher) {
+		super(game);
+		this.launcher=launcher;
+	}
+
+	public FingerAnimation(Game game, int drawOrder, Launcher launcher) {
+		super(game, drawOrder);
+		// TODO Auto-generated constructor stub
+	}
+
+}

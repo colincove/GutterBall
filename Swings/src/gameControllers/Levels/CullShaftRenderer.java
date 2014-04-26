@@ -39,6 +39,7 @@ public class CullShaftRenderer extends DrawableGameComponent implements IBottomC
 				iter.remove();
 			}else{
 				culling.alpha=culling.alpha*(0.95f-0.3f*culling.alpha);
+				//culling.y+=0.3;
 			}
 		}
 	}
@@ -50,14 +51,14 @@ public class CullShaftRenderer extends DrawableGameComponent implements IBottomC
 		culling.x=actor.getX();
 		cullList.add(culling);
 		culling.main=true;
-		/*for(int i =0;i<4; i++){
+		for(int i =0;i<4; i++){
 			culling  = new Culling();
 			float ran=(float)(Math.random()-Math.random())*jitterFactor;
 			culling.x=actor.getX()+(ran)*jitterFactor;
 			culling.scale=(jitterFactor-Math.abs(ran))/jitterFactor/2+0.5f;
 			culling.alpha=culling.scale;
 			cullList.add(culling);
-		}*/
+		}
 	}
 	@Override
 	public void draw(DrawInfo drawInfo){
@@ -66,9 +67,9 @@ public class CullShaftRenderer extends DrawableGameComponent implements IBottomC
 			float ratio = 60f/425f;
 			Rect des = new Rect();
 			des.set((int)gameView.toScreenX(culling.x-1*culling.scale), 
-					(int)gameView.toScreenY(game.getSimulation().getWorldSize().y-2/ratio*culling.scale),
+					(int)gameView.toScreenY(game.getSimulation().getWorldSize().y-2/ratio*culling.scale+culling.y),
 					(int)gameView.toScreenX(culling.x+1*culling.scale),
-					(int)gameView.toScreenY(game.getSimulation().getWorldSize().y));
+					(int)gameView.toScreenY(game.getSimulation().getWorldSize().y+culling.y));
 			lightShaft.setBounds(des);
 			lightShaft.setAlpha((int)(255*culling.alpha));
 			lightShaft.draw(drawInfo.getCanvas());
@@ -84,6 +85,7 @@ public class CullShaftRenderer extends DrawableGameComponent implements IBottomC
 		public float scale=1.0f;
 		public float alpha=1.0f;
 		public float x=0.0f;
+		public float y=0.0f;
 	}
 
 }

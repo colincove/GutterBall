@@ -1,0 +1,20 @@
+package gameControllers.levelManagment;
+
+import android.content.Context;
+
+public class AppleLevelManager extends LevelManager {
+
+	public AppleLevelManager(Context context, int numLevels) {
+		super(context, numLevels);
+		// TODO Auto-generated constructor stub
+	}
+	public void completeLevel(int levelIndex){
+		super.completeLevel(levelIndex);
+		for(int i=0;i<getNumLevels();i++){
+			if(getStatus(i)==STATUS_LOCKED){
+				
+			}
+		}
+	}
+
+}

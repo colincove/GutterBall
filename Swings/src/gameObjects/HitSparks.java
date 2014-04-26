@@ -133,6 +133,10 @@ public class HitSparks extends DrawableGameComponent implements IContactCallback
 			manifold=c.getManifold();
 			c.getWorldManifold(worldManifold);
 				int count=0;
+				game.getSoundPool().playRandom(game.getSoundPool().getPool().hit1,
+						game.getSoundPool().getPool().hit2,
+						game.getSoundPool().getPool().hit3,
+						game.getSoundPool().getPool().hit4);
 				//pt.localPoint.
 				for(Spark spark : sparks){
 					if(!spark.active){
@@ -152,6 +156,9 @@ public class HitSparks extends DrawableGameComponent implements IContactCallback
 						spark.dir=(int)(1-(Math.random()*2)*2);
 						spark.vx=vel2.x/(5+(float)Math.random()*20);
 						spark.vy=vel2.y/(5+(float)Math.random()*20);
+						
+						
+						
 						if(++count>5){
 						break;
 						}

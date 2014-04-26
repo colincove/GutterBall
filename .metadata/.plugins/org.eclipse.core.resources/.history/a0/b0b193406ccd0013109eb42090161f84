@@ -1,0 +1,25 @@
+package gameControllers;
+
+import android.media.SoundPool;
+
+public class GameSoundPool extends SoundPool {
+	private Pool pool;
+	public GameSoundPool(int maxStreams, int streamType, int srcQuality) {
+		super(maxStreams, streamType, srcQuality);
+		pool= new Pool();
+	}
+	public Pool getPool(){
+		return pool;
+	}
+	private void loadSounds(){
+		
+	}
+	public class Pool{
+		public int launch;
+		public int squish;
+		
+		public Pool(){
+			
+		}
+	}
+}

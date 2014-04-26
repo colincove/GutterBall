@@ -1,9 +1,10 @@
 package droidControllers;
 
 import gameControllers.Game;
-import gameControllers.LazyLevelManager;
 import gameControllers.LevelLayoutController;
-import gameControllers.LevelManager;
+import gameControllers.levelManagment.AppleLevelManager;
+import gameControllers.levelManagment.LazyLevelManager;
+import gameControllers.levelManagment.LevelManager;
 
 import com.example.swings.R;
 
@@ -16,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class LevelSelectActivity extends SwingActivity implements android.view.View.OnClickListener {
@@ -24,6 +26,7 @@ private int selectedLevel=0;
 private LevelManager levelManager;
 private Button resetLevelsButton;
 private Button unlockLevelsButton;
+private TextView appleCount;
 private LevelLayoutController levelLayoutController;
 public static int savedUnlockCount;
 	public LevelSelectActivity() {
@@ -38,9 +41,7 @@ public static int savedUnlockCount;
 		if(levelLayoutController==null){
 			levelLayoutController = new LevelLayoutController(this, levelManager);
 		}
-		
-		
-			if(levelManager.getLevelsUnlocked()!=savedUnlockCount && savedUnlockCount!=0){
+		if(levelManager.getLevelsUnlocked()!=savedUnlockCount && savedUnlockCount!=0){
 				//means that new levels have been unlocked by the level manager
 				LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -49,15 +50,20 @@ public static int savedUnlockCount;
 				toast.setGravity(Gravity.BOTTOM, 0, 0);
 				toast.setView(layout);
 				toast.show();
-			
 		}
 		resetLevelsButton = (Button)findViewById(R.id.appOptions);
 		resetLevelsButton.setOnClickListener(this);
 		unlockLevelsButton = (Button)findViewById(R.id.unlockAllLevels);
 		unlockLevelsButton.setOnClickListener(this);
+		appleCount = (TextView)findViewById(R.id.appleCount);
 	}
 	protected void onStart(){
 		super.onStart();
+		GutterBallApp app = super.app;
+		AppleLevelManager manager =(AppleLevelManager)(app.getLevelManager()); 
+		int count=(manager).getAppleCount();
+		appleCount.setText(Integer.toString(count));
+		//appleCount.setText((manager).getAppleCount());
 	}
 	protected void onResume(){
 		super.onResume();
@@ -114,11 +120,11 @@ public static int savedUnlockCount;
 	@Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
      super.onActivityResult(requestCode, resultCode, data);
-     if(resultCode==RESULT_OK){
-        Intent refresh = new Intent(this, LevelSelectActivity.class);
-        startActivity(refresh);
-        this.finish();
-     }
+	     if(resultCode==RESULT_OK){
+	        Intent refresh = new Intent(this, LevelSelectActivity.class);
+	        startActivity(refresh);
+	        this.finish();
+	     }
     }
 	@Override
 	public void onClick(View view) {
@@ -126,6 +132,8 @@ public static int savedUnlockCount;
 		if(resetLevelsButton==view){
 			levelManager.reset();
 			levelLayoutController.initialize();
+			((AppleLevelManager)levelManager).setAppleCount(0);
+			appleCount.setText(Integer.toString(0));
 		}else if(unlockLevelsButton==view){
 			levelManager.unlockAll();
 			levelLayoutController.initialize();

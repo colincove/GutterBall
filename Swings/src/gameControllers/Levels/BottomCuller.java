@@ -51,6 +51,10 @@ public void createBody(){
 			if(((BodyComponent)contact.other.getUserData()).containsCollisionGroup(CollisionGroups.ACTOR)){
 				destroyActor((Actor)contact.other.getUserData());
 				((BodyComponent)contact.other.getUserData()).markDestroy();
+				game.getSoundPool().playRandom(game.getSoundPool().getPool().die1,
+						game.getSoundPool().getPool().die2,
+						game.getSoundPool().getPool().die3,
+						game.getSoundPool().getPool().die4);
 				break;
 			}
 		contact=contact.next;

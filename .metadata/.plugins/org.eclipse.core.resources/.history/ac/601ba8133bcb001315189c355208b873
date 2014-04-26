@@ -1,0 +1,34 @@
+package gameControllers.levelManagment;
+
+import gameControllers.levelManagment.LevelManager.IStatusListener;
+import android.content.Context;
+import android.content.SharedPreferences;
+
+public class AppleLevelManager extends LevelManager {
+	private int[] costs;
+	public AppleLevelManager(Context context, int numLevels, int[] costs) {
+		super(context, numLevels);
+		this.costs=costs;
+	}
+	public void completeLevel(int levelIndex){
+		super.completeLevel(levelIndex);
+		for(int i=0;i<getNumLevels();i++){
+			if(getStatus(i)==STATUS_LOCKED){
+				if(getAppleCount()>=costs[i]){
+					unlockLevel(i);
+				}
+			}
+		}
+	}
+	public int getAppleCount(){
+		return getLevelPreferences().getInt("apples", 0);
+	}
+	public void addApple(){
+		setAppleCount(getAppleCount()+1);
+	}
+	public void setAppleCount(int count) {
+		SharedPreferences.Editor editor = getLevelPreferences().edit();
+		editor.putInt("apples", count);
+		editor.commit();
+	}
+}

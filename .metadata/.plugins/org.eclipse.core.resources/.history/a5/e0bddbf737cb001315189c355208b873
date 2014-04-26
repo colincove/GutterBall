@@ -1,0 +1,25 @@
+package droidControllers;
+
+import gameControllers.levelManagment.LazyLevelManager;
+import gameControllers.levelManagment.LevelManager;
+import android.app.Application;
+
+public class GutterBallApp extends Application {
+	private LevelManager levelManager;
+	private ApplePreferences applePreferences;
+	public GutterBallApp() {
+		
+	}
+	public void onCreate(){
+		super.onCreate();
+		if(levelManager==null)
+		{
+			//levelManager = new LazyLevelManager(this,17);
+			levelManager = new AppleLevelManager(this,17);
+		}
+		
+	}
+	public LevelManager getLevelManager(){
+		return levelManager;
+	}
+}

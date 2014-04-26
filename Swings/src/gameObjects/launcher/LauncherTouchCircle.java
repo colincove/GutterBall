@@ -35,13 +35,13 @@ public class LauncherTouchCircle extends DrawableGameComponent implements ILaunc
 	private float radiusVel=0f;
 	private float radiusStaticOffset=0.2f;
 	private float radiusOffset=radiusStaticOffset;
+	
 	public LauncherTouchCircle(Game game, Launcher launcher) {
 		super(game);
 		this.launcher=launcher;
 		launcher.addLauncherListener(this);
 		paint=new Paint();
 		paint.setARGB(100, 255, 248, 206);
-		
 	}
 	@Override
 	public int drawOrder(){

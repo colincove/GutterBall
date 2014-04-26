@@ -42,6 +42,7 @@ public class SwingActivity extends Activity implements SurfaceHolder.Callback,
 		OnAttachStateChangeListener, OnClickListener, OnLongClickListener,
 		OnKeyListener, OnTouchListener, OnCreateContextMenuListener {
 	private DrawThread drawThread;
+	protected GutterBallApp app;
 	protected SurfaceView view;
 	protected BufferedList<IDrawableComponent> drawList;
 	protected BufferedList<IUserInputComponent> inputList;
@@ -56,7 +57,9 @@ public class SwingActivity extends Activity implements SurfaceHolder.Callback,
 	public SwingActivity() {
 
 	}
-
+	public GutterBallApp getGutterApp(){
+		return app;
+	}
 	public Point getScreenSize() {
 		return screenDim;
 	}
@@ -115,6 +118,7 @@ public class SwingActivity extends Activity implements SurfaceHolder.Callback,
 
 	protected void onStart() {
 		super.onStart();
+		app = (GutterBallApp)getApplication();
 		display = getWindowManager().getDefaultDisplay();
 		screenDim = new Point();
 		display.getSize(screenDim);
@@ -132,7 +136,7 @@ public class SwingActivity extends Activity implements SurfaceHolder.Callback,
 		// view.addOnAttachStateChangeListener(this);
 		SurfaceHolder holder = view.getHolder();
 		holder.addCallback(this);
-
+		
 	}
 
 	protected void onStop() {
@@ -156,6 +160,7 @@ public class SwingActivity extends Activity implements SurfaceHolder.Callback,
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
 		// TODO Auto-generated method stub
+		
 		for (IUserInputComponent comp : inputList) {
 			comp.onTouch(v, event);
 		}

@@ -18,6 +18,8 @@ import java.util.Vector;
 
 import org.jbox2d.dynamics.Body;
 
+import com.example.swings.R;
+
 import droidControllers.SwingActivity;
 
 import threads.BufferedList;
@@ -31,6 +33,9 @@ import Components.interfaces.IDrawableComponent;
 import Drawing.DebugDraw;
 import android.app.Activity;
 import android.graphics.Point;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.SurfaceHolder;
@@ -41,17 +46,22 @@ public class Game extends SwingActivity {
 	private GameThread gameThread;
 	private BufferedList<AbstractGameComponent> gameComponentList;
 	private BufferedList<BodyComponent> bodyList;
-	
+	private MediaPlayer mp;
 	private RadialCollisionController radialCollision;
 	private int levelIndex;
 	
+	private GameSoundPool sp;
+	
 	private DebugDraw debugDraw;
 
+	
 	public Game() {
 		super();
 		
 	}
-
+	public GameSoundPool getSoundPool(){
+		return sp;
+	}
 	public Level getLevel() {
 		return level;
 	}
@@ -88,15 +98,19 @@ public class Game extends SwingActivity {
 	protected void onStart() {
 		super.onStart();
 		
+		//rest of sounds goes here
 	}
 	protected void onResume(){
 		super.onRestart();
 		gameThread = new GameThread(drawList, gameComponentList, this);
 		gameThread.setRunning(true);
 		gameThread.start();
+		
+		mp.start();
 	}
 	protected void onPause(){
 		super.onPause();
+		mp.pause();
 		gameThread.setRunning(false);
 	}
 protected void onRestart(){
@@ -149,7 +163,11 @@ protected void onRestart(){
 				simulation.getWorldSize().y);
 		}
 		
+		inputList.clearBuffer();
 		
+		//start sound systems;
+		sp = new GameSoundPool(this, AudioManager.STREAM_MUSIC, 0);
+		mp = MediaPlayer.create(this, R.raw.forest);
 	}
 
 	@Override
@@ -160,6 +178,7 @@ protected void onRestart(){
 
 	protected void onStop() {
 		super.onStop();
+		mp.stop();
 	}
 
 	protected void onDestroy() {
@@ -167,11 +186,13 @@ protected void onRestart(){
 		level.destroy();
 		simulation.destroy();
 		radialCollision.destroy();
+		mp.release();
 		
 		radialCollision=null;
 		gameThread = null;
 		level = null;
 		simulation = null;
+		mp=null;
 	}
 
 }

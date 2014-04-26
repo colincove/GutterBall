@@ -1,20 +1,31 @@
 package gameControllers;
 
+import android.content.SharedPreferences;
+
 import com.example.swings.R;
 
-import gameControllers.LevelManager.IStatusListener;
+import gameControllers.levelManagment.AppleLevelManager;
+import gameControllers.levelManagment.LevelManager;
+import gameControllers.levelManagment.LevelManager.IStatusListener;
 import droidControllers.SwingActivity;
 import Components.AbstractComponent;
 import Drawing.PhotoButton;
 
 public class LevelLayoutController extends AbstractComponent implements IStatusListener {
+	
 	private LevelManager levelManager;
 	private PhotoButton[] levelBtns;
+	
 	public LevelLayoutController(SwingActivity activity, LevelManager levelManager) {
 		super(activity);
 		this.levelManager=levelManager;
 		levelBtns=new PhotoButton[levelManager.getNumLevels()];
+		
 	}
+	public PhotoButton[] getLevelButtons(){
+		return levelBtns;
+	}
+
 	@Override
 	public void levelStatusUpdate(int levelIndex, int status) {
 		// TODO Auto-generated method stub
@@ -28,6 +39,7 @@ public class LevelLayoutController extends AbstractComponent implements IStatusL
 	}
 	private void updateBtn(int index){
 		int status = levelManager.getStatus(index);
+		levelBtns[index].setMarkForUnlock(((AppleLevelManager)levelManager).getLevelUiStates().getBoolean(Integer.toString(index),false));
 		if(levelManager.getStatus(index)==LevelManager.STATUS_LOCKED){
 			levelBtns[index].setEnabled(false);
 		}else if(levelManager.getStatus(index)==LevelManager.STATUS_UNLOCKED){
