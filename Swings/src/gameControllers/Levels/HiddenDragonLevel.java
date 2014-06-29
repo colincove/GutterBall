@@ -11,8 +11,9 @@ import Components.BodyComponent;
 
 public class HiddenDragonLevel extends ThrowLevel {
 	private Background forground;
-	public HiddenDragonLevel(Game game, BodyComponent geometry) {
-		super(game, geometry,(BitmapDrawable) game.getResources().getDrawable(R.drawable.hiddendragon));
+	public HiddenDragonLevel(Game game, BodyComponent geometry) 
+	{
+		super(game, geometry,R.drawable.hiddendragon);
 		// TODO Auto-generated constructor stub
 		createPortal(8, 3);
 		createPortal(16, 3);

@@ -30,8 +30,8 @@ private int appleCount=0;
 		super(game, geometry);
 		initialize();
 	}
-	public ThrowLevel(Game game, BodyComponent geometry, BitmapDrawable bgBitmap) {
-		super(game, geometry, bgBitmap);
+	public ThrowLevel(Game game, BodyComponent geometry, int bgId) {
+		super(game, geometry, bgId);
 		initialize();
 	}
 	private void initialize(){

@@ -17,7 +17,7 @@ public void start(){
 		if(diff>fps){
 			System.out.println(time+" : "+lastUpdate+" : "+diff);
 			lastUpdate=getTime();
-			thread.tick(new TickInfo(diff));
+			thread.tick(new TickInfo(diff, (int)fps));
 		}
 	}
 }

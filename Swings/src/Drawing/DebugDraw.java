@@ -16,6 +16,7 @@ import android.graphics.Paint;
 
 import gameControllers.Game;
 import infoHolders.DrawInfo;
+import infoHolders.UpdateInfo;
 import droidControllers.SwingActivity;
 import Components.BodyComponent;
 import Components.DrawableComponent;
@@ -24,8 +25,14 @@ import Components.DrawableGameComponent;
 public class DebugDraw extends DrawableGameComponent {
 	private BufferedList<BodyComponent> list;
 	private Paint paint;
-private boolean overrideDrawBody;
-	public DebugDraw(Game activity, BufferedList<BodyComponent> list) {
+	private Paint textPaint;
+	private boolean overrideDrawBody;
+	private float fps;
+	private float[] fpsList;
+	private int fpsListSize;
+	private long lastUpdate;
+	public DebugDraw(Game activity, BufferedList<BodyComponent> list) 
+	{
 		super(activity);
 		// TODO Auto-generated constructor stub
 		this.list = list;
@@ -33,11 +40,38 @@ private boolean overrideDrawBody;
 		paint.setARGB(255, 255, 0, 0);
 		overrideDrawBody=false;
 		
+		
+		textPaint = new Paint();
+		textPaint.set(paint);
+		textPaint.setTextSize(30);
+		fpsListSize=5;
+		fpsList=new float[fpsListSize];
+		lastUpdate=0;
+		
 	}
 	public DebugDraw(Game activity, BufferedList<BodyComponent> list, boolean overrideDrawBody) {
 		this(activity, list);
 		// TODO Auto-generated constructor stub
 		this.overrideDrawBody=overrideDrawBody;
+	}
+	
+	@Override
+	public void update(UpdateInfo updateInfo) {
+		super.update(updateInfo);
+		
+		for(int i=1;i<fpsListSize;i++){
+			fpsList[i] = fpsList[i-1];
+		}
+		fpsList[0] = updateInfo.getTime()-lastUpdate;
+		fps=0f;
+		for(int i=0;i<fpsListSize;i++){
+			fps+=fpsList[i];
+		}
+		fps = 1000/(fps/fpsListSize);
+		
+		
+		lastUpdate=updateInfo.getTime();
+		
 	}
 
 	public void draw(DrawInfo info) {
@@ -86,6 +120,7 @@ private boolean overrideDrawBody;
 			}
 		}
 		}
+		info.getCanvas().drawText("fps: "+Float.toString(fps), 100, 100, textPaint);
 	}
 
 }

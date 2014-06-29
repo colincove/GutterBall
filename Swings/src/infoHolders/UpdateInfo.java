@@ -12,6 +12,9 @@ public UpdateInfo(TickInfo tickInfo){
 public int getDeltaTime(){
 	return tickInfo.getDeltaTime();
 }
+public int getTargetFps(){
+	return tickInfo.getTargetFps();
+}
 public long getTime(){
 	return time;
 }

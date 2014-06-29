@@ -23,7 +23,10 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.DialogInterface.OnKeyListener;
 import android.content.res.Resources;
+import android.graphics.BitmapFactory;
+import android.graphics.BitmapFactory.Options;
 import android.graphics.Canvas;
+import android.graphics.PixelFormat;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -71,7 +74,7 @@ public class SwingActivity extends Activity implements SurfaceHolder.Callback,
 	public void setContentView(SurfaceView view) {
 		super.setContentView(view);
 		this.view = view;
-
+		view.setZOrderOnTop(true);
 	}
 
 	public void setCanvas(Canvas canvas) {
@@ -133,6 +136,7 @@ public class SwingActivity extends Activity implements SurfaceHolder.Callback,
 		inputList = new BufferedList<IUserInputComponent>();
 		componentList = new BufferedList<AbstractComponent>();
 		this.setContentView(view);
+	
 		// view.addOnAttachStateChangeListener(this);
 		SurfaceHolder holder = view.getHolder();
 		holder.addCallback(this);
@@ -221,6 +225,8 @@ public class SwingActivity extends Activity implements SurfaceHolder.Callback,
 		drawThread.setView(view);
 		drawThread.setHolder(holder);
 		drawThread.setRunning(true);
+		
+		//holder.setFormat(PixelFormat.TRANSPARENT);
 	}
 
 	@Override

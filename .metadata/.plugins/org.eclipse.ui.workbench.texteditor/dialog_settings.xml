@@ -13,16 +13,16 @@
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="Pool" key="selection"/>
+		<item value="surfaceCreated" key="selection"/>
 		<list key="findhistory">
+			<item value="surfaceCreated"/>
+			<item value="setFormat"/>
+			<item value="GameThread"/>
 			<item value="pool"/>
 			<item value="levelLayoutController"/>
 			<item value="custom:disabledIcon=&quot;@drawable/lock&quot;"/>
 			<item value="e"/>
 			<item value="text"/>
-			<item value="app"/>
-			<item value="statusListeners"/>
-			<item value="levelPreferences"/>
 		</list>
 		<list key="replacehistory">
 			<item value="custom:disabledIcon=&quot;@drawable/green_sphere&quot;"/>

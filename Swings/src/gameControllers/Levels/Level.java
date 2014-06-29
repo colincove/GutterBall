@@ -53,10 +53,10 @@ generateCuller(game);
 gShift = new GravityShift(game);
 
 }
-public Level(Game game, BodyComponent geometry, BitmapDrawable bgBitmap){
+public Level(Game game, BodyComponent geometry, int bgId){
 	super(game);
 	this.geometry=geometry;
-	bg  = new Background(game, bgBitmap);
+	bg  = new Background(game, bgId);
 	generateCuller(game);
 	gShift = new GravityShift(game);
 }

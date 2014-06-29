@@ -204,8 +204,8 @@ public class Launcher extends DrawableGameComponent implements IUserInputCompone
 
 		
 		Vec2 force = new Vec2(
-				(float)(cos*(dReduced+Math.abs(vx)*4)), 
-				(float)(sin*(dReduced+Math.abs(vy)*4)));
+				(float)(cos*(dReduced+Math.abs(vx)*10)), 
+				(float)(sin*(dReduced+Math.abs(vy)*10)));
 		//Vec2 force = new Vec2((float)(cos*(d*10)), (float)(sin*(d*10)));
 		//Vec2 force = new Vec2((float)(cos*(d/20+Math.abs(vx)*4)), (float)(sin*(d/20+Math.abs(vy)*4)));
 		
