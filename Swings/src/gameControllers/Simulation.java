@@ -47,7 +47,7 @@ public class Simulation extends AbstractGameComponent implements IUserInputCompo
 	
 public Simulation(Game game, BufferedList<BodyComponent> bodyList){
 	super(game);
-	gravity = new Vec2(0.0f,10.0f);
+	gravity = new Vec2(0.0f,3.0f);
 	world = new World(gravity, true);
 	timeStep = 1.0f/15.0f;
      velocityIterations = 1;

@@ -86,8 +86,8 @@ public class DebugDraw extends DrawableGameComponent {
 			while (fix != null) {
 				if (fix.getType() == ShapeType.CIRCLE) {
 					CircleShape shape = (CircleShape) fix.getShape();
-					info.getCanvas().drawCircle(gameView.toScreenX(center.x),
-							gameView.toScreenY(center.y),
+					info.getCanvas().drawCircle(gameView.toScreenX(shape.m_p.x),
+							gameView.toScreenY(shape.m_p.y),
 							gameView.toScreen(shape.m_radius), paint);
 				} else if (fix.getType() == ShapeType.POLYGON) {
 					info.getCanvas().save();

@@ -1,0 +1,39 @@
+package gameControllers.Levels.Geom;
+
+import org.jbox2d.collision.shapes.CircleShape;
+import org.jbox2d.collision.shapes.PolygonShape;
+import org.jbox2d.common.Vec2;
+import org.jbox2d.dynamics.Body;
+import org.jbox2d.dynamics.FixtureDef;
+
+import gameControllers.Game;
+
+public class PlinkoGeom extends LevelWalls {
+
+	public PlinkoGeom(Game game) {
+		super(game);
+		// TODO Auto-generated constructor stub
+	}
+	@Override
+	public void createBody(Body body){
+		 CircleShape dynamicBox;
+		 int r=1;
+		 float dist=4f;
+		 int offsetX=10;
+		 int offsetY=10;
+		 float rowOffset = 1.5f;
+		 float activeRowOffset;
+		 for(int i=0;i<5;i++){
+			 for(int j=0;j<8;j++) {
+				 activeRowOffset = j % 2 == 0 ? 0:rowOffset;
+				 dynamicBox = new CircleShape();
+			        //dynamicBox.setAsBox(1.0f, 1.0f);
+				 dynamicBox.m_p.set(i*dist+offsetX , j*dist+offsetY);
+			       dynamicBox.m_radius=r;
+			       body.createFixture(dynamicBox,0.0f);
+			 }
+		 }
+		
+		super.createBody(body);
+	}
+}

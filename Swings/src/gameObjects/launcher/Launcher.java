@@ -191,21 +191,26 @@ public class Launcher extends DrawableGameComponent implements IUserInputCompone
 		//Spawn Actor
 		Actor actor = new Actor(game, new Vec2(getX(), getY()));
 		//Launch Actor
-		float dx  = fingX-gameView.toScreenX(getX());
-		float dy  = fingY-gameView.toScreenY(getY());
+		float dx  = gameView.toWorld(fingX)-getX();
+		float dy  = gameView.toWorld(fingY)-getY();
 		double a= Math.atan2(dy,  dx);
 		double d= Math.sqrt(dx*dx+dy*dy);
+		
+		double vd = Math.sqrt(vx*vx+vy*vy);
 		
 		double cos = Math.cos(a);
 		double sin = Math.sin(a);
 		
 		double dNew = Math.pow(d/100, 3);
-		double dReduced = dNew/5;
-
+		double dReduced = dNew*200;
+		
+		double baseForce = 5;
+		
+		double power = baseForce+dReduced+vd*20;
 		
 		Vec2 force = new Vec2(
-				(float)(cos*(dReduced+Math.abs(vx)*10)), 
-				(float)(sin*(dReduced+Math.abs(vy)*10)));
+				(float)(cos*power), 
+				(float)(sin*power));
 		//Vec2 force = new Vec2((float)(cos*(d*10)), (float)(sin*(d*10)));
 		//Vec2 force = new Vec2((float)(cos*(d/20+Math.abs(vx)*4)), (float)(sin*(d/20+Math.abs(vy)*4)));
 		
@@ -239,7 +244,7 @@ public class Launcher extends DrawableGameComponent implements IUserInputCompone
 			vx=0;
 			vy=0;
 			
-			int limit = 5;
+			int limit = 2;
 			if(event.getHistorySize()+1<limit){
 				limit=event.getHistorySize();
 			}
@@ -248,8 +253,8 @@ public class Launcher extends DrawableGameComponent implements IUserInputCompone
 				vx+=fingX-event.getHistoricalX(event.getHistorySize()-i);
 				vy+=fingY-event.getHistoricalY(event.getHistorySize()-i);
 			}
-			if(vx!=0)vx=vx/(limit-1);
-			if(vy!=0)vy=vy/(limit-1);
+			if(vx!=0)vx=gameView.toWorld(vx/(limit-1));
+			if(vy!=0)vy=gameView.toWorld(vy/(limit-1));
 			
 		}
 		

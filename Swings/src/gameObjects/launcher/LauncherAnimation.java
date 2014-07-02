@@ -167,6 +167,9 @@ public class LauncherAnimation extends DrawableGameComponent implements ILaunche
 		super.update(updateInfo);
 		physics.update();
 		if(launcher.getState()==Launcher.PULLING){
+			
+			
+			
 			str1.getTail().addForce(new Vec2D(
 					(gameView.toScreenX(launcher.getX())-launcher.getFingX())/1000, 
 					(gameView.toScreenY(launcher.getY())-launcher.getFingY())/1000

@@ -57,7 +57,7 @@ public class GameView extends SurfaceView {
 	}
 
 	public float toWorld(float value) {
-		return value * ratio;
+		return value / ratio;
 	}
 
 	public float toScreen(float value) {

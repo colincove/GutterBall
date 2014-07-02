@@ -1,0 +1,18 @@
+package gameControllers.Levels;
+
+import gameControllers.Game;
+import Components.BodyComponent;
+
+public class Plinko extends ThrowLevel {
+
+	public Plinko(Game game, BodyComponent geometry) {
+		super(game, geometry);
+		// TODO Auto-generated constructor stub
+	}
+
+	public Plinko(Game game, BodyComponent geometry, int bgId) {
+		super(game, geometry, bgId);
+		// TODO Auto-generated constructor stub
+	}
+
+}

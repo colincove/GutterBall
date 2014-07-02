@@ -7,10 +7,11 @@ import com.example.swings.R;
 import gameControllers.Game;
 import gameControllers.Levels.Geom.HiddenDragonGeom;
 import gameObjects.Background;
+import gameObjects.Forground;
 import Components.BodyComponent;
 
 public class HiddenDragonLevel extends ThrowLevel {
-	private Background forground;
+	private Forground forground;
 	public HiddenDragonLevel(Game game, BodyComponent geometry) 
 	{
 		super(game, geometry,R.drawable.hiddendragon);
@@ -22,7 +23,7 @@ public class HiddenDragonLevel extends ThrowLevel {
 		createPortal(16, 18);
 		createPortal(21, 24);
 		
-		//forground=new Background(game, (BitmapDrawable) game.getResources().getDrawable(R.drawable.hiddendragon_forground), 200,false);
+		//forground=new Forground(game, R.drawable.hiddendragon_forground, 200,false);
 
 	}
 

@@ -19,13 +19,13 @@ import gameObjects.launcher.LauncherAnimation;
 import gameObjects.launcher.LauncherTouchCircle;
 
 public abstract class ThrowLevel extends Level implements IObtainedCallback {
-	private LauncherTouchCircle launcherCircle;
-private Launcher launcher;
-private LauncherAnimation launcherAnim;
-private List<Portal> portalList;
-private HitSparks sparks;
-private GutterBallApp app;
-private int appleCount=0;
+protected LauncherTouchCircle launcherCircle;
+protected Launcher launcher;
+protected LauncherAnimation launcherAnim;
+protected List<Portal> portalList;
+protected HitSparks sparks;
+protected GutterBallApp app;
+protected int appleCount=0;
 	public ThrowLevel(Game game, BodyComponent geometry) {
 		super(game, geometry);
 		initialize();

@@ -1,0 +1,12 @@
+package gameControllers.Levels.Geom;
+
+import gameControllers.Game;
+
+public class PlinkoGeom extends LevelWalls {
+
+	public PlinkoGeom(Game game) {
+		super(game);
+		// TODO Auto-generated constructor stub
+	}
+
+}

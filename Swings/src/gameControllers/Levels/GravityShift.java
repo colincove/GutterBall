@@ -23,6 +23,7 @@ public class GravityShift extends AbstractGameComponent implements SensorEventLi
 	  float pitch_angle;
 	  float roll_angle;
 	  Vec2 gravity;
+	@SuppressWarnings("deprecation")
 	public GravityShift(Game game) {
 		super(game);
 		// TODO Auto-generated constructor stub
@@ -40,13 +41,11 @@ public class GravityShift extends AbstractGameComponent implements SensorEventLi
 		//int rotation = display.getRotation();
 		int rotation =game.getResources().getConfiguration().orientation;
 		
-		world.getGravity().set(gravity.x+roll_angle*-1/5, gravity.y);
+		world.getGravity().set(gravity.x+roll_angle*-1/50, gravity.y);
 		
 		Vec2 g = world.getGravity();
 		
 		world.setGravity(world.getGravity());
-		
-		System.out.println(rotation);
 	}
 
 	@Override
